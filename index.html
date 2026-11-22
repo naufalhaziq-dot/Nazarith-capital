@@ -297,6 +297,62 @@ table{width:100%;border-collapse:collapse;font-size:11px}th{color:var(--muted);f
 .form-actions{grid-column:1/-1;display:flex;justify-content:flex-end;gap:8px;margin-top:6px}
 @media(max-width:650px){.account-switcher{min-width:190px;margin:0 5px 0 0}.form-grid{grid-template-columns:1fr}.form-actions{grid-column:auto}.account-row{flex-wrap:wrap}}
 
+
+/* ===== Lightweight motion system ===== */
+html{scroll-behavior:smooth;scroll-padding-top:24px}
+#discover .landing-nav{animation:fadeUp .55s ease both}
+#discover .landing-hero-content{animation:fadeUp .7s ease .08s both}
+/* Keep the decorative orb static: animated blur and large shadows can stutter on weaker devices. */
+#discover .landing-orb{animation:none;will-change:auto}
+#discover .landing-orb:before,#discover .landing-orb:after{animation:none}
+#discover .landing-btn,#discover .landing-register{transition:transform .18s ease,background-color .18s ease,border-color .18s ease}
+#discover .landing-btn:hover,#discover .landing-register:hover{transform:translateY(-2px)}
+#discover .landing-card,#discover .landing-product{transition:transform .2s ease,border-color .2s ease,background-color .2s ease}
+#discover .landing-card:hover,#discover .landing-product:hover{transform:translateY(-3px);border-color:#6685a4;background:#131f2d}
+#discover .landing-links a{position:relative;transition:color .18s ease}
+#discover .landing-links a:after{content:"";position:absolute;left:0;right:100%;bottom:-7px;height:1px;background:#9bbbd8;transition:right .18s ease}
+#discover .landing-links a:hover:after{right:0}
+#discover [data-reveal]{opacity:0;transform:translateY(14px);transition:opacity .45s ease,transform .45s ease}
+#discover [data-reveal].is-visible{opacity:1;transform:translateY(0)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:700px){#discover .landing-hero h1{animation:fadeUp .65s ease .15s both}#discover .landing-orb{animation:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}#discover [data-reveal]{opacity:1!important;transform:none!important}}
+
+
+/* NAZARITH motion: preserve the original visual character with lightweight GPU-friendly animation. */
+html{scroll-behavior:smooth;scroll-padding-top:28px}
+#discover .landing-nav{animation:nzSlideIn .7s cubic-bezier(.2,.7,.2,1) both}
+#discover .landing-hero-content{animation:nzRise .9s cubic-bezier(.2,.7,.2,1) .1s both}
+#discover .landing-orb{transform-origin:50% 50%;animation:nzOrbFloat 20s ease-in-out infinite;will-change:transform}
+#discover .landing-orb:before{animation:nzOrbit 34s linear infinite;will-change:transform}
+#discover .landing-orb:after{animation:nzOrbit 46s linear infinite reverse;will-change:transform}
+#discover .landing-hero h1{animation:nzTitle .9s ease .2s both}
+#discover .landing-hero p{animation:nzRise .8s ease .35s both}
+#discover .landing-hero-actions{animation:nzRise .8s ease .48s both}
+#discover .landing-btn,#discover .landing-register{transition:transform .22s ease,border-color .22s ease,background-color .22s ease}
+#discover .landing-btn:hover,#discover .landing-register:hover{transform:translateY(-2px)}
+#discover .landing-card,#discover .landing-product{transition:transform .28s ease,border-color .28s ease,background-color .28s ease}
+#discover .landing-card:hover,#discover .landing-product:hover{transform:translateY(-5px);border-color:#6685a4;background:#131f2d}
+#discover .landing-links a{transition:color .2s ease}
+#discover [data-reveal]{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}
+#discover [data-reveal].is-visible{opacity:1;transform:translateY(0)}
+#workspace .card,#workspace .stat,#workspace .page-head{animation:nzRise .38s ease both}
+#workspace .btn{transition:background-color .2s ease,border-color .2s ease,transform .2s ease}
+#workspace .btn:hover{transform:translateY(-1px)}
+@keyframes nzSlideIn{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes nzRise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@keyframes nzTitle{from{opacity:0;letter-spacing:20px}to{opacity:1;letter-spacing:12px}}
+@keyframes nzOrbFloat{0%,100%{transform:translate3d(0,0,0) rotate(0)}50%{transform:translate3d(-12px,10px,0) rotate(5deg)}}
+@keyframes nzOrbit{from{transform:rotate(0) rotateX(65deg)}to{transform:rotate(360deg) rotateX(65deg)}}
+/* Stable logged-in layout: sidebar starts at the top and dashboard always has its own visible column. */
+#workspace.app{display:grid!important;grid-template-columns:245px minmax(0,1fr)!important;align-items:start!important;min-height:100vh;width:100%;overflow-x:clip}
+#workspace.app>.sidebar{grid-column:1;grid-row:1;position:sticky!important;top:0;align-self:start;display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;width:245px;height:100vh;min-height:100vh;overflow-y:auto;overflow-x:hidden}
+#workspace.app>.main{grid-column:2;grid-row:1;display:block!important;align-self:start;margin:0!important;width:100%!important;min-width:0;max-width:none;padding:28px 36px 50px;visibility:visible!important}
+#workspace #main:empty{min-height:70vh}
+@media(max-width:900px){#workspace.app{grid-template-columns:205px minmax(0,1fr)!important}#workspace.app>.sidebar{width:205px;padding:20px 12px}#workspace.app>.main{padding:22px 20px 40px}}
+@media(max-width:650px){#workspace.app{display:block!important}#workspace.app>.sidebar{position:relative!important;width:100%;height:auto;min-height:0;display:flex;flex-direction:row;align-items:center;overflow-x:auto;overflow-y:hidden;gap:5px;padding:10px}#workspace.app>.sidebar .brand,#workspace.app>.sidebar .side-label,#workspace.app>.sidebar .side-bottom{display:none}#workspace.app>.sidebar .nav{white-space:nowrap;width:auto;flex:0 0 auto}#workspace.app>.main{width:100%!important;padding:0 15px 35px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}#discover [data-reveal]{opacity:1!important;transform:none!important}}
+
 </style></head>
 <body>
 <header class="topbar"><div class="brand"><div class="brand-mark">N</div><span>NAZARITH <span style="color:#6da6ff">CAPITAL</span></span></div><div class="top-actions"><span id="topUser" class="muted" style="font-size:12px"></span><button id="topLogin" class="btn ghost" onclick="showAuth('login')">Sign in</button><button id="topStart" class="btn primary" onclick="showAuth('register')">Get started</button></div></header>
@@ -386,6 +442,16 @@ table{width:100%;border-collapse:collapse;font-size:11px}th{color:var(--muted);f
       </div>
     </section>
 
+    <section id="operating-framework" class="landing-section">
+      <div class="eyebrow">THE NAZARITH METHOD / OPERATING FRAMEWORK</div>
+      <h2>Process before<br><em>prediction.</em></h2>
+      <p class="landing-lead" style="max-width:720px;color:#aab8c7;line-height:1.9">A durable trading process is built through repeatable decisions, measured risk, and honest review. The objective is not to predict every market move, but to respond consistently when conditions meet a defined plan.</p>
+      <div class="landing-grid" style="margin-top:34px">
+        <article class="landing-card"><small>01 / PREPARE</small><h3>Define the context</h3><p>Map higher-timeframe structure, liquidity, key levels, and the events that may change market conditions before considering an entry.</p></article>
+        <article class="landing-card"><small>02 / EXECUTE</small><h3>Control the risk</h3><p>Set invalidation, position size, and acceptable exposure in advance. Every position must have a clear reason to exist and a defined point where the thesis is wrong.</p></article>
+        <article class="landing-card"><small>03 / REVIEW</small><h3>Learn from evidence</h3><p>Record the setup, execution, and outcome. Review a meaningful sample of trades to distinguish a repeatable edge from short-term noise.</p></article>
+      </div>
+    </section>
     <section id="contact" class="landing-section">
       <div class="landing-container">
         <div class="landing-label">05 / ACCESS</div>
@@ -395,7 +461,6 @@ table{width:100%;border-collapse:collapse;font-size:11px}th{color:var(--muted);f
       </div>
     </section>
   </main>
-  <footer class="landing-footer landing-container"><strong>NAZARITH CAPITAL</strong><span>FOUNDED BY NAUFALHAZIQ AZFARIMIFDHAL AGFI</span><span>© 2026 NAZARITH CAPITAL</span></footer>
 </section>
 <section id="auth" class="auth-wrap hidden"><div class="auth-card"><div class="eyebrow">NAZARITH CAPITAL / ACCESS</div><h2 id="authTitle">Welcome back.</h2><p class="muted" id="authSub">Sign in to your private workspace.</p><form id="authForm"><div class="field" id="nameField"><label>FULL NAME</label><input id="authName" autocomplete="name" placeholder="Your name"></div><div class="field"><label>EMAIL ADDRESS</label><input id="authEmail" type="email" required autocomplete="email" placeholder="name@example.com"></div><div class="field"><label>PASSWORD</label><input id="authPassword" type="password" required minlength="6" autocomplete="current-password" placeholder="Minimum 6 characters"></div><button class="btn primary" style="width:100%;margin-top:8px" id="authSubmit">Sign in</button></form><p class="muted" style="text-align:center;margin:20px 0 0;font-size:12px"><span id="authSwitchText">New to Nazarith?</span> <a href="#" id="authSwitch" style="color:#80b1ff" onclick="toggleAuthMode(event)">Create account</a></p><p class="muted" style="font-size:10px;margin-top:20px">Demo/local mode: account data is stored in this browser. Connect Supabase before using this for real multi-device or production authentication.</p><button class="btn ghost small" style="width:100%;margin-top:8px" onclick="backDiscover()">← Back to Discover</button></div></section>
 <section id="workspace" class="app hidden"><aside class="sidebar"><div class="brand" style="padding:0 10px 12px"><div class="brand-mark">N</div><span>NAZARITH</span></div><div id="accountSwitcher" class="account-switcher"></div><div class="side-label">WORKSPACE</div><button class="nav active" data-page="dashboard" onclick="navigate('dashboard')">▦ <span>Overview</span></button><button class="nav" data-page="journal" onclick="navigate('journal')">▤ <span>Trade Journal</span></button><button class="nav" data-page="analytics" onclick="navigate('analytics')">◫ <span>Analytics</span></button><div class="side-label">RESEARCH & STRATEGY</div><button class="nav" data-page="strategy" onclick="navigate('strategy')">◎ <span>Strategy Lab</span></button><button class="nav" data-page="research" onclick="navigate('research')">▧ <span>Research Vault</span></button><button class="nav" data-page="watchlist" onclick="navigate('watchlist')">◉ <span>Market Watchlist</span></button><div class="side-label">RISK & ADMINISTRATION</div><button class="nav" data-page="risk" onclick="navigate('risk')">⌖ <span>Risk Management</span></button><div class="side-label">MANAGEMENT</div><button class="nav" data-page="backup" onclick="navigate('backup')">⇅ <span>Data & Backup</span></button><button class="nav" data-page="settings" onclick="navigate('settings')">⚙ <span>Settings</span></button><div class="side-bottom">“Consistency is a competitive advantage.”<br><br><span style="color:#6d9fe9">NAZARITH / PRIVATE</span></div></aside><main class="main" id="main"></main></section>
@@ -581,4 +646,28 @@ function renderRisk(){$('main').innerHTML=`<div class="page-head"><div><div clas
 function calculateRisk(){let val=id=>Number($(id)?.value)||0,eq=val('rEquity'),pct=val('rPercent'),entry=val('rEntry'),stop=val('rStop'),target=val('rTarget'),unit=val('rValue'),dist=Math.abs(entry-stop),td=Math.abs(target-entry),risk=eq*pct/100,ok=eq>0&&pct>0&&dist>0&&unit>0&&td>0;$('riskCash').textContent=money(risk);$('lotSize').textContent=ok?(risk/(dist*unit)).toFixed(4):'—';$('riskReward').textContent=ok?(td/dist).toFixed(2)+'R':'—';$('targetCash').textContent=ok?money(risk*td/dist):'—';$('riskWarning').textContent=ok?'Estimated lot size. Confirm contract size, tick value and broker specifications before execution.':'Enter valid positive values and ensure entry, stop and target are different.'}
 
 if(current&&!users[current]){current='';storage.remove(STORE+'_session')}syncView();
+
+
+// Lightweight scroll reveal: observe only the public landing page once.
+(function initNazarithMotion(){
+  const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const elements = document.querySelectorAll('#discover .landing-section, #discover .landing-card, #discover .landing-product, #discover .founder-profile');
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    elements.forEach(el => el.classList.add('is-visible'));
+    return;
+  }
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        obs.unobserve(entry.target);
+      }
+    });
+  }, {threshold: 0.08, rootMargin: '0px 0px -24px 0px'});
+  elements.forEach(el => {
+    el.setAttribute('data-reveal', '');
+    observer.observe(el);
+  });
+})();
+
 </script></body></html>
