@@ -170,6 +170,16 @@ body:has(#discover:not(.hidden)) .topbar{display:none}
 #discover .landing-statement .landing-quote{margin:25px auto 0}
 #discover .landing-footer{padding:35px 0;display:flex;justify-content:space-between;gap:20px;color:#93a1b1;font-size:10px;letter-spacing:2px}
 #discover .landing-footer strong{color:#e8edf3}
+
+#discover .founder-layout{display:grid;grid-template-columns:1fr 1fr;gap:55px;align-items:center}
+#discover .founder-profile{border-left:1px solid #49647e;padding:12px 0 12px 35px;max-width:560px}
+#discover .founder-rule{width:42px;height:2px;background:#9bbbd8;margin-bottom:25px}
+#discover .founder-role{font-size:10px;letter-spacing:3px;color:#9bbbd8}
+#discover .founder-profile h3{font:normal clamp(25px,3vw,38px) Georgia,serif;line-height:1.25;margin:18px 0 12px;color:#e8edf3}
+#discover .founder-profile p{font-size:13px;line-height:1.8;color:#aab8c7;margin:0}
+#discover .founder-profile .founder-note{margin-top:20px;color:#93a1b1;max-width:440px}
+@media(max-width:700px){#discover .founder-layout{grid-template-columns:1fr;gap:30px}#discover .founder-profile{padding-left:22px}}
+
 @media(max-width:850px){#discover .landing-links{gap:14px;font-size:9px}#discover .landing-hero{min-height:620px}#discover .landing-orb{right:-180px;opacity:.75}}
 @media(max-width:700px){#discover .landing-nav{height:72px}#discover .landing-links{display:none}#discover .landing-logo{font-size:16px;letter-spacing:5px}#discover .landing-register{padding:10px;font-size:8px}#discover .landing-hero{min-height:620px}#discover .landing-hero h1{font-size:clamp(45px,13vw,76px);letter-spacing:6px}#discover .landing-hero h1 span{font-size:24px}#discover .landing-orb{width:280px;height:280px;right:-190px;top:180px}#discover .landing-grid,#discover .landing-products{grid-template-columns:1fr}#discover .landing-section{padding:75px 0}#discover .landing-footer{flex-direction:column;gap:14px}#discover .landing-hero-actions{gap:0;flex-direction:column;align-items:flex-start}}
 
@@ -298,6 +308,7 @@ table{width:100%;border-collapse:collapse;font-size:11px}th{color:var(--muted);f
         <a href="#philosophy">PHILOSOPHY</a>
         <a href="#principles">PRINCIPLES</a>
         <a href="#ecosystem">ECOSYSTEM</a>
+        <a href="#founder">FOUNDER</a>
         <a href="#contact">CONTACT</a>
       </div>
       <div class="landing-access">
@@ -359,16 +370,32 @@ table{width:100%;border-collapse:collapse;font-size:11px}th{color:var(--muted);f
       <p class="landing-quote">“Greatness is not measured by how far we rise, but by what remains standing after we are gone.”</p>
     </div>
 
+    <section id="founder" class="landing-section">
+      <div class="landing-container founder-layout">
+        <div>
+          <div class="landing-label">04 / FOUNDER</div>
+          <h2>Built with vision.<br>Guided by discipline.</h2>
+        </div>
+        <div class="founder-profile">
+          <div class="founder-rule"></div>
+          <div class="founder-role">FOUNDER &amp; CREATOR</div>
+          <h3>Naufalhaziq Azfarimifdhal Agfi</h3>
+          <p>Founder of NAZARITH CAPITAL</p>
+          <p class="founder-note">Building a disciplined, research-driven trading and market intelligence ecosystem with a long-term vision.</p>
+        </div>
+      </div>
+    </section>
+
     <section id="contact" class="landing-section">
       <div class="landing-container">
-        <div class="landing-label">04 / ACCESS</div>
+        <div class="landing-label">05 / ACCESS</div>
         <h2>Build what lasts.</h2>
         <p class="landing-intro">The beginning of a disciplined process is a decision to think beyond the present. NAZARITH CAPITAL is built around that decision.</p>
         <button class="landing-btn" onclick="showAuth('register')">ESTABLISH YOUR WORKSPACE ↗</button>
       </div>
     </section>
   </main>
-  <footer class="landing-footer landing-container"><strong>NAZARITH CAPITAL</strong><span>INDEPENDENT RESEARCH &amp; MARKET INTELLIGENCE</span><span>© 2026 NAZARITH CAPITAL</span></footer>
+  <footer class="landing-footer landing-container"><strong>NAZARITH CAPITAL</strong><span>FOUNDED BY NAUFALHAZIQ AZFARIMIFDHAL AGFI</span><span>© 2026 NAZARITH CAPITAL</span></footer>
 </section>
 <section id="auth" class="auth-wrap hidden"><div class="auth-card"><div class="eyebrow">NAZARITH CAPITAL / ACCESS</div><h2 id="authTitle">Welcome back.</h2><p class="muted" id="authSub">Sign in to your private workspace.</p><form id="authForm"><div class="field" id="nameField"><label>FULL NAME</label><input id="authName" autocomplete="name" placeholder="Your name"></div><div class="field"><label>EMAIL ADDRESS</label><input id="authEmail" type="email" required autocomplete="email" placeholder="name@example.com"></div><div class="field"><label>PASSWORD</label><input id="authPassword" type="password" required minlength="6" autocomplete="current-password" placeholder="Minimum 6 characters"></div><button class="btn primary" style="width:100%;margin-top:8px" id="authSubmit">Sign in</button></form><p class="muted" style="text-align:center;margin:20px 0 0;font-size:12px"><span id="authSwitchText">New to Nazarith?</span> <a href="#" id="authSwitch" style="color:#80b1ff" onclick="toggleAuthMode(event)">Create account</a></p><p class="muted" style="font-size:10px;margin-top:20px">Demo/local mode: account data is stored in this browser. Connect Supabase before using this for real multi-device or production authentication.</p><button class="btn ghost small" style="width:100%;margin-top:8px" onclick="backDiscover()">← Back to Discover</button></div></section>
 <section id="workspace" class="app hidden"><aside class="sidebar"><div class="brand" style="padding:0 10px 12px"><div class="brand-mark">N</div><span>NAZARITH</span></div><div id="accountSwitcher" class="account-switcher"></div><div class="side-label">WORKSPACE</div><button class="nav active" data-page="dashboard" onclick="navigate('dashboard')">▦ <span>Overview</span></button><button class="nav" data-page="journal" onclick="navigate('journal')">▤ <span>Trade Journal</span></button><button class="nav" data-page="analytics" onclick="navigate('analytics')">◫ <span>Analytics</span></button><div class="side-label">RESEARCH & STRATEGY</div><button class="nav" data-page="strategy" onclick="navigate('strategy')">◎ <span>Strategy Lab</span></button><button class="nav" data-page="research" onclick="navigate('research')">▧ <span>Research Vault</span></button><button class="nav" data-page="watchlist" onclick="navigate('watchlist')">◉ <span>Market Watchlist</span></button><div class="side-label">RISK & ADMINISTRATION</div><button class="nav" data-page="risk" onclick="navigate('risk')">⌖ <span>Risk Management</span></button><div class="side-label">MANAGEMENT</div><button class="nav" data-page="backup" onclick="navigate('backup')">⇅ <span>Data & Backup</span></button><button class="nav" data-page="settings" onclick="navigate('settings')">⚙ <span>Settings</span></button><div class="side-bottom">“Consistency is a competitive advantage.”<br><br><span style="color:#6d9fe9">NAZARITH / PRIVATE</span></div></aside><main class="main" id="main"></main></section>
