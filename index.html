@@ -1,370 +1,833 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#080b10">
-  <title>NAZARITH CAPITAL V8.0 — Institutional Trading Intelligence</title>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#080d16"><title>NAZARITH CAPITAL 3.0 — Trading Intelligence</title>
+<style>
+:root{--bg:#080d16;--panel:#0e1624;--panel2:#111d2e;--line:#1e2c40;--text:#e8eef7;--muted:#8291a7;--blue:#4b91ff;--blue2:#2468d8;--green:#31c48d;--red:#f16f78;--amber:#e8b65c;--radius:14px}*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 80% -10%,#14294a 0,transparent 38%),var(--bg);color:var(--text);font:14px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}.hidden{display:none!important}.muted{color:var(--muted)}.eyebrow{font-size:10px;letter-spacing:2.4px;color:#7eaefb;text-transform:uppercase;font-weight:700}.brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:2px}.brand-mark{width:36px;height:36px;border:1px solid #477dc4;border-radius:10px;display:grid;place-items:center;color:#9cc4ff;font-size:19px;background:#11243d}.btn{border:1px solid var(--line);background:#152338;color:var(--text);padding:10px 15px;border-radius:9px;font-weight:650}.btn:hover{border-color:#4b91ff;background:#1a2e4c}.btn.primary{background:var(--blue2);border-color:var(--blue2);color:white}.btn.ghost{background:transparent}.btn.danger{color:#ff9ca2}.btn.small{padding:6px 10px;font-size:12px}.topbar{height:72px;padding:0 5vw;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #ffffff10;position:sticky;top:0;background:#080d16eF;backdrop-filter:blur(16px);z-index:10}.top-actions{display:flex;gap:10px;align-items:center}.discover{min-height:calc(100vh - 72px);padding:8vh 8vw 60px;display:grid;grid-template-columns:1.2fr .8fr;gap:6vw;align-items:center;max-width:1500px;margin:auto}.hero h1{font-size:clamp(44px,7vw,88px);line-height:.98;letter-spacing:-4px;margin:20px 0}.hero h1 span{color:#77aaff}.hero p{font-size:16px;color:#9aa9bd;max-width:620px;line-height:1.9}.hero-actions{display:flex;gap:12px;margin-top:30px;flex-wrap:wrap}.manifesto{border:1px solid #263a55;background:linear-gradient(145deg,#12223a,#0c1421 70%);padding:30px;border-radius:18px;box-shadow:0 30px 100px #0005}.manifesto .quote{font-size:26px;line-height:1.3;font-weight:650;margin:22px 0}.manifesto-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:28px}.manifesto-grid div{border-top:1px solid #30435c;padding-top:12px}.manifesto-grid b{display:block;font-size:11px;letter-spacing:1px}.manifesto-grid small{color:var(--muted)}.discover-footer{grid-column:1/-1;color:#62738a;font-size:11px;letter-spacing:1.5px;margin-top:20px}.auth-wrap{min-height:calc(100vh - 72px);display:grid;place-items:center;padding:30px}.auth-card{width:min(430px,100%);padding:30px;background:var(--panel);border:1px solid var(--line);border-radius:16px}.auth-card h2{font-size:27px;margin:8px 0}.field{margin:15px 0}.field label{display:block;color:#9eacc0;font-size:11px;font-weight:700;letter-spacing:1px;margin-bottom:7px}.field input,.field select,.field textarea,.toolbar input,.toolbar select{width:100%;padding:11px 12px;color:var(--text);background:#09111e;border:1px solid #26364c;border-radius:8px;outline:none}.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--blue)}.field textarea{min-height:90px;resize:vertical}.app{display:grid;grid-template-columns:245px 1fr;min-height:calc(100vh - 72px)}.sidebar{border-right:1px solid var(--line);padding:24px 16px;background:#0a111d}.side-label{font-size:10px;letter-spacing:1.8px;color:#64758d;margin:28px 12px 10px}.nav{display:flex;align-items:center;gap:12px;width:100%;padding:11px 12px;margin:3px 0;text-align:left;color:#9aa9bd;border:0;border-radius:8px;background:transparent}.nav:hover,.nav.active{background:#172944;color:#e8f1ff}.nav.active{box-shadow:inset 2px 0 var(--blue)}.side-bottom{margin-top:40px;padding:14px;border:1px solid var(--line);border-radius:10px;color:var(--muted);font-size:12px}.main{padding:30px clamp(18px,4vw,56px);max-width:1500px;width:100%;margin:0 auto}.page-head{display:flex;justify-content:space-between;gap:15px;align-items:flex-start;margin-bottom:25px}.page-head h1{font-size:27px;margin:3px 0}.page-head p{color:var(--muted);margin:4px 0}.grid{display:grid;gap:15px}.stats{grid-template-columns:repeat(4,minmax(0,1fr));margin-bottom:18px}.stat,.card{background:linear-gradient(145deg,#111d2d,#0d1522);border:1px solid var(--line);border-radius:var(--radius);padding:18px}.stat .label{color:var(--muted);font-size:11px;letter-spacing:1px}.stat .value{font-size:26px;font-weight:750;margin-top:7px}.stat .sub{font-size:11px;color:var(--muted);margin-top:3px}.two-col{grid-template-columns:1.25fr .75fr}.card h3{margin:0 0 15px;font-size:14px}.chart{height:190px;display:flex;align-items:end;gap:7px;padding:15px 3px 0;border-bottom:1px solid var(--line)}.bar{flex:1;min-width:5px;background:linear-gradient(180deg,#5ca1ff,#2354a4);border-radius:4px 4px 0 0;opacity:.85}.empty{padding:35px 12px;text-align:center;color:var(--muted)}.toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:14px}.toolbar input{max-width:250px}.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:12px}table{border-collapse:collapse;width:100%;min-width:850px;background:#0d1522}th,td{padding:13px 14px;text-align:left;border-bottom:1px solid #1d2a3c;white-space:nowrap}th{font-size:10px;letter-spacing:1px;color:#8394aa;background:#111d2c}td{font-size:12px;color:#d8e1ed}.pill{padding:4px 8px;border-radius:20px;font-size:10px;font-weight:750}.win{color:#66dfb1;background:#12382e}.loss{color:#ff9ca2;background:#3a2029}.neutral{color:#a9c8ff;background:#1b2e4b}.thumbs{display:flex;gap:5px}.thumb{width:54px;height:38px;object-fit:cover;border-radius:5px;border:1px solid #34465e;cursor:pointer}.modal-backdrop{position:fixed;inset:0;background:#000b;z-index:30;display:grid;place-items:center;padding:20px;overflow:auto}.modal{width:min(760px,100%);max-height:94vh;overflow:auto;background:#101a29;border:1px solid #2a3d57;border-radius:15px;padding:24px;box-shadow:0 25px 100px #0009}.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0 15px}.upload-box{border:1px dashed #477dc4;background:#0b1727;padding:20px;border-radius:10px;text-align:center;color:#a8bad0;cursor:pointer}.preview-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}.preview-item{position:relative}.preview-item img{width:100%;height:115px;object-fit:cover;border-radius:8px;border:1px solid var(--line)}.preview-item button{position:absolute;right:5px;top:5px;background:#111d;color:white;border:1px solid #53647a;border-radius:50%;width:24px;height:24px}.image-view{max-width:95vw;max-height:88vh;object-fit:contain}.detail-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.detail-grid div{padding:12px;background:#0b1421;border-radius:8px}.detail-grid small{display:block;color:var(--muted);font-size:10px}.detail-grid b{font-size:13px}.toast{position:fixed;right:22px;bottom:22px;background:#173b32;border:1px solid #2e8065;padding:12px 17px;border-radius:9px;z-index:60;color:#a7f0d4}.footer-note{font-size:11px;color:#62738a;margin-top:22px}.positive{color:var(--green)}.negative{color:var(--red)}
+@media(max-width:900px){.discover{grid-template-columns:1fr;padding:55px 7vw}.app{grid-template-columns:1fr}.sidebar{border-right:0;border-bottom:1px solid var(--line);padding:10px;display:flex;gap:5px;overflow:auto}.sidebar .brand,.side-label,.side-bottom{display:none}.nav{width:auto;white-space:nowrap;padding:9px 12px}.stats{grid-template-columns:repeat(2,1fr)}.two-col{grid-template-columns:1fr}.main{padding:22px 16px}}@media(max-width:560px){.topbar{padding:0 16px}.topbar .brand{font-size:12px}.top-actions .btn{padding:8px}.hero h1{letter-spacing:-2px}.manifesto{padding:22px}.manifesto-grid{grid-template-columns:1fr}.stats{gap:9px}.stat{padding:13px}.stat .value{font-size:21px}.form-grid{grid-template-columns:1fr}.page-head{flex-direction:column}.preview-grid{grid-template-columns:repeat(2,1fr)}}
 
-  <!-- Institutional Typography & Stylesheets -->
-  <link rel="stylesheet" href="assets/css/theme.css">
-  <link rel="stylesheet" href="assets/css/layout.css">
-  <link rel="stylesheet" href="assets/css/components.css">
-  <link rel="stylesheet" href="assets/css/modules.css">
+/* ===== NAZARITH CAPITAL institutional interface ===== */
+:root{
+ --bg:#080b10;--panel:#101721;--panel2:#141e2a;--line:#253242;
+ --text:#e8edf5;--muted:#8795a6;--blue:#9dbbd8;--blue2:#b9d0e5;
+ --green:#53c99a;--red:#ee7777;--radius:4px
+}
+body{background:var(--bg);font:13px/1.55 Arial,ui-sans-serif,system-ui,sans-serif}
+.topbar{height:68px;background:#080b10f2;border-bottom:1px solid var(--line);padding:0 36px}
+.brand{letter-spacing:3px;font-size:15px}
+.brand-mark{border-radius:3px;border-color:#52677e;background:#111b27;color:#d4e2ef}
+.btn{border-radius:2px;letter-spacing:.5px}
+.btn.primary{background:#b9d0e5;border-color:#b9d0e5;color:#08111b}
+.btn.primary:hover{background:#e0edf8;border-color:#e0edf8}
+.btn:hover{border-color:var(--blue);background:#172535}
+.eyebrow{color:var(--blue);letter-spacing:2px}
+.auth-card{background:var(--panel);border:1px solid var(--line);border-radius:3px;box-shadow:none}
+.auth-card h2{font-weight:400}
+.field input,.field select,.field textarea,.toolbar input,.toolbar select{background:#0a111a;border-color:var(--line);border-radius:2px}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--blue)}
+/* Logged-in workspace mirrors the reference's fixed institutional sidebar */
+body:has(#workspace:not(.hidden)) .topbar{display:none}
+.app{display:block;min-height:100vh;background:var(--bg)}
+.sidebar{position:fixed;inset:0 auto 0 0;width:245px;height:100vh;overflow-y:auto;
+ border-right:1px solid var(--line);background:#0b1017;padding:25px 17px;z-index:12}
+.sidebar .brand{padding:8px 12px 30px!important;border-bottom:1px solid var(--line);gap:0}
+.sidebar .brand-mark{display:none}
+.sidebar .brand span{font-size:17px;letter-spacing:4px}
+.sidebar .brand span:after{content:" CAPITAL";color:#9dbbd8}
+.side-label{margin:25px 0 10px 12px;color:#607185;font-size:9px;letter-spacing:2px}
+.nav{border-radius:3px;margin:2px 0;padding:13px 12px;color:#9aa7b7;font-size:12px}
+.nav:hover,.nav.active{background:#172535;color:#dce9f5}
+.nav.active{box-shadow:none;border-left:2px solid var(--blue);padding-left:10px}
+.side-bottom{margin-top:auto;border:0;border-top:1px solid var(--line);border-radius:0;padding:20px 10px 0;color:var(--muted);font-size:10px;line-height:2;background:transparent}
+.main{margin-left:245px;width:calc(100% - 245px);max-width:none;padding:0 36px 50px}
+.page-head{padding:28px 0 20px;border-bottom:1px solid var(--line);margin-bottom:25px;align-items:center}
+.page-head h1{font-size:25px;font-weight:400;letter-spacing:.5px}
+.page-head p{font-size:12px;line-height:1.7}
+.stat,.card{background:var(--panel);border:1px solid var(--line);border-radius:3px;box-shadow:none}
+.stat{padding:19px}
+.stat .label{font-size:10px;letter-spacing:1.4px}
+.stat .value{font-size:25px;font-weight:400}
+.card{padding:19px}
+.card h3{font-size:12px;font-weight:500;letter-spacing:.5px}
+.grid{gap:13px}
+.stats{gap:13px}
+.two-col{grid-template-columns:1.5fr 1fr;gap:15px}
+.chart{height:235px;border-color:var(--line)}
+.bar{border-radius:1px}
+.table-wrap{border-radius:3px;border-color:var(--line)}
+table{background:var(--panel);min-width:850px}
+th{background:var(--panel);font-weight:400;color:var(--muted);font-size:10px}
+th,td{border-bottom:1px solid #1d2936;padding:13px 9px}
+td{font-size:11px}
+.pill{border-radius:2px}
+.modal{background:var(--panel);border-color:var(--line);border-radius:3px}
+.detail-grid div{background:var(--panel2);border-radius:2px}
+.upload-box{border-color:#52677e;background:#0b1420;border-radius:3px}
+.toast{border-radius:3px}
+.positive{color:var(--green)}.negative{color:var(--red)}
+/* Initial / pre-login dashboard preview based on index.html */
+#discover.discover{display:grid;grid-template-columns:245px minmax(0,1fr);gap:0;align-items:stretch;
+ max-width:none;min-height:calc(100vh - 68px);padding:0;margin:0}
+.preview-sidebar{background:#0b1017;border-right:1px solid var(--line);padding:25px 17px;display:flex;flex-direction:column;min-height:calc(100vh - 68px)}
+.preview-brand{padding:8px 12px 30px;border-bottom:1px solid var(--line)}
+.preview-brand b{font-size:16px;letter-spacing:3px}
+.preview-brand b span{color:#53c99a}
+.preview-brand small{display:block;color:var(--muted);font-size:9px;letter-spacing:2px;margin-top:9px}
+.preview-group{margin:25px 0 10px 12px;color:#607185;font-size:9px;letter-spacing:2px}
+.preview-nav{padding:12px;border-radius:3px;color:#9aa7b7;font-size:12px;margin:2px 0}
+.preview-nav.active{background:#172535;color:#dce9f5;border-left:2px solid var(--blue)}
+.preview-sidebar-foot{margin-top:auto;border-top:1px solid var(--line);padding:20px 10px 0;color:#718095;font-size:9px;line-height:2;letter-spacing:.5px}
+.preview-main{min-width:0;padding:0 36px 38px}
+.preview-top{height:76px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:15px}
+.preview-top .eyebrow{font-size:9px}
+.preview-top h1{font-size:25px;font-weight:400;margin:5px 0 0}
+.preview-status{border:1px solid var(--line);padding:9px 12px;color:var(--green);font-size:9px;letter-spacing:1px;white-space:nowrap}
+.preview-sub{color:var(--muted);font-size:12px;margin:18px 0}
+.preview-metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin:22px 0 15px}
+.preview-card,.preview-panel{background:var(--panel);border:1px solid var(--line);padding:18px;border-radius:3px;min-width:0}
+.preview-card label{display:block;color:var(--muted);font-size:10px;letter-spacing:1.2px}
+.preview-card strong{display:block;font-size:24px;font-weight:400;margin-top:15px}
+.preview-card small{display:block;color:var(--muted);font-size:10px;margin-top:7px}
+.preview-panels{display:grid;grid-template-columns:1.5fr 1fr;gap:15px;margin-bottom:15px}
+.preview-panel-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:17px}
+.preview-panel-head b{font-size:12px;font-weight:500}
+.preview-panel-head span{color:var(--muted);font-size:9px;letter-spacing:.8px}
+.preview-equity{height:190px;position:relative;overflow:hidden}
+.preview-equity svg{width:100%;height:100%;position:relative;z-index:1}
+.equity-grid{position:absolute;inset:0;background:repeating-linear-gradient(to bottom,transparent 0,transparent 36px,#263547 37px)}
+.preview-stat-line{display:flex;justify-content:space-between;gap:12px;padding:13px 0;border-bottom:1px solid var(--line);font-size:11px}
+.preview-stat-line span{color:#aab5c2}
+.preview-stat-line b{font-weight:500}
+.preview-green{color:var(--green)}.preview-red{color:var(--red)}
+.preview-table{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;padding:12px 8px;border-bottom:1px solid var(--line);color:var(--muted);font-size:9px;letter-spacing:.7px;overflow:hidden}
+.preview-empty{text-align:center;padding:24px 12px;color:var(--muted);font-size:11px}
+.preview-actions{display:flex;justify-content:flex-end;gap:9px;flex-wrap:wrap}
+.preview-disclaimer{margin-top:18px;color:#5f6f82;font-size:9px;letter-spacing:1.3px}
+@media(max-width:950px){
+ .app{display:block}.sidebar{position:relative;width:100%;height:auto;display:flex;align-items:center;gap:5px;overflow-x:auto;padding:10px}
+ .sidebar .brand,.side-label,.side-bottom{display:none}.nav{white-space:nowrap;width:auto}
+ .main{margin:0;width:100%;padding:0 20px 40px}
+ .two-col{grid-template-columns:1fr}
+ #discover.discover{grid-template-columns:1fr}
+ .preview-sidebar{display:none}.preview-main{padding:0 22px 30px}
+ .preview-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .preview-panels{grid-template-columns:1fr}
+}
+@media(max-width:650px){
+ .topbar{padding:0 15px}.topbar .brand{font-size:12px}
+ .main{padding:0 15px 35px}.page-head{padding:22px 0 16px}
+ .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .preview-main{padding:0 15px 25px}.preview-top{height:auto;min-height:70px}
+ .preview-top h1{font-size:21px}.preview-status{font-size:8px;padding:7px}
+ .preview-metrics{gap:8px}.preview-card{padding:13px}.preview-card strong{font-size:20px}
+ .preview-table{grid-template-columns:repeat(4,minmax(0,1fr))}
+ .preview-table span:nth-child(n+5){display:none}
+}
 
-  <!-- Supabase JS Client v2 (CDN) -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-</head>
+
+/* ===== Public landing page: AZRANTH-inspired institutional presentation ===== */
+body:has(#discover:not(.hidden)) .topbar{display:none}
+#discover.discover{display:block;min-height:100vh;max-width:none;padding:0;margin:0;background:#080b10;color:#e8edf3;font-family:Arial,sans-serif;overflow:hidden}
+#discover .landing-header{width:min(1150px,90%);margin:auto}
+#discover .landing-nav{height:82px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #263343;gap:20px}
+#discover .landing-logo{font-size:19px;letter-spacing:7px;font-weight:bold;white-space:nowrap}
+#discover .landing-links{display:flex;gap:30px;font-size:10px;letter-spacing:2px;color:#93a1b1}
+#discover .landing-links a:hover{color:#fff}
+#discover .landing-access{display:flex;align-items:center;gap:10px}
+#discover .landing-signin{background:transparent;border:0;color:#aab8c7;font-size:10px;letter-spacing:1.5px;padding:12px;cursor:pointer}
+#discover .landing-register{background:transparent;border:1px solid #7897b5;color:#e8edf3;padding:12px 15px;font-size:9px;letter-spacing:1.5px;cursor:pointer;transition:.25s}
+#discover .landing-register:hover{background:#d4e3f1;color:#080b10}
+#discover .landing-container{width:min(1150px,90%);margin:auto}
+#discover .landing-main{display:block}
+#discover .landing-hero{min-height:680px;display:flex;align-items:center;position:relative;overflow:hidden}
+#discover .landing-hero-content{position:relative;z-index:2;max-width:700px}
+#discover .landing-eyebrow,#discover .landing-label{font-size:10px;letter-spacing:4px;color:#9bbbd8}
+#discover .landing-hero h1{font-size:clamp(55px,10vw,110px);letter-spacing:12px;font-weight:400;margin:35px 0 15px;line-height:1.05}
+#discover .landing-hero h1 span{display:block;font-family:Georgia,serif;font-size:27px;letter-spacing:1px;color:#9bbbd8;font-style:italic;margin-top:9px}
+#discover .landing-hero p{max-width:540px;color:#93a1b1;line-height:1.9;font-size:16px}
+#discover .landing-hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+#discover .landing-btn{display:inline-block;margin-top:30px;padding:16px 23px;border:1px solid #7897b5;background:transparent;color:#e8edf3;font-size:10px;letter-spacing:2px;cursor:pointer;transition:.3s}
+#discover .landing-btn:hover{background:#d4e3f1;color:#080b10}
+#discover .landing-btn-fill{background:#d4e3f1;color:#080b10}
+#discover .landing-btn-fill:hover{background:#fff}
+#discover .landing-orb{position:absolute;width:450px;height:450px;border:1px solid #263b50;border-radius:50%;right:-40px;top:100px;box-shadow:0 0 0 60px #10172233,0 0 0 120px #10172222}
+#discover .landing-orb:before,#discover .landing-orb:after{content:"";position:absolute;inset:50px;border:1px solid #49647e;border-radius:50%;transform:rotateX(65deg) rotate(35deg)}
+#discover .landing-orb:after{inset:100px;transform:rotateX(65deg) rotate(-35deg)}
+#discover .landing-section{padding:100px 0;border-top:1px solid #263343}
+#discover .landing-section h2{font:normal clamp(36px,5vw,58px) Georgia,serif;margin:20px 0 30px;letter-spacing:0;line-height:1.2}
+#discover .landing-intro{color:#93a1b1;line-height:1.9;max-width:650px;font-size:14px}
+#discover .landing-quote{font:italic clamp(28px,4vw,45px) Georgia,serif;line-height:1.4;max-width:850px;margin:45px 0 0}
+#discover .landing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:45px}
+#discover .landing-card{padding:30px;background:#101722;border:1px solid #263343;min-height:220px;transition:.3s}
+#discover .landing-card:hover{border-color:#9bbbd8;transform:translateY(-5px)}
+#discover .landing-card small,#discover .landing-product small{color:#9bbbd8;letter-spacing:2px;font-size:10px}
+#discover .landing-card h3{font:normal 26px Georgia,serif;margin:35px 0 12px}
+#discover .landing-card p,#discover .landing-product p{font-size:13px;line-height:1.8;color:#93a1b1}
+#discover .landing-products{display:grid;grid-template-columns:repeat(2,1fr);gap:15px;margin-top:40px}
+#discover .landing-product{background:linear-gradient(130deg,#111c29,#0b1017);border:1px solid #263343;padding:35px;min-height:230px}
+#discover .landing-product h3{font:normal 30px Georgia,serif;margin:22px 0 12px}
+#discover .landing-statement{text-align:center;background:#101722;padding:100px 20px}
+#discover .landing-statement .landing-quote{margin:25px auto 0}
+#discover .landing-footer{padding:35px 0;display:flex;justify-content:space-between;gap:20px;color:#93a1b1;font-size:10px;letter-spacing:2px}
+#discover .landing-footer strong{color:#e8edf3}
+
+#discover .founder-layout{display:grid;grid-template-columns:1fr 1fr;gap:55px;align-items:center}
+#discover .founder-profile{border-left:1px solid #49647e;padding:12px 0 12px 35px;max-width:560px}
+#discover .founder-rule{width:42px;height:2px;background:#9bbbd8;margin-bottom:25px}
+#discover .founder-role{font-size:10px;letter-spacing:3px;color:#9bbbd8}
+#discover .founder-profile h3{font:normal clamp(25px,3vw,38px) Georgia,serif;line-height:1.25;margin:18px 0 12px;color:#e8edf3}
+#discover .founder-profile p{font-size:13px;line-height:1.8;color:#aab8c7;margin:0}
+#discover .founder-profile .founder-note{margin-top:20px;color:#93a1b1;max-width:440px}
+@media(max-width:700px){#discover .founder-layout{grid-template-columns:1fr;gap:30px}#discover .founder-profile{padding-left:22px}}
+
+@media(max-width:850px){#discover .landing-links{gap:14px;font-size:9px}#discover .landing-hero{min-height:620px}#discover .landing-orb{right:-180px;opacity:.75}}
+@media(max-width:700px){#discover .landing-nav{height:72px}#discover .landing-links{display:none}#discover .landing-logo{font-size:16px;letter-spacing:5px}#discover .landing-register{padding:10px;font-size:8px}#discover .landing-hero{min-height:620px}#discover .landing-hero h1{font-size:clamp(45px,13vw,76px);letter-spacing:6px}#discover .landing-hero h1 span{font-size:24px}#discover .landing-orb{width:280px;height:280px;right:-190px;top:180px}#discover .landing-grid,#discover .landing-products{grid-template-columns:1fr}#discover .landing-section{padding:75px 0}#discover .landing-footer{flex-direction:column;gap:14px}#discover .landing-hero-actions{gap:0;flex-direction:column;align-items:flex-start}}
+
+
+/* Institutional interface inspired by the supplied reference dashboard */
+:root{--bg:#080b10;--panel:#101721;--panel2:#141e2a;--line:#253242;--text:#e8edf5;--muted:#8795a6;--blue:#9dbbd8;--green:#53c99a;--red:#ee7777;--radius:3px}
+body{background:var(--bg);font:13px Arial,sans-serif}.topbar{background:#080b10f2;border-bottom:1px solid var(--line);backdrop-filter:blur(12px)}
+.app{grid-template-columns:245px minmax(0,1fr);background:var(--bg)}.sidebar{position:sticky;top:0;height:calc(100vh - 72px);overflow:auto;background:#0b1017;border-right:1px solid var(--line);padding:25px 17px}
+.brand{letter-spacing:4px}.brand-mark{border-radius:2px;background:#172535;border-color:#425d78}.side-label{margin:25px 0 10px 12px;color:#607185;font-size:9px;letter-spacing:2px}
+.nav{border-radius:3px;padding:13px 12px;margin:2px 0;font-size:12px}.nav:hover,.nav.active{background:#172535;color:#dce9f5}.nav.active{box-shadow:inset 2px 0 var(--blue)}
+.side-bottom{border:0;border-top:1px solid var(--line);border-radius:0;padding:20px 10px 0;font-size:10px;line-height:2}
+.main{padding:0 36px 50px;max-width:none}.page-head{border-bottom:1px solid var(--line);padding:28px 0 24px;margin-bottom:25px;align-items:center}
+.page-head h1{font-size:25px;font-weight:400;letter-spacing:.5px;margin:7px 0}.page-head p{font-size:12px;line-height:1.7}.eyebrow{font-size:10px;letter-spacing:2px;color:#8795a6}
+.stat,.card{background:var(--panel);border:1px solid var(--line);border-radius:3px;box-shadow:none}.stat{padding:19px}.stat .label{font-size:10px;letter-spacing:1.4px}.stat .value{font-size:25px;font-weight:400;margin-top:17px}.stat .sub{font-size:10px}
+.card{padding:19px}.card h3{font-size:12px;font-weight:500;letter-spacing:.5px}.btn{border-radius:2px;background:#172535;border-color:var(--line);padding:11px 16px;font-size:10px;letter-spacing:1px;font-weight:bold}
+.btn:hover{background:#22364b;border-color:var(--blue)}.btn.primary{background:#b9d0e5;border-color:#b9d0e5;color:#08111b}.btn.primary:hover{background:#e0edf8}.btn.danger{background:#4a2228;color:#ffb2b2}
+.field input,.field select,.field textarea,.toolbar input,.toolbar select{border-radius:2px;background:#0a111a;border-color:var(--line)}.toolbar{gap:12px;margin:24px 0}
+table{width:100%;border-collapse:collapse;font-size:11px}th{color:var(--muted);font-weight:400;padding:13px 9px;border-bottom:1px solid var(--line);white-space:nowrap}td{padding:14px 9px;border-bottom:1px solid #1d2936;white-space:nowrap}
+.table-wrap{border:0;border-radius:0}.pill{border-radius:2px}.empty{padding:35px;color:var(--muted);text-align:center}.modal{border-radius:2px;background:#101721;border-color:var(--line)}.modal-backdrop{background:#000c}
+.upload-box{border-radius:2px;border-color:#42566c;background:#0b121c}.preview-item{border-radius:2px}.detail-grid>div{background:#141e2a;border:1px solid var(--line);border-radius:2px}.footer-note{color:var(--muted)}.list-item{border-bottom:1px solid var(--line);padding:15px 0;display:flex;justify-content:space-between;gap:15px}.list-item small{color:var(--muted)}.note{padding:14px;border-left:2px solid var(--blue);background:#111d2a;color:#a9bacb;line-height:1.8;margin-top:15px}
+@media(max-width:900px){.app{grid-template-columns:205px minmax(0,1fr)}.sidebar{padding:20px 12px}.main{padding:0 20px 40px}}
+@media(max-width:650px){.app{display:block}.sidebar{position:relative;height:auto;display:flex;overflow-x:auto;gap:5px;padding:10px}.sidebar .brand,.sidebar .side-label,.sidebar .side-bottom{display:none}.sidebar .nav{white-space:nowrap;width:auto;flex:0 0 auto}.main{padding:0 15px 40px}.page-head{padding:22px 0}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+
+/* FINAL LAYOUT FIX: keep the workspace content at the top of its grid row.
+   The earlier .main { margin: 0 auto } left vertical auto-margins behind,
+   which caused the dashboard to be vertically centered below the viewport. */
+#workspace.app{
+  display:grid !important;
+  grid-template-columns:245px minmax(0,1fr) !important;
+  align-items:start !important;
+  min-height:100vh;
+  width:100%;
+}
+#workspace.app > .sidebar{
+  grid-column:1;
+  grid-row:1;
+  position:sticky !important;
+  top:0;
+  align-self:start;
+  width:245px;
+  height:100vh;
+  min-height:100vh;
+  overflow-y:auto;
+}
+#workspace.app > .main{
+  grid-column:2;
+  grid-row:1;
+  align-self:start;
+  margin:0 !important;
+  width:100% !important;
+  min-width:0;
+  max-width:none;
+  padding:28px 36px 50px;
+}
+#workspace .page-head{margin-top:0}
+@media(max-width:900px){
+  #workspace.app{grid-template-columns:205px minmax(0,1fr) !important}
+  #workspace.app > .sidebar{width:205px;padding:20px 12px}
+  #workspace.app > .main{padding:22px 20px 40px}
+}
+@media(max-width:650px){
+  #workspace.app{display:block !important}
+  #workspace.app > .sidebar{
+    position:relative !important;
+    width:100%;
+    height:auto;
+    min-height:0;
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    overflow-x:auto;
+    overflow-y:hidden;
+    gap:5px;
+    padding:10px;
+  }
+  #workspace.app > .sidebar .brand,
+  #workspace.app > .sidebar .side-label,
+  #workspace.app > .sidebar .side-bottom{display:none}
+  #workspace.app > .sidebar .nav{white-space:nowrap;width:auto;flex:0 0 auto}
+  #workspace.app > .main{width:100% !important;padding:0 15px 35px}
+}
+
+
+/* Equity performance charts */
+.equity-toolbar{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:16px}
+.equity-tabs{display:flex;gap:6px;flex-wrap:wrap}
+.equity-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:14px 0 18px}
+.equity-kpis>div{background:#0c1520;border:1px solid #263445;border-radius:6px;padding:12px}
+.equity-kpis small{display:block;color:#8294aa;font-size:10px;letter-spacing:1px;margin-bottom:7px}
+.equity-kpis b{font-size:17px;color:#e6edf5}
+.equity-charts{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.equity-chart{min-width:0;background:#0a111a;border:1px solid #263445;border-radius:6px;padding:12px}
+.chart-title{font-size:11px;letter-spacing:1.2px;color:#9eafc3;margin:2px 0 8px}
+.equity-chart svg{display:block;width:100%;height:auto;overflow:visible}
+.chart-legend{display:flex;gap:16px;color:#8294aa;font-size:11px;padding:3px 4px}
+.chart-legend span{display:flex;align-items:center;gap:6px}
+.chart-legend i{display:inline-block;width:9px;height:9px;border-radius:2px}
+@media(max-width:900px){.equity-charts{grid-template-columns:1fr}.equity-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:480px){.equity-kpis{grid-template-columns:1fr 1fr}.equity-kpis b{font-size:14px}}
+
+
+.account-switcher{margin:0 0 18px;padding:12px 10px;background:#101b29;border:1px solid #29394c;border-radius:6px}
+.account-label{font-size:9px;letter-spacing:1.5px;color:#8294aa;margin-bottom:7px}
+.account-switcher select{width:100%;background:#0a111a;color:#e6edf5;border:1px solid #3a4d63;padding:9px 8px;border-radius:4px;font-size:12px}
+.account-meta{font-size:10px;color:#8294aa;margin-top:6px}
+.account-add{border:0;background:transparent;color:#9fc5e8;font-size:10px;padding:8px 0 0;cursor:pointer}
+.account-list{display:grid;gap:8px;margin-top:12px}
+.account-row{display:flex;align-items:center;gap:8px;padding:10px;background:#101b29;border:1px solid #29394c;border-radius:5px}
+.account-row>div{flex:1;min-width:0}
+.account-row small{display:block;color:#8294aa;margin-top:4px;font-size:10px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.form-grid label{display:grid;gap:6px;color:#9eafc3;font-size:11px}
+.form-grid input,.form-grid select{width:100%;background:#0a111a;border:1px solid #35475c;color:#e6edf5;padding:10px;border-radius:4px}
+.form-actions{grid-column:1/-1;display:flex;justify-content:flex-end;gap:8px;margin-top:6px}
+@media(max-width:650px){.account-switcher{min-width:190px;margin:0 5px 0 0}.form-grid{grid-template-columns:1fr}.form-actions{grid-column:auto}.account-row{flex-wrap:wrap}}
+
+
+/* ===== Lightweight motion system ===== */
+html{scroll-behavior:smooth;scroll-padding-top:24px}
+#discover .landing-nav{animation:fadeUp .55s ease both}
+#discover .landing-hero-content{animation:fadeUp .7s ease .08s both}
+/* Keep the decorative orb static: animated blur and large shadows can stutter on weaker devices. */
+#discover .landing-orb{animation:none;will-change:auto}
+#discover .landing-orb:before,#discover .landing-orb:after{animation:none}
+#discover .landing-btn,#discover .landing-register{transition:transform .18s ease,background-color .18s ease,border-color .18s ease}
+#discover .landing-btn:hover,#discover .landing-register:hover{transform:translateY(-2px)}
+#discover .landing-card,#discover .landing-product{transition:transform .2s ease,border-color .2s ease,background-color .2s ease}
+#discover .landing-card:hover,#discover .landing-product:hover{transform:translateY(-3px);border-color:#6685a4;background:#131f2d}
+#discover .landing-links a{position:relative;transition:color .18s ease}
+#discover .landing-links a:after{content:"";position:absolute;left:0;right:100%;bottom:-7px;height:1px;background:#9bbbd8;transition:right .18s ease}
+#discover .landing-links a:hover:after{right:0}
+#discover [data-reveal]{opacity:0;transform:translateY(14px);transition:opacity .45s ease,transform .45s ease}
+#discover [data-reveal].is-visible{opacity:1;transform:translateY(0)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:700px){#discover .landing-hero h1{animation:fadeUp .65s ease .15s both}#discover .landing-orb{animation:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}#discover [data-reveal]{opacity:1!important;transform:none!important}}
+
+
+/* NAZARITH motion: preserve the original visual character with lightweight GPU-friendly animation. */
+html{scroll-behavior:smooth;scroll-padding-top:28px}
+#discover .landing-nav{animation:nzSlideIn .7s cubic-bezier(.2,.7,.2,1) both}
+#discover .landing-hero-content{animation:nzRise .9s cubic-bezier(.2,.7,.2,1) .1s both}
+#discover .landing-orb{transform-origin:50% 50%;animation:nzOrbFloat 20s ease-in-out infinite;will-change:transform}
+#discover .landing-orb:before{animation:nzOrbit 34s linear infinite;will-change:transform}
+#discover .landing-orb:after{animation:nzOrbit 46s linear infinite reverse;will-change:transform}
+#discover .landing-hero h1{animation:nzTitle .9s ease .2s both}
+#discover .landing-hero p{animation:nzRise .8s ease .35s both}
+#discover .landing-hero-actions{animation:nzRise .8s ease .48s both}
+#discover .landing-btn,#discover .landing-register{transition:transform .22s ease,border-color .22s ease,background-color .22s ease}
+#discover .landing-btn:hover,#discover .landing-register:hover{transform:translateY(-2px)}
+#discover .landing-card,#discover .landing-product{transition:transform .28s ease,border-color .28s ease,background-color .28s ease}
+#discover .landing-card:hover,#discover .landing-product:hover{transform:translateY(-5px);border-color:#6685a4;background:#131f2d}
+#discover .landing-links a{transition:color .2s ease}
+#discover [data-reveal]{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}
+#discover [data-reveal].is-visible{opacity:1;transform:translateY(0)}
+#workspace .card,#workspace .stat,#workspace .page-head{animation:nzRise .38s ease both}
+#workspace .btn{transition:background-color .2s ease,border-color .2s ease,transform .2s ease}
+#workspace .btn:hover{transform:translateY(-1px)}
+@keyframes nzSlideIn{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes nzRise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@keyframes nzTitle{from{opacity:0;letter-spacing:20px}to{opacity:1;letter-spacing:12px}}
+@keyframes nzOrbFloat{0%,100%{transform:translate3d(0,0,0) rotate(0)}50%{transform:translate3d(-12px,10px,0) rotate(5deg)}}
+@keyframes nzOrbit{from{transform:rotate(0) rotateX(65deg)}to{transform:rotate(360deg) rotateX(65deg)}}
+/* Stable logged-in layout: sidebar starts at the top and dashboard always has its own visible column. */
+#workspace.app{display:grid!important;grid-template-columns:245px minmax(0,1fr)!important;align-items:start!important;min-height:100vh;width:100%;overflow-x:clip}
+#workspace.app>.sidebar{grid-column:1;grid-row:1;position:sticky!important;top:0;align-self:start;display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;width:245px;height:100vh;min-height:100vh;overflow-y:auto;overflow-x:hidden}
+#workspace.app>.main{grid-column:2;grid-row:1;display:block!important;align-self:start;margin:0!important;width:100%!important;min-width:0;max-width:none;padding:28px 36px 50px;visibility:visible!important}
+#workspace #main:empty{min-height:70vh}
+@media(max-width:900px){#workspace.app{grid-template-columns:205px minmax(0,1fr)!important}#workspace.app>.sidebar{width:205px;padding:20px 12px}#workspace.app>.main{padding:22px 20px 40px}}
+@media(max-width:650px){#workspace.app{display:block!important}#workspace.app>.sidebar{position:relative!important;width:100%;height:auto;min-height:0;display:flex;flex-direction:row;align-items:center;overflow-x:auto;overflow-y:hidden;gap:5px;padding:10px}#workspace.app>.sidebar .brand,#workspace.app>.sidebar .side-label,#workspace.app>.sidebar .side-bottom{display:none}#workspace.app>.sidebar .nav{white-space:nowrap;width:auto;flex:0 0 auto}#workspace.app>.main{width:100%!important;padding:0 15px 35px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}#discover [data-reveal]{opacity:1!important;transform:none!important}}
+
+</style></head>
 <body>
-
-  <!-- Public Topbar (visible when not logged in) -->
-  <header class="topbar">
-    <div class="brand">
-      <div class="brand-mark">N</div>
-      <span>NAZARITH <span style="color:var(--blue-bright)">CAPITAL</span></span>
-    </div>
-    <div class="top-actions">
-      <span id="topUser" class="muted" style="font-size:12px"></span>
-      <button id="topLogin" class="btn ghost small" onclick="NZ_App.showAuth('login')">Sign In</button>
-      <button id="topStart" class="btn primary small" onclick="NZ_App.showAuth('register')">Establish Workspace</button>
-    </div>
+<header class="topbar"><div class="brand"><div class="brand-mark">N</div><span>NAZARITH <span style="color:#6da6ff">CAPITAL</span></span></div><div class="top-actions"><span id="topUser" class="muted" style="font-size:12px"></span><button id="topLogin" class="btn ghost" onclick="showAuth('login')">Sign in</button><button id="topStart" class="btn primary" onclick="showAuth('register')">Get started</button></div></header>
+<section id="discover" class="discover">
+  <header class="landing-header">
+    <nav class="landing-nav">
+      <a href="#top" class="landing-logo">NAZARITH</a>
+      <div class="landing-links">
+        <a href="#philosophy">PHILOSOPHY</a>
+        <a href="#principles">PRINCIPLES</a>
+        <a href="#ecosystem">ECOSYSTEM</a>
+        <a href="#founder">FOUNDER</a>
+        <a href="#contact">CONTACT</a>
+      </div>
+      <div class="landing-access">
+        <button class="landing-signin" onclick="showAuth('login')">SIGN IN</button>
+        <button class="landing-register" onclick="showAuth('register')">ACCESS PLATFORM ↗</button>
+      </div>
+    </nav>
   </header>
-
-  <!-- =========================================================================
-       PUBLIC LANDING PAGE (Preserved & elevated from V3.0)
-       ========================================================================= -->
-  <section id="discover" class="discover">
-    <header class="landing-header" style="width:min(1150px,90%);margin:auto">
-      <nav class="landing-nav" style="height:82px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #263343">
-        <a href="#top" class="brand" style="text-decoration:none;letter-spacing:7px;font-size:19px;font-weight:bold;color:var(--text)">NAZARITH</a>
-        <div class="landing-links" style="display:flex;gap:28px;font-size:10px;letter-spacing:2px;color:#93a1b1">
-          <a href="#philosophy" style="color:inherit;text-decoration:none">PHILOSOPHY</a>
-          <a href="#principles" style="color:inherit;text-decoration:none">PRINCIPLES</a>
-          <a href="#ecosystem" style="color:inherit;text-decoration:none">ECOSYSTEM</a>
-          <a href="#founder" style="color:inherit;text-decoration:none">FOUNDER</a>
-          <a href="#operating-framework" style="color:inherit;text-decoration:none">METHOD</a>
+  <main class="landing-main">
+    <div class="landing-container landing-hero" id="top">
+      <div class="landing-hero-content">
+        <div class="landing-eyebrow">INDEPENDENT RESEARCH &amp; MARKET INTELLIGENCE</div>
+        <h1>NAZARITH<span>Built to Endure.</span></h1>
+        <p>We build disciplined systems that transform market complexity into clarity, research into intelligence, and decisions into lasting value.</p>
+        <div class="landing-hero-actions">
+          <a href="#philosophy" class="landing-btn">DISCOVER NAZARITH ↗</a>
+          <button class="landing-btn landing-btn-fill" onclick="showAuth('login')">ENTER THE PLATFORM ↗</button>
         </div>
-        <div style="display:flex;gap:10px;align-items:center">
-          <button class="btn ghost small" onclick="NZ_App.showAuth('login')">SIGN IN</button>
-          <button class="btn primary small" onclick="NZ_App.showAuth('register')">ACCESS PLATFORM ↗</button>
-        </div>
-      </nav>
-    </header>
-
-    <main class="landing-main" style="width:min(1150px,90%);margin:auto">
-      <!-- Hero Section -->
-      <div class="landing-hero" id="top" style="min-height:640px;display:flex;align-items:center;position:relative;overflow:hidden">
-        <div style="position:relative;z-index:2;max-width:700px">
-          <div class="eyebrow" style="margin-bottom:18px">INDEPENDENT RESEARCH & MARKET INTELLIGENCE</div>
-          <h1 style="font-size:clamp(50px,8vw,100px);letter-spacing:10px;line-height:1.05;margin:0 0 16px">
-            NAZARITH<span style="display:block;font-family:Georgia,serif;font-size:26px;letter-spacing:1px;color:var(--blue);font-style:italic;margin-top:10px">Built to Endure.</span>
-          </h1>
-          <p style="max-width:540px;color:#93a1b1;line-height:1.9;font-size:15px;margin-bottom:28px">
-            We build disciplined systems that transform market complexity into clarity, research into quantitative intelligence, and decisions into lasting generational value.
-          </p>
-          <div style="display:flex;gap:12px;flex-wrap:wrap">
-            <a href="#philosophy" class="btn ghost" style="padding:14px 22px">DISCOVER NAZARITH ↗</a>
-            <button class="btn primary" style="padding:14px 22px" onclick="NZ_App.showAuth('register')">ESTABLISH YOUR WORKSPACE ↗</button>
-          </div>
-        </div>
-
-        <!-- Floating Decorative Orb -->
-        <div class="landing-orb" aria-hidden="true" style="position:absolute;width:420px;height:420px;border:1px solid #263b50;border-radius:50%;right:-40px;top:80px;box-shadow:0 0 0 50px rgba(16,23,34,0.3)"></div>
       </div>
-
-      <!-- 01 / Philosophy -->
-      <section id="philosophy" class="landing-section" style="padding:90px 0;border-top:1px solid #263343">
-        <div class="eyebrow">01 / PHILOSOPHY</div>
-        <h2 style="font:normal clamp(32px,5vw,52px) Georgia,serif;margin:16px 0 24px;line-height:1.2">Beyond the present.<br>Beyond generations.</h2>
-        <p style="color:#93a1b1;line-height:1.9;max-width:680px;font-size:14px">
-          NAZARITH CAPITAL is founded on the belief that lasting performance is not built around temporary market opportunities. 
-          It is forged through quantitative research, absolute risk discipline, and the structural capacity to endure uncertainty.
-        </p>
-        <p style="font:italic clamp(24px,3.5vw,38px) Georgia,serif;line-height:1.4;max-width:850px;margin:35px 0 0;color:#c8d7e6">
-          “Do not build for the market of today. Build for the world that does not exist yet.”
-        </p>
-      </section>
-
-      <!-- 02 / Founding Principles -->
-      <section id="principles" class="landing-section" style="padding:90px 0;border-top:1px solid #263343">
-        <div class="eyebrow">02 / FOUNDING PRINCIPLES</div>
-        <h2 style="font:normal clamp(32px,5vw,52px) Georgia,serif;margin:16px 0 30px">Three principles.<br>One enduring vision.</h2>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:16px">
-          <article class="card" style="padding:28px;background:#101722">
-            <small class="eyebrow">I — ENDURANCE</small>
-            <h3 style="font:normal 24px Georgia,serif;margin:18px 0 10px">Resilience</h3>
-            <p style="font-size:13px;line-height:1.8;color:#93a1b1">Build processes capable of navigating structural volatility, regime shifts, and adverse market drawdowns.</p>
-          </article>
-          <article class="card" style="padding:28px;background:#101722">
-            <small class="eyebrow">II — UNDERSTANDING</small>
-            <h3 style="font:normal 24px Georgia,serif;margin:18px 0 10px">Intelligence</h3>
-            <p style="font-size:13px;line-height:1.8;color:#93a1b1">Study market microstructure, identify institutional footprints, and execute decisions through statistical evidence.</p>
-          </article>
-          <article class="card" style="padding:28px;background:#101722">
-            <small class="eyebrow">III — PROGRESS</small>
-            <h3 style="font:normal 24px Georgia,serif;margin:18px 0 10px">Evolution</h3>
-            <p style="font-size:13px;line-height:1.8;color:#93a1b1">Continuously refine risk parameters, execution playbooks, and trader psychology to achieve compounding mastery.</p>
-          </article>
-        </div>
-      </section>
-
-      <!-- 03 / Ecosystem -->
-      <section id="ecosystem" class="landing-section" style="padding:90px 0;border-top:1px solid #263343">
-        <div class="eyebrow">03 / INSTITUTIONAL ECOSYSTEM</div>
-        <h2 style="font:normal clamp(32px,5vw,52px) Georgia,serif;margin:16px 0 30px">One institution.<br>Multiple disciplines.</h2>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));gap:16px">
-          <div class="card" style="background:#111c29;padding:30px">
-            <small class="eyebrow">01 / RESEARCH</small>
-            <h3 style="font:normal 24px Georgia,serif;margin:16px 0 10px">NAZARITH Research</h3>
-            <p style="font-size:13px;color:#93a1b1;line-height:1.8">Quantitative research, market structure studies, mathematical models, and systematic discovery.</p>
-          </div>
-          <div class="card" style="background:#111c29;padding:30px">
-            <small class="eyebrow">02 / INTELLIGENCE</small>
-            <h3 style="font:normal 24px Georgia,serif;margin:16px 0 10px">NAZARITH Intelligence</h3>
-            <p style="font-size:13px;color:#93a1b1;line-height:1.8">Deep performance analytics, Monte Carlo simulation, decision diagnostics, and risk of ruin calculations.</p>
-          </div>
-          <div class="card" style="background:#111c29;padding:30px">
-            <small class="eyebrow">03 / MARKETS</small>
-            <h3 style="font:normal 24px Georgia,serif;margin:16px 0 10px">NAZARITH Markets</h3>
-            <p style="font-size:13px;color:#93a1b1;line-height:1.8">Multi-asset surveillance across Forex, Gold, Indices, and Crypto with strict invalidation parameters.</p>
-          </div>
-          <div class="card" style="background:#111c29;padding:30px">
-            <small class="eyebrow">04 / SYSTEMS</small>
-            <h3 style="font:normal 24px Georgia,serif;margin:16px 0 10px">NAZARITH Systems</h3>
-            <p style="font-size:13px;color:#93a1b1;line-height:1.8">Next-generation institutional trading terminal, cloud synchronization with Supabase, and local-first reliability.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Institutional Statement Quote -->
-      <div style="text-align:center;background:#101722;padding:90px 20px;border:1px solid #263343;margin:50px 0;border-radius:var(--radius)">
-        <div class="eyebrow">THE NAZARITH PHILOSOPHY</div>
-        <p style="font:italic clamp(22px,3.5vw,36px) Georgia,serif;max-width:800px;margin:20px auto 0;color:#e8edf3;line-height:1.4">
-          “Greatness is not measured by how far we rise, but by what remains standing after we are gone.”
-        </p>
-      </div>
-
-      <!-- 04 / Founder -->
-      <section id="founder" class="landing-section" style="padding:90px 0;border-top:1px solid #263343">
-        <div style="display:grid;grid-template-columns:1fr 1.2fr;gap:40px;align-items:center">
-          <div>
-            <div class="eyebrow">04 / FOUNDER</div>
-            <h2 style="font:normal clamp(30px,4vw,48px) Georgia,serif;margin:14px 0">Built with vision.<br>Guided by discipline.</h2>
-          </div>
-          <div style="border-left:1px solid #49647e;padding:12px 0 12px 30px">
-            <div style="width:36px;height:2px;background:var(--blue);margin-bottom:20px"></div>
-            <div class="eyebrow">FOUNDER & CREATOR</div>
-            <h3 style="font:normal 28px Georgia,serif;margin:14px 0 8px;color:#e8edf3">Naufalhaziq Azfarimifdhal Agfi</h3>
-            <p style="color:#aab8c7;font-size:13px;line-height:1.8">
-              Founder of NAZARITH CAPITAL.<br>
-              Building a disciplined, research-driven trading and market intelligence ecosystem designed for long-term endurance.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Operating Framework -->
-      <section id="operating-framework" class="landing-section" style="padding:90px 0;border-top:1px solid #263343">
-        <div class="eyebrow">THE NAZARITH METHOD / OPERATING FRAMEWORK</div>
-        <h2 style="font:normal clamp(30px,4vw,48px) Georgia,serif;margin:14px 0 20px">Process before <em>prediction.</em></h2>
-        <p style="max-width:700px;color:#aab8c7;line-height:1.9;font-size:14px">
-          A durable trading process is built through repeatable decisions, measured risk, and rigorous post-trade auditing. 
-          The objective is never to predict every market turn, but to respond consistently when structural confluence presents an authentic edge.
-        </p>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:16px;margin-top:30px">
-          <div class="card" style="background:#101722;padding:24px">
-            <small class="eyebrow">01 / PREPARE</small>
-            <h3 style="font:normal 20px Georgia,serif;margin:14px 0 8px">Define the Context</h3>
-            <p style="font-size:12.5px;color:#93a1b1;line-height:1.7">Map higher-timeframe order flow, liquidity pools, key invalidation levels, and impending macro economic events before considering an order.</p>
-          </div>
-          <div class="card" style="background:#101722;padding:24px">
-            <small class="eyebrow">02 / EXECUTE</small>
-            <h3 style="font:normal 20px Georgia,serif;margin:14px 0 8px">Control the Risk</h3>
-            <p style="font-size:12.5px;color:#93a1b1;line-height:1.7">Calculate lot size strictly to risk percent (0.5%–1%). Establish the invalidation price in advance; every trade must have a defined price where the thesis is wrong.</p>
-          </div>
-          <div class="card" style="background:#101722;padding:24px">
-            <small class="eyebrow">03 / REVIEW</small>
-            <h3 style="font:normal 20px Georgia,serif;margin:14px 0 8px">Learn from Evidence</h3>
-            <p style="font-size:12.5px;color:#93a1b1;line-height:1.7">Record pre-trade and post-trade chart screenshots, emotional state, and mistake tags. Audit a 100-trade sample to separate statistical edge from short-term variance.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Footer CTA -->
-      <footer style="padding:60px 0 80px;text-align:center;border-top:1px solid #263343">
-        <h2 style="font:normal 32px Georgia,serif;margin-bottom:14px">Build what lasts.</h2>
-        <p class="muted" style="max-width:500px;margin:0 auto 24px;font-size:13px">The beginning of an institutional process starts with a single disciplined decision.</p>
-        <button class="btn primary" style="padding:14px 28px" onclick="NZ_App.showAuth('register')">ESTABLISH YOUR WORKSPACE ↗</button>
-      </footer>
-    </main>
-  </section>
-
-  <!-- =========================================================================
-       AUTHENTICATION SECTION (Modal / Screen)
-       ========================================================================= -->
-  <section id="auth" class="auth-wrap hidden" style="min-height:calc(100vh - 72px);display:grid;place-items:center;padding:30px">
-    <div class="card" style="width:min(440px, 100%);padding:32px;background:#0e1624">
-      <div class="eyebrow" style="margin-bottom:8px">NAZARITH CAPITAL / ACCESS</div>
-      <h2 id="authTitle" style="font-size:24px;margin-bottom:6px">Welcome back.</h2>
-      <p class="muted" id="authSub" style="font-size:12px;margin-bottom:20px">Sign in to your private institutional workspace.</p>
-
-      <form id="authForm">
-        <div class="field hidden" id="nameField">
-          <label>TRADER FULL NAME</label>
-          <input id="authName" placeholder="Naufalhaziq Agfi" autocomplete="name">
-        </div>
-        <div class="field">
-          <label>EMAIL ADDRESS</label>
-          <input id="authEmail" type="email" required autocomplete="email" placeholder="trader@nazarith.capital">
-        </div>
-        <div class="field">
-          <label>PASSWORD</label>
-          <input id="authPassword" type="password" required minlength="6" autocomplete="current-password" placeholder="Minimum 6 characters">
-        </div>
-        <button class="btn primary" style="width:100%;margin-top:12px;padding:12px" id="authSubmit">Sign In</button>
-      </form>
-
-      <p class="muted" style="text-align:center;margin:18px 0 0;font-size:12px">
-        <span id="authSwitchText">New to Nazarith?</span>
-        <a href="#" id="authSwitch" style="color:var(--blue-bright);text-decoration:none;font-weight:bold" onclick="NZ_App.toggleAuthMode(event)">Create Account</a>
-      </p>
-
-      <p class="muted" style="font-size:10px;margin-top:20px;line-height:1.6;border-top:1px solid var(--line);padding-top:14px">
-        Dual-mode active: You can use Nazarith offline with browser-local storage, or connect Supabase Cloud in Settings for multi-device synchronization.
-      </p>
-
-      <button class="btn ghost small" style="width:100%;margin-top:10px" onclick="NZ_App.backDiscover()">← Back to Overview</button>
+      <div class="landing-orb" aria-hidden="true"></div>
     </div>
-  </section>
 
-  <!-- =========================================================================
-       LOGGED-IN INSTITUTIONAL WORKSPACE
-       ========================================================================= -->
-  <section id="workspace" class="app hidden">
-    <!-- Institutional Fixed Sidebar -->
-    <aside class="sidebar">
-      <div class="brand">
-        <div class="brand-mark">N</div>
-        <span>NAZARITH</span>
+    <section id="philosophy" class="landing-section">
+      <div class="landing-container">
+        <div class="landing-label">01 / PHILOSOPHY</div>
+        <h2>Beyond the present.<br>Beyond generations.</h2>
+        <p class="landing-intro">NAZARITH CAPITAL is founded on the belief that lasting performance is not built around temporary opportunities. It is built through research, discipline, risk awareness, and the ability to endure uncertainty.</p>
+        <p class="landing-quote">“Do not build for the market of today. Build for the world that does not exist yet.”</p>
       </div>
+    </section>
 
-      <!-- Account Switcher Widget -->
-      <div id="accountSwitcher"></div>
-
-      <!-- Nav Section: Workspace -->
-      <div class="side-label">WORKSPACE</div>
-      <button class="nav active" data-page="dashboard" onclick="NZ_App.navigate('dashboard')">
-        <span class="nav-icon">▦</span> <span>Overview</span>
-      </button>
-      <button class="nav" data-page="journal" onclick="NZ_App.navigate('journal')">
-        <span class="nav-icon">▤</span> <span>Trade Journal</span>
-      </button>
-      <button class="nav" data-page="analytics" onclick="NZ_App.navigate('analytics')">
-        <span class="nav-icon">◫</span> <span>Analytics</span>
-      </button>
-
-      <!-- Nav Section: Simulation & Risk -->
-      <div class="side-label">SIMULATION & RISK</div>
-      <button class="nav" data-page="backtest" onclick="NZ_App.navigate('backtest')">
-        <span class="nav-icon">⚄</span> <span>Backtest Lab</span>
-      </button>
-      <button class="nav" data-page="risk" onclick="NZ_App.navigate('risk')">
-        <span class="nav-icon">⌖</span> <span>Risk Intelligence</span>
-      </button>
-      <button class="nav" data-page="analyst" onclick="NZ_App.navigate('analyst')">
-        <span class="nav-icon">⚡</span> <span>Trading Analyst</span>
-      </button>
-
-      <!-- Nav Section: Execution Intelligence -->
-      <div class="side-label">EXECUTION INTELLIGENCE</div>
-      <button class="nav" data-page="smclab" onclick="NZ_App.navigate('smclab')">
-        <span class="nav-icon">⌘</span> <span>SMC Setup Lab</span>
-      </button>
-
-      <!-- Nav Section: Research & Strategy -->
-      <div class="side-label">RESEARCH & STRATEGY</div>
-      <button class="nav" data-page="strategy" onclick="NZ_App.navigate('strategy')">
-        <span class="nav-icon">◎</span> <span>Strategy Lab</span>
-      </button>
-      <button class="nav" data-page="research" onclick="NZ_App.navigate('research')">
-        <span class="nav-icon">▧</span> <span>Research Vault</span>
-      </button>
-      <button class="nav" data-page="watchlist" onclick="NZ_App.navigate('watchlist')">
-        <span class="nav-icon">◉</span> <span>Market Watchlist</span>
-      </button>
-
-      <!-- Nav Section: Behavior & Macro -->
-      <div class="side-label">BEHAVIOR & MACRO</div>
-      <button class="nav" data-page="calendar" onclick="NZ_App.navigate('calendar')">
-        <span class="nav-icon">▦</span> <span>Trading Calendar</span>
-      </button>
-      <button class="nav" data-page="psychology" onclick="NZ_App.navigate('psychology')">
-        <span class="nav-icon">◉</span> <span>Psychology Tracker</span>
-      </button>
-      <button class="nav" data-page="capital" onclick="NZ_App.navigate('capital')">
-        <span class="nav-icon">◇</span> <span>Capital Allocation</span>
-      </button>
-      <button class="nav" data-page="reports" onclick="NZ_App.navigate('reports')">
-        <span class="nav-icon">▤</span> <span>Performance Reports</span>
-      </button>
-      <button class="nav" data-page="events" onclick="NZ_App.navigate('events')">
-        <span class="nav-icon">◷</span> <span>Event Planner</span>
-      </button>
-
-      <!-- Nav Section: Management -->
-      <div class="side-label">MANAGEMENT</div>
-      <button class="nav" data-page="backup" onclick="NZ_App.navigate('backup')">
-        <span class="nav-icon">⇅</span> <span>Data & Backup</span>
-      </button>
-      <button class="nav" data-page="settings" onclick="NZ_App.navigate('settings')">
-        <span class="nav-icon">⚙</span> <span>Settings</span>
-      </button>
-
-      <div class="side-bottom">
-        “Consistency is a competitive advantage.”<br><br>
-        <span style="color:var(--blue)">NAZARITH / V8.0 INSTITUTIONAL</span>
+    <section id="principles" class="landing-section">
+      <div class="landing-container">
+        <div class="landing-label">02 / FOUNDING PRINCIPLES</div>
+        <h2>Three principles.<br>One enduring vision.</h2>
+        <div class="landing-grid">
+          <article class="landing-card"><small>I — ENDURANCE</small><h3>Resilience</h3><p>Build processes capable of navigating volatility, disruption, and changing market conditions.</p></article>
+          <article class="landing-card"><small>II — UNDERSTANDING</small><h3>Intelligence</h3><p>Study market structure, identify meaningful information, and make decisions through evidence.</p></article>
+          <article class="landing-card"><small>III — PROGRESS</small><h3>Evolution</h3><p>Continuously refine research, strategies, and execution to pursue sustainable improvement.</p></article>
+        </div>
       </div>
-    </aside>
+    </section>
 
-    <!-- Main Dynamic Content Container -->
-    <main class="main" id="main"></main>
-  </section>
+    <section id="ecosystem" class="landing-section">
+      <div class="landing-container">
+        <div class="landing-label">03 / INSTITUTIONAL ECOSYSTEM</div>
+        <h2>One institution.<br>Multiple disciplines.</h2>
+        <div class="landing-products">
+          <article class="landing-product"><small>01 / RESEARCH</small><h3>NAZARITH Research</h3><p>Quantitative research, market studies, mathematical models, and systematic discovery.</p></article>
+          <article class="landing-product"><small>02 / INTELLIGENCE</small><h3>NAZARITH Intelligence</h3><p>Data analytics, decision intelligence, and structured interpretation of information.</p></article>
+          <article class="landing-product"><small>03 / MARKETS</small><h3>NAZARITH Markets</h3><p>Financial markets, quantitative trading, market analysis, and systematic strategies.</p></article>
+          <article class="landing-product"><small>04 / SYSTEMS</small><h3>NAZARITH Systems</h3><p>Trading journals, analytical tools, digital infrastructure, and dependable platforms.</p></article>
+        </div>
+      </div>
+    </section>
 
-  <!-- Dynamic Root Elements -->
-  <div id="modalRoot"></div>
-  <div id="toastRoot"></div>
+    <div class="landing-statement">
+      <div class="landing-label">THE NAZARITH PHILOSOPHY</div>
+      <p class="landing-quote">“Greatness is not measured by how far we rise, but by what remains standing after we are gone.”</p>
+    </div>
 
-  <!-- =========================================================================
-       MODULAR SCRIPTS (Ordered by Dependency Layer)
-       ========================================================================= -->
-  <script src="assets/js/config.js"></script>
-  <script src="assets/js/supabase-client.js"></script>
-  <script src="assets/js/storage.js"></script>
-  <script src="assets/js/calculations.js"></script>
-  <script src="assets/js/migration.js"></script>
-  <script src="assets/js/components/ui.js"></script>
+    <section id="founder" class="landing-section">
+      <div class="landing-container founder-layout">
+        <div>
+          <div class="landing-label">04 / FOUNDER</div>
+          <h2>Built with vision.<br>Guided by discipline.</h2>
+        </div>
+        <div class="founder-profile">
+          <div class="founder-rule"></div>
+          <div class="founder-role">FOUNDER &amp; CREATOR</div>
+          <h3>Naufalhaziq Azfarimifdhal Agfi</h3>
+          <p>Founder of NAZARITH CAPITAL</p>
+          <p class="founder-note">Building a disciplined, research-driven trading and market intelligence ecosystem with a long-term vision.</p>
+        </div>
+      </div>
+    </section>
 
-  <!-- Institutional Modules -->
-  <script src="assets/js/modules/accounts.js"></script>
-  <script src="assets/js/modules/portfolio.js"></script>
-  <script src="assets/js/modules/journal.js"></script>
-  <script src="assets/js/modules/analytics.js"></script>
-  <script src="assets/js/modules/backtest.js"></script>
-  <script src="assets/js/modules/risk.js"></script>
-  <script src="assets/js/modules/analyst.js"></script>
-  <script src="assets/js/modules/smclab.js"></script>
-  <script src="assets/js/modules/strategy.js"></script>
-  <script src="assets/js/modules/research.js"></script>
-  <script src="assets/js/modules/watchlist.js"></script>
-  <script src="assets/js/modules/calendar.js"></script>
-  <script src="assets/js/modules/psychology.js"></script>
-  <script src="assets/js/modules/capital.js"></script>
-  <script src="assets/js/modules/reports.js"></script>
-  <script src="assets/js/modules/events.js"></script>
-  <script src="assets/js/modules/backup.js"></script>
-  <script src="assets/js/modules/settings.js"></script>
+    <section id="operating-framework" class="landing-section">
+      <div class="eyebrow">THE NAZARITH METHOD / OPERATING FRAMEWORK</div>
+      <h2>Process before<br><em>prediction.</em></h2>
+      <p class="landing-lead" style="max-width:720px;color:#aab8c7;line-height:1.9">A durable trading process is built through repeatable decisions, measured risk, and honest review. The objective is not to predict every market move, but to respond consistently when conditions meet a defined plan.</p>
+      <div class="landing-grid" style="margin-top:34px">
+        <article class="landing-card"><small>01 / PREPARE</small><h3>Define the context</h3><p>Map higher-timeframe structure, liquidity, key levels, and the events that may change market conditions before considering an entry.</p></article>
+        <article class="landing-card"><small>02 / EXECUTE</small><h3>Control the risk</h3><p>Set invalidation, position size, and acceptable exposure in advance. Every position must have a clear reason to exist and a defined point where the thesis is wrong.</p></article>
+        <article class="landing-card"><small>03 / REVIEW</small><h3>Learn from evidence</h3><p>Record the setup, execution, and outcome. Review a meaningful sample of trades to distinguish a repeatable edge from short-term noise.</p></article>
+      </div>
+    </section>
+    <section id="contact" class="landing-section">
+      <div class="landing-container">
+        <div class="landing-label">05 / ACCESS</div>
+        <h2>Build what lasts.</h2>
+        <p class="landing-intro">The beginning of a disciplined process is a decision to think beyond the present. NAZARITH CAPITAL is built around that decision.</p>
+        <button class="landing-btn" onclick="showAuth('register')">ESTABLISH YOUR WORKSPACE ↗</button>
+      </div>
+    </section>
+  </main>
+</section>
+<section id="auth" class="auth-wrap hidden"><div class="auth-card"><div class="eyebrow">NAZARITH CAPITAL / ACCESS</div><h2 id="authTitle">Welcome back.</h2><p class="muted" id="authSub">Sign in to your private workspace.</p><form id="authForm"><div class="field" id="nameField"><label>FULL NAME</label><input id="authName" autocomplete="name" placeholder="Your name"></div><div class="field"><label>EMAIL ADDRESS</label><input id="authEmail" type="email" required autocomplete="email" placeholder="name@example.com"></div><div class="field"><label>PASSWORD</label><input id="authPassword" type="password" required minlength="6" autocomplete="current-password" placeholder="Minimum 6 characters"></div><button class="btn primary" style="width:100%;margin-top:8px" id="authSubmit">Sign in</button></form><p class="muted" style="text-align:center;margin:20px 0 0;font-size:12px"><span id="authSwitchText">New to Nazarith?</span> <a href="#" id="authSwitch" style="color:#80b1ff" onclick="toggleAuthMode(event)">Create account</a></p><p class="muted" style="font-size:10px;margin-top:20px">Demo/local mode: account data is stored in this browser. Connect Supabase before using this for real multi-device or production authentication.</p><button class="btn ghost small" style="width:100%;margin-top:8px" onclick="backDiscover()">← Back to Discover</button></div></section>
+<section id="workspace" class="app hidden"><aside class="sidebar"><div class="brand" style="padding:0 10px 12px"><div class="brand-mark">N</div><span>NAZARITH</span></div><div id="accountSwitcher" class="account-switcher"></div><div class="side-label">WORKSPACE</div><button class="nav active" data-page="dashboard" onclick="navigate('dashboard')">▦ <span>Overview</span></button><button class="nav" data-page="journal" onclick="navigate('journal')">▤ <span>Trade Journal</span></button><button class="nav" data-page="analytics" onclick="navigate('analytics')">◫ <span>Analytics</span></button><div class="side-label">RESEARCH & STRATEGY</div><button class="nav" data-page="strategy" onclick="navigate('strategy')">◎ <span>Strategy Lab</span></button><button class="nav" data-page="research" onclick="navigate('research')">▧ <span>Research Vault</span></button><button class="nav" data-page="watchlist" onclick="navigate('watchlist')">◉ <span>Market Watchlist</span></button><div class="side-label">RISK & ADMINISTRATION</div><button class="nav" data-page="risk" onclick="navigate('risk')">⌖ <span>Risk Management</span></button><button class="nav" data-page="calendar" onclick="navigate('calendar')">▦ <span>Trading Calendar</span></button><button class="nav" data-page="psychology" onclick="navigate('psychology')">◉ <span>Psychology Tracker</span></button><button class="nav" data-page="capital" onclick="navigate('capital')">◇ <span>Capital Allocation</span></button><button class="nav" data-page="reports" onclick="navigate('reports')">▤ <span>Performance Reports</span></button><button class="nav" data-page="events" onclick="navigate('events')">◷ <span>Event Planner</span></button><div class="side-label">EXECUTION INTELLIGENCE</div><button class="nav" data-page="smclab" onclick="navigate('smclab')">⌘ <span>SMC Setup Lab</span></button><div class="side-label">MANAGEMENT</div><button class="nav" data-page="backup" onclick="navigate('backup')">⇅ <span>Data & Backup</span></button><button class="nav" data-page="settings" onclick="navigate('settings')">⚙ <span>Settings</span></button><div class="side-bottom">“Consistency is a competitive advantage.”<br><br><span style="color:#6d9fe9">NAZARITH / PRIVATE</span></div></aside><main class="main" id="main"></main></section>
+<div id="modalRoot"></div><div id="toastRoot"></div>
+<script>
+const $=id=>document.getElementById(id);
+// Keep the original storage key so accounts from the first edition remain compatible.
+const STORE='nazareth_capital_v1';
+const memoryStore={};
+const storage={
+ get(key){try{return localStorage.getItem(key)}catch(error){return memoryStore[key]??null}},
+ set(key,value){try{localStorage.setItem(key,value)}catch(error){memoryStore[key]=String(value);toast('Browser storage is unavailable. Data will only last for this session.')}},
+ remove(key){try{localStorage.removeItem(key)}catch(error){delete memoryStore[key]}}
+};
+function readUsers(){
+ const keys=[STORE+'_users','nazarith_capital_v1_users','NAZARITH_CAPITAL_users'];
+ for(const key of keys){const raw=storage.get(key);if(!raw)continue;try{const parsed=JSON.parse(raw);if(parsed&&typeof parsed==='object'&&!Array.isArray(parsed))return parsed}catch(error){console.warn('Could not read account storage:',key,error)}}
+ return {};
+}
+let users=readUsers();
+let current=storage.get(STORE+'_session')||storage.get('nazarith_capital_v1_session')||'';
+let trades=[];let authMode='login';let draftImages=[];let editingId=null;let activeAccountId='';
+function saveUsers(){storage.set(STORE+'_users',JSON.stringify(users))}
+function ensureAccounts(){
+ if(!current||!users[current])return;
+ let u=users[current];
+ if(!Array.isArray(u.accounts)||!u.accounts.length){
+  u.accounts=[{id:'acc_default',name:'Main Account',firm:'Personal',type:'Personal',capital:Number(u.capital)||10000,trades:Array.isArray(u.trades)?u.trades:[],strategies:u.strategies||[],notes:u.notes||[],watch:u.watch||[]}];
+  u.activeAccountId='acc_default';
+ }
+ if(!u.accounts.some(a=>a.id===u.activeAccountId))u.activeAccountId=u.accounts[0].id;
+ activeAccountId=u.activeAccountId;
+ saveUsers();
+}
+function activeAccount(){ensureAccounts();return users[current].accounts.find(a=>a.id===activeAccountId)||users[current].accounts[0]}
+function saveTrades(){if(current&&users[current]){let a=activeAccount();a.trades=trades;saveUsers()}}
+function renderAccountSwitcher(){
+ let el=$('accountSwitcher');if(!el||!current||!users[current])return;
+ let a=activeAccount(),arr=users[current].accounts||[];
+ el.innerHTML=`<div class="account-label">ACTIVE TRADING ACCOUNT</div><select id="activeAccountSelect" onchange="switchAccount(this.value)">${arr.map(x=>`<option value="${escapeHtml(x.id)}" ${x.id===a.id?'selected':''}>${escapeHtml(x.name)}</option>`).join('')}</select><div class="account-meta">${escapeHtml(a.firm||'Independent')} · ${escapeHtml(a.type||'Account')}</div><button class="account-add" onclick="openAccountManager()">＋ Add / Manage Accounts</button>`;
+}
+function switchAccount(id){
+ saveTrades();let u=users[current];if(!u.accounts.some(a=>a.id===id))return;
+ u.activeAccountId=id;activeAccountId=id;trades=activeAccount().trades||[];saveUsers();renderAccountSwitcher();navigate('dashboard');toast('Account switched. Journal and analytics are now isolated.');
+}
+function openAccountManager(){
+ const list=users[current].accounts||[];
+ $('modalRoot').innerHTML=`<div class="modal-backdrop" onclick="if(event.target===this)closeModal()"><div class="modal"><div class="modal-head"><h2>Prop Firm Accounts</h2><button class="icon-btn" onclick="closeModal()">✕</button></div><p class="muted">Each account has its own journal, capital, analytics, strategy notes and watchlist.</p><div class="account-list">${list.map(a=>`<div class="account-row"><div><b>${escapeHtml(a.name)}</b><small>${escapeHtml(a.firm||'')} · ${escapeHtml(a.type||'')} · ${((a.trades||[]).length)} trades</small></div><button class="btn small" onclick="editAccount('${escapeHtml(a.id)}')">EDIT</button>${list.length>1?`<button class="btn danger small" onclick="deleteAccount('${escapeHtml(a.id)}')">DELETE</button>`:''}</div>`).join('')}</div><button class="btn primary" style="margin-top:14px" onclick="accountForm()">＋ CREATE NEW ACCOUNT</button></div></div>`;
+}
+function accountForm(id=''){
+ const a=id?users[current].accounts.find(x=>x.id===id):null;
+ $('modalRoot').innerHTML=`<div class="modal-backdrop" onclick="if(event.target===this)closeModal()"><div class="modal"><div class="modal-head"><h2>${a?'Edit':'Create'} Trading Account</h2><button class="icon-btn" onclick="closeModal()">✕</button></div><form id="accountForm" class="form-grid"><label>Account name<input name="name" required maxlength="45" value="${escapeHtml(a?.name||'')}" placeholder="e.g. FTMO 100K Challenge"></label><label>Prop firm / Broker<input name="firm" required maxlength="45" value="${escapeHtml(a?.firm||'')}" placeholder="e.g. FTMO, The5ers, FundingPips"></label><label>Account type<select name="type"><option ${a?.type==='Challenge'?'selected':''}>Challenge</option><option ${a?.type==='Funded'?'selected':''}>Funded</option><option ${a?.type==='Evaluation'?'selected':''}>Evaluation</option><option ${a?.type==='Personal'?'selected':''}>Personal</option></select></label><label>Starting capital (USD)<input name="capital" type="number" min="0" step="0.01" required value="${Number(a?.capital)||10000}"></label><div class="form-actions"><button type="button" class="btn" onclick="openAccountManager()">CANCEL</button><button class="btn primary" type="submit">SAVE ACCOUNT</button></div></form></div></div>`;
+ $('accountForm').onsubmit=e=>{e.preventDefault();let fd=new FormData(e.currentTarget),data={name:String(fd.get('name')).trim(),firm:String(fd.get('firm')).trim(),type:String(fd.get('type')),capital:Number(fd.get('capital'))||0};let u=users[current];if(a)Object.assign(a,data);else{let fresh={...data,id:'acc_'+Date.now(),trades:[],strategies:[],notes:[],watch:[]};u.accounts.push(fresh);u.activeAccountId=fresh.id;activeAccountId=fresh.id;trades=[];}saveUsers();renderAccountSwitcher();closeModal();navigate('dashboard');toast(a?'Account updated.':'New isolated account created.');};
+}
+function editAccount(id){accountForm(id)}
+function deleteAccount(id){
+ let u=users[current];if(u.accounts.length<=1){toast('At least one account must remain.');return}
+ let a=u.accounts.find(x=>x.id===id);if(!a)return;
+ if(!confirm(`Delete ${a.name} and all its journal data? This cannot be undone.`))return;
+ u.accounts=u.accounts.filter(x=>x.id!==id);if(u.activeAccountId===id){u.activeAccountId=u.accounts[0].id;activeAccountId=u.activeAccountId;trades=u.accounts[0].trades||[]}
+ saveUsers();renderAccountSwitcher();openAccountManager();navigate('dashboard');toast('Account and its isolated data deleted.');
+}function escapeHtml(s=''){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}function money(n){return new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:2}).format(Number(n)||0)}function dateFmt(s){if(!s)return '—';return new Date(s+'T00:00:00').toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'})}function toast(msg){$('toastRoot').innerHTML='<div class="toast">'+escapeHtml(msg)+'</div>';setTimeout(()=>$('toastRoot').innerHTML='',2600)}
+function syncView(){let logged=!!current&&!!users[current];$('discover').classList.toggle('hidden',logged||$('auth').classList.contains('visible'));$('auth').classList.toggle('hidden',logged||!$('auth').classList.contains('visible'));$('workspace').classList.toggle('hidden',!logged);$('topLogin').classList.toggle('hidden',logged);$('topStart').classList.toggle('hidden',logged);$('topUser').textContent=logged?users[current].name:'';if(logged){ensureAccounts();trades=activeAccount().trades||[];renderAccountSwitcher();navigate('dashboard')}}function backDiscover(){$('auth').classList.add('hidden');$('auth').classList.remove('visible');$('discover').classList.remove('hidden')}function showAuth(mode){authMode=mode;$('discover').classList.add('hidden');$('auth').classList.remove('hidden');$('auth').classList.add('visible');setAuthMode();$('authEmail').value='';$('authPassword').value=''}function setAuthMode(){let reg=authMode==='register';$('authTitle').textContent=reg?'Create your account.':'Welcome back.';$('authSub').textContent=reg?'Establish your private trading workspace.':'Sign in to your private workspace.';$('nameField').classList.toggle('hidden',!reg);$('authName').required=reg;$('authSubmit').textContent=reg?'Create account':'Sign in';$('authSwitchText').textContent=reg?'Already have an account?':'New to Nazarith?';$('authSwitch').textContent=reg?'Sign in':'Create account'}function toggleAuthMode(e){e.preventDefault();authMode=authMode==='login'?'register':'login';setAuthMode()}
+$('authForm').addEventListener('submit',e=>{
+ e.preventDefault();
+ const email=$('authEmail').value.trim().toLowerCase();
+ const pass=$('authPassword').value;
+ if(!email||!pass){toast('Enter your email address and password.');return}
+ if(pass.length<6){toast('Password must contain at least 6 characters.');return}
+ if(authMode==='register'){
+   if(users[email]){toast('This email is already registered. Choose Sign in instead.');return}
+   const name=$('authName').value.trim();
+   users[email]={name:name||'Trader',password:pass,trades:[]};
+   saveUsers();
+   toast('Account created. Welcome to Nazarith.');
+ }else{
+   const account=users[email];
+   if(!account){toast('Account not found in this browser. Choose Create account or open the original browser profile.');return}
+   if(account.password!==pass){toast('Incorrect password. Please try again.');return}
+ }
+ current=email;
+ storage.set(STORE+'_session',current);
+ $('auth').classList.remove('visible');
+ syncView();
+});
+function logout(){current='';storage.remove(STORE+'_session');$('workspace').classList.add('hidden');$('discover').classList.remove('hidden');$('topLogin').classList.remove('hidden');$('topStart').classList.remove('hidden');$('topUser').textContent=''}function navigate(page){document.querySelectorAll('.nav').forEach(n=>n.classList.toggle('active',n.dataset.page===page));({dashboard:renderDashboard,journal:renderJournal,analytics:renderAnalytics,backup:renderBackup,settings:renderSettings,strategy:renderStrategy,research:renderResearch,watchlist:renderWatchlist,risk:renderRisk}[page]||renderDashboard)()}
+function stats(){const outcome=t=>String(t.result||'').trim().toLowerCase();let closed=trades.filter(t=>['win','loss'].includes(outcome(t))),wins=closed.filter(t=>outcome(t)==='win').length,losses=closed.length-wins,net=trades.reduce((a,t)=>a+(Number(t.pnl)||0),0),grossWin=trades.filter(t=>(Number(t.pnl)||0)>0).reduce((a,t)=>a+(Number(t.pnl)||0),0),grossLoss=Math.abs(trades.filter(t=>(Number(t.pnl)||0)<0).reduce((a,t)=>a+(Number(t.pnl)||0),0));return{closed,wins,losses,net,wr:closed.length?wins/closed.length*100:0,pf:grossLoss?grossWin/grossLoss:grossWin?Infinity:0}}
+let equityPeriod='monthly';
+function periodBuckets(period){
+ const now=new Date(), list=[];
+ const pad=n=>String(n).padStart(2,'0');
+ const dateKey=d=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+ if(period==='daily'){
+  for(let i=13;i>=0;i--){let d=new Date(now.getFullYear(),now.getMonth(),now.getDate()-i);list.push({key:dateKey(d),label:`${pad(d.getDate())}/${pad(d.getMonth()+1)}`})}
+ }else if(period==='weekly'){
+  let monday=new Date(now.getFullYear(),now.getMonth(),now.getDate());monday.setDate(monday.getDate()-((monday.getDay()+6)%7));
+  for(let i=11;i>=0;i--){let d=new Date(monday);d.setDate(d.getDate()-7*i);list.push({key:dateKey(d),label:`${pad(d.getDate())}/${pad(d.getMonth()+1)}`})}
+ }else if(period==='yearly'){
+  for(let i=4;i>=0;i--){let y=now.getFullYear()-i;list.push({key:String(y),label:String(y)})}
+ }else{
+  for(let i=11;i>=0;i--){let d=new Date(now.getFullYear(),now.getMonth()-i,1);list.push({key:`${d.getFullYear()}-${pad(d.getMonth()+1)}`,label:d.toLocaleDateString('en-US',{month:'short',year:'2-digit'})})}
+ }
+ const map={};list.forEach(x=>map[x.key]={...x,pnl:0,count:0,wins:0,losses:0});
+ const keyFor=t=>{
+  if(!t.date)return null;
+  let d=new Date(`${t.date}T12:00:00`);if(Number.isNaN(d.getTime()))return null;
+  if(period==='daily')return dateKey(d);
+  if(period==='weekly'){d.setDate(d.getDate()-((d.getDay()+6)%7));return dateKey(d)}
+  if(period==='yearly')return String(d.getFullYear());
+  return `${d.getFullYear()}-${pad(d.getMonth()+1)}`;
+ };
+ trades.forEach(t=>{let k=keyFor(t);if(k&&map[k]){map[k].pnl+=Number(t.pnl)||0;map[k].count++;if(t.result==='Win')map[k].wins++;if(t.result==='Loss')map[k].losses++}});
+ return list.map(x=>map[x.key]);
+}
+function equityPanelHtml(){
+ const buckets=periodBuckets(equityPeriod),capital=Number(activeAccount().capital)||10000;
+ const total=buckets.reduce((a,b)=>a+b.pnl,0),count=buckets.reduce((a,b)=>a+b.count,0);
+ const W=760,H=230,L=58,R=18,T=16,B=38,plotW=W-L-R,plotH=H-T-B;
+ const maxAbs=Math.max(1,...buckets.map(b=>Math.abs(b.pnl))),step=plotW/Math.max(1,buckets.length),zero=T+plotH/2;
+ const bars=buckets.map((b,i)=>{let h=Math.abs(b.pnl)/maxAbs*(plotH*.43),x=L+i*step+step*.2,y=b.pnl>=0?zero-h:zero;return `<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${(step*.6).toFixed(1)}" height="${Math.max(1,h).toFixed(1)}" rx="3" fill="${b.pnl>=0?'#53c99a':'#ee7777'}"><title>${b.label}: ${money(b.pnl)} · ${b.count} trades</title></rect>`}).join('');
+ const equityPoints=[];let running=capital; buckets.forEach((b,i)=>{running+=b.pnl;equityPoints.push([L+i*step+step/2,running])});
+ const minEq=Math.min(capital,...equityPoints.map(p=>p[1])),maxEq=Math.max(capital,...equityPoints.map(p=>p[1])),range=Math.max(1,maxEq-minEq);
+ const yEq=v=>T+plotH-((v-minEq)/range)*plotH;
+ const path=equityPoints.map((p,i)=>`${i?'L':'M'}${p[0].toFixed(1)},${yEq(p[1]).toFixed(1)}`).join(' ');
+ const dots=equityPoints.map(p=>`<circle cx="${p[0].toFixed(1)}" cy="${yEq(p[1]).toFixed(1)}" r="3" fill="#9fc5e8"><title>Equity: ${money(p[1])}</title></circle>`).join('');
+ const labels=buckets.map((b,i)=>`<text x="${(L+i*step+step/2).toFixed(1)}" y="${H-12}" text-anchor="middle" fill="#8294aa" font-size="${buckets.length>10?10:11}">${escapeHtml(b.label)}</text>`).join('');
+ const grid=[0,.25,.5,.75,1].map(v=>{let y=T+plotH*v;return `<line x1="${L}" y1="${y}" x2="${W-R}" y2="${y}" stroke="#263445" stroke-dasharray="3 5"/><text x="${L-8}" y="${y+4}" text-anchor="end" fill="#8294aa" font-size="10">${money(maxAbs*(.5-v))}</text>`}).join('');
+ const lineGrid=[0,.25,.5,.75,1].map(v=>{let y=T+plotH*v;return `<line x1="${L}" y1="${y}" x2="${W-R}" y2="${y}" stroke="#263445" stroke-dasharray="3 5"/>`}).join('');
+ const periodName={daily:'Daily',weekly:'Weekly',monthly:'Monthly',yearly:'Yearly'}[equityPeriod];
+ return `<div class="equity-panel">
+  <div class="equity-toolbar"><div><div class="muted" style="font-size:11px;letter-spacing:1.5px">PROFIT & EQUITY HISTORY</div><div style="font-size:13px;color:#9eafc3;margin-top:5px">${periodName} performance · ${count} recorded trades</div></div>
+   <div class="equity-tabs">${[['daily','Daily'],['weekly','Weekly'],['monthly','Monthly'],['yearly','Yearly']].map(([v,l])=>`<button class="btn small ${equityPeriod===v?'primary':''}" onclick="setEquityPeriod('${v}')">${l}</button>`).join('')}</div></div>
+  <div class="equity-kpis"><div><small>PERIOD NET P&L</small><b class="${total>=0?'positive':'negative'}">${money(total)}</b></div><div><small>TRADES</small><b>${count}</b></div><div><small>PROFITABLE PERIODS</small><b>${buckets.filter(b=>b.pnl>0).length} / ${buckets.length}</b></div><div><small>STARTING EQUITY</small><b>${money(capital)}</b></div></div>
+  <div class="equity-charts">
+   <div class="equity-chart"><div class="chart-title">PROFIT / LOSS — BAR CHART</div><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${periodName} profit and loss bar chart">${grid}<line x1="${L}" y1="${zero}" x2="${W-R}" y2="${zero}" stroke="#718198"/><g>${bars}</g>${labels}</svg><div class="chart-legend"><span><i style="background:#53c99a"></i> Profit</span><span><i style="background:#ee7777"></i> Loss</span></div></div>
+   <div class="equity-chart"><div class="chart-title">CUMULATIVE EQUITY — LINE CHART</div><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${periodName} cumulative equity line chart">${lineGrid}<path d="${path}" fill="none" stroke="#9fc5e8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>${dots}${labels}</svg><div class="chart-legend"><span><i style="background:#9fc5e8"></i> Account equity</span></div></div>
+  </div>
+ </div>`;
+}
+function setEquityPeriod(p){equityPeriod=p;let el=$('equityPanel');if(el)el.innerHTML=equityPanelHtml()}
+function currentPeriodTotals(period){
+ const now=new Date(),pad=n=>String(n).padStart(2,'0');
+ const today=`${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())}`;
+ const weekDate=new Date(now.getFullYear(),now.getMonth(),now.getDate());weekDate.setDate(weekDate.getDate()-((weekDate.getDay()+6)%7));
+ const weekKey=`${weekDate.getFullYear()}-${pad(weekDate.getMonth()+1)}-${pad(weekDate.getDate())}`;
+ const monthKey=`${now.getFullYear()}-${pad(now.getMonth()+1)}`,yearKey=String(now.getFullYear());
+ let pnl=0,count=0;
+ trades.forEach(t=>{if(!t.date)return;let d=new Date(`${t.date}T12:00:00`);if(Number.isNaN(d.getTime()))return;let key=period==='daily'?`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`:period==='weekly'?(()=>{d.setDate(d.getDate()-((d.getDay()+6)%7));return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`})():period==='monthly'?`${d.getFullYear()}-${pad(d.getMonth()+1)}`:String(d.getFullYear());let target=period==='daily'?today:period==='weekly'?weekKey:period==='monthly'?monthKey:yearKey;if(key===target){pnl+=Number(t.pnl)||0;count++}});
+ return {pnl,count};
+}
+function renderDashboard(){
+ let s=stats(),recent=[...trades].sort((a,b)=>b.date.localeCompare(a.date)).slice(0,5),capital=Number(activeAccount().capital)||10000,equity=capital+s.net;
+ let wins=trades.filter(t=>t.result==='Win'),losses=trades.filter(t=>t.result==='Loss'),riskAvg=trades.length?trades.reduce((a,t)=>a+(Number(t.risk)||0),0)/trades.length:0;
+ let rrVals=trades.map(t=>parseFloat(String(t.rr||'').replace(/[^\d.-]/g,''))).filter(n=>n>0),avgRR=rrVals.length?rrVals.reduce((a,b)=>a+b,0)/rrVals.length:0;
+ let peak=capital,eq=capital,dd=0;[...trades].sort((a,b)=>a.date.localeCompare(b.date)).forEach(t=>{eq+=Number(t.pnl)||0;peak=Math.max(peak,eq);if(peak)dd=Math.max(dd,(peak-eq)/peak*100)});
+ $('main').innerHTML=`<div class="page-head"><div><div class="eyebrow">INSTITUTIONAL PLATFORM / PORTFOLIO INTELLIGENCE</div><h1>Executive Dashboard</h1><p>A consolidated view of your trading performance and capital allocation.</p></div><button class="btn primary" onclick="openTrade()">＋ NEW TRADE</button></div>
+ <div class="grid stats"><div class="stat"><div class="label">ACCOUNT EQUITY</div><div class="value">${money(equity)}</div><div class="sub">Starting capital + realized P&L</div></div><div class="stat"><div class="label">NET PROFIT / LOSS</div><div class="value ${s.net>=0?'positive':'negative'}">${money(s.net)}</div><div class="sub">${capital?((s.net/capital)*100).toFixed(2):'0.00'}% return</div></div><div class="stat"><div class="label">WIN RATE</div><div class="value">${s.wr.toFixed(2)}%</div><div class="sub">${s.wins} wins / ${s.closed.length} closed trades</div></div><div class="stat"><div class="label">PROFIT FACTOR</div><div class="value">${s.pf===Infinity?'∞':s.pf.toFixed(2)}</div><div class="sub">Gross profit / gross loss</div></div></div>
+ <div class="card" style="margin-top:16px"><div id="equityPanel">${equityPanelHtml()}</div></div>
+ <div class="grid two-col" style="margin-top:16px"><div class="card"><h3>Trading Statistics <span class="muted" style="float:right;font-weight:400">ALL TIME</span></h3><div class="list-item"><span>Average Risk / Trade</span><b>${trades.length?riskAvg.toFixed(2)+'%':'—'}</b></div><div class="list-item"><span>Average R:R</span><b>${avgRR?avgRR.toFixed(2)+'R':'—'}</b></div><div class="list-item"><span>Largest Win</span><b class="positive">${wins.length?money(Math.max(...wins.map(t=>Number(t.pnl)||0))):'—'}</b></div><div class="list-item"><span>Largest Loss</span><b class="negative">${losses.length?money(Math.min(...losses.map(t=>Number(t.pnl)||0))):'—'}</b></div><div class="list-item"><span>Max Drawdown</span><b>${dd.toFixed(2)}%</b></div></div><div class="card"><h3>Period Summary <span class="muted" style="float:right;font-weight:400">ALL TIME</span></h3>${[['Today','daily'],['This week','weekly'],['This month','monthly'],['This year','yearly']].map(([label,period])=>{let {pnl:v,count:n}=currentPeriodTotals(period);return `<div class="list-item"><span>${label} · ${n} trades</span><b class="${v>=0?'positive':'negative'}">${money(v)}</b></div>`}).join('')}</div></div>
+ <div class="card" style="margin-top:16px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:15px"><h3>Recent Transactions</h3><button class="btn small" onclick="navigate('journal')">VIEW JOURNAL</button></div>${recent.length?tradeTable(recent,false):'<div class="empty">No transactions recorded.</div>'}</div>`;
+}
 
-  <!-- Master Application Orchestrator -->
-  <script src="assets/js/app.js"></script>
-</body>
-</html>
+function tradeTable(rows,actions=true){return `<div class="table-wrap"><table><thead><tr><th>DATE</th><th>MARKET</th><th>PAIR</th><th>DIRECTION</th><th>SETUP</th><th>R:R</th><th>RESULT</th><th>NET P&L</th><th>CHART / ENTRY SCREENSHOT</th>${actions?'<th>ACTIONS</th>':''}</tr></thead><tbody>${rows.map(t=>`<tr><td>${dateFmt(t.date)}</td><td>${escapeHtml(t.market||'—')}</td><td><b>${escapeHtml(t.symbol)}</b></td><td><span class="pill neutral">${escapeHtml(t.direction)}</span></td><td>${escapeHtml(t.setup||'—')}</td><td>${escapeHtml(t.rr||'—')}</td><td><span class="pill ${t.result==='Win'?'win':t.result==='Loss'?'loss':'neutral'}">${escapeHtml(t.result)}</span></td><td class="${Number(t.pnl)>=0?'positive':'negative'}">${money(t.pnl)}</td><td><div class="thumbs">${(t.images||[]).map((src,i)=>`<img class="thumb" src="${src}" onclick="viewImage('${t.id}',${i})" alt="Entry screenshot">`).join('')||'<span class="muted">—</span>'}</div></td>${actions?`<td><button class="btn small" onclick="viewTrade('${t.id}')">View</button> <button class="btn small" onclick="openTrade('${t.id}')">Edit</button> <button class="btn small danger" onclick="deleteTrade('${t.id}')">×</button></td>`:''}</tr>`).join('')}</tbody></table></div>`}
+function renderJournal(){let rows=[...trades].sort((a,b)=>b.date.localeCompare(a.date));$('main').innerHTML=`<div class="page-head"><div><div class="eyebrow">Execution archive</div><h1>Trade journal</h1><p>Document every decision, setup, and entry screenshot.</p></div><button class="btn primary" onclick="openTrade()">＋ New journal</button></div><div class="toolbar"><input id="searchTrades" placeholder="Search pair or setup..." oninput="filterTrades()"><select id="filterResult" onchange="filterTrades()"><option value="">All outcomes</option><option>Win</option><option>Loss</option><option>Breakeven</option><option>Open</option></select><select id="filterDirection" onchange="filterTrades()"><option value="">All directions</option><option>BUY</option><option>SELL</option></select><span class="muted" id="rowCount">${rows.length} records</span></div><div id="journalTable">${rows.length?tradeTable(rows):'<div class="card empty">Your journal is empty. Record your first trade to begin building your performance history.</div>'}</div>`}function filterTrades(){let q=$('searchTrades').value.toLowerCase(),r=$('filterResult').value,d=$('filterDirection').value;let rows=trades.filter(t=>(!q||[t.symbol,t.setup,t.notes].join(' ').toLowerCase().includes(q))&&(!r||t.result===r)&&(!d||t.direction===d)).sort((a,b)=>b.date.localeCompare(a.date));$('rowCount').textContent=rows.length+' records';$('journalTable').innerHTML=rows.length?tradeTable(rows):'<div class="card empty">No matching trades.</div>'}
+function openTrade(id=null){editingId=id;let t=id?trades.find(x=>x.id===id):null;draftImages=t?[...(t.images||[])]:[];let fields=[['date','DATE','date',t?.date||new Date().toISOString().slice(0,10)],['symbol','SYMBOL / PAIR','text',t?.symbol||'XAUUSD'],['market','MARKET','select',t?.market||'Forex'],['direction','DIRECTION','select',t?.direction||'BUY'],['entry','ENTRY PRICE','number',t?.entry??''],['stop','STOP LOSS','number',t?.stop??''],['target','TAKE PROFIT','number',t?.target??''],['rr','RISK : REWARD','text',t?.rr||'1:3'],['setup','SETUP / STRATEGY','text',t?.setup||'SMC'],['result','OUTCOME','select',t?.result||'Open'],['pnl','NET P&L (USD)','number',t?.pnl??0],['risk','RISK (%)','number',t?.risk??0.25]];$('modalRoot').innerHTML=`<div class="modal-backdrop" onclick="if(event.target===this)closeModal()"><div class="modal"><div class="modal-head"><div><div class="eyebrow">Trade documentation</div><h2 style="margin:3px 0">${t?'Edit trade':'New trade journal'}</h2></div><button class="btn small" onclick="closeModal()">✕</button></div><form id="tradeForm"><div class="form-grid">${fields.map(([id,label,type,val])=>`<div class="field"><label>${label}</label>${type==='select'?`<select id="f_${id}">${(id==='market'?['Forex','Crypto','Indices','Commodities','Stocks']:id==='direction'?['BUY','SELL']:['Open','Win','Loss','Breakeven']).map(v=>`<option ${val===v?'selected':''}>${v}</option>`).join('')}</select>`:`<input id="f_${id}" type="${type}" ${type==='number'?'step="any"':''} value="${escapeHtml(val)}" ${id==='date'||id==='symbol'?'required':''}>`}</div>`).join('')}</div><div class="form-grid"><div class="field"><label>TRADING SESSION</label><select id="f_session"><option>London</option><option>New York</option><option>Asia</option><option>Overlap</option><option>Other</option></select></div><div class="field"><label>EMOTIONAL STATE</label><select id="f_emotion"><option>Calm</option><option>Confident</option><option>Fearful</option><option>FOMO</option><option>Revenge trading</option><option>Overconfident</option><option>Fatigued</option></select></div><div class="field"><label>EXECUTION QUALITY</label><select id="f_execution"><option>Excellent</option><option>Good</option><option>Average</option><option>Poor</option></select></div><div class="field"><label>SMC CONFLUENCE</label><input id="f_confluence" placeholder="BOS, CHOCH, FVG, OB, liquidity..."></div></div><div class="field"><label>TRADE NOTES / THESIS</label><textarea id="f_notes" placeholder="Market context, confirmation, invalidation, execution quality...">${escapeHtml(t?.notes||'')}</textarea></div><div class="field"><label>TRADE CHART SCREENSHOTS / ENTRY DOCUMENTATION</label><label class="upload-box" for="imageFiles"><div style="font-size:24px">＋</div><b>Upload chart image for this trade</b><div style="font-size:11px;margin-top:5px">PNG, JPG, WEBP · up to 3 images · 5 MB each</div><input id="imageFiles" type="file" accept="image/png,image/jpeg,image/webp" multiple hidden onchange="handleImages(this.files)"></label><div id="previewGrid" class="preview-grid">${renderPreviews()}</div></div><div style="display:flex;justify-content:flex-end;gap:10px;margin-top:20px"><button type="button" class="btn" onclick="closeModal()">Cancel</button><button class="btn primary">Save journal</button></div></form></div></div>`;if(t){['session','emotion','execution'].forEach(k=>{if(t[k])$('f_'+k).value=t[k]});$('f_confluence').value=t.confluence||''}$('tradeForm').addEventListener('submit',saveTrade)}function renderPreviews(){return draftImages.map((src,i)=>`<div class="preview-item"><img src="${src}" alt="Entry screenshot ${i+1}"><button type="button" onclick="removeDraftImage(${i})">×</button></div>`).join('')}
+function handleImages(files){[...files].forEach(file=>{if(draftImages.length>=3)return toast('Maximum 3 screenshots per trade.');if(!['image/png','image/jpeg','image/webp'].includes(file.type))return toast('Only PNG, JPG, and WEBP are supported.');if(file.size>5*1024*1024)return toast('Each image must be under 5 MB.');let reader=new FileReader();reader.onload=e=>{let img=new Image();img.onload=()=>{let c=document.createElement('canvas'),scale=Math.min(1,1600/img.width,1600/img.height);c.width=Math.round(img.width*scale);c.height=Math.round(img.height*scale);c.getContext('2d').drawImage(img,0,0,c.width,c.height);draftImages.push(c.toDataURL('image/jpeg',.78));$('previewGrid').innerHTML=renderPreviews()};img.src=e.target.result};reader.readAsDataURL(file)});$('imageFiles').value=''}function removeDraftImage(i){draftImages.splice(i,1);$('previewGrid').innerHTML=renderPreviews()}function closeModal(){$('modalRoot').innerHTML='';editingId=null;draftImages=[]}
+function saveTrade(e){e.preventDefault();let val=id=>$('f_'+id).value;let item={id:editingId||('tr_'+Date.now()),date:val('date'),symbol:val('symbol').toUpperCase(),market:val('market'),direction:val('direction'),entry:Number(val('entry'))||0,stop:Number(val('stop'))||0,target:Number(val('target'))||0,rr:val('rr'),setup:val('setup'),result:val('result'),pnl:Number(val('pnl'))||0,risk:Number(val('risk'))||0,notes:val('notes'),images:[...draftImages]};if(editingId){let i=trades.findIndex(x=>x.id===editingId);trades[i]=item}else trades.unshift(item);try{saveTrades();closeModal();navigate('journal');toast('Trade journal saved.')}catch(err){toast('Storage is full. Remove some screenshots or export a backup.')}}function deleteTrade(id){if(!confirm('Delete this trade journal permanently?'))return;trades=trades.filter(t=>t.id!==id);saveTrades();renderJournal();toast('Trade deleted.')}function viewImage(id,i){let t=trades.find(x=>x.id===id);if(!t||!t.images[i])return;$('modalRoot').innerHTML=`<div class="modal-backdrop" onclick="closeModal()"><img class="image-view" src="${t.images[i]}" alt="Entry chart"></div>`}function viewTrade(id){let t=trades.find(x=>x.id===id);if(!t)return;$('modalRoot').innerHTML=`<div class="modal-backdrop" onclick="if(event.target===this)closeModal()"><div class="modal"><div class="modal-head"><div><div class="eyebrow">Trade record</div><h2>${escapeHtml(t.symbol)} · ${escapeHtml(t.direction)}</h2></div><button class="btn small" onclick="closeModal()">✕</button></div><div class="detail-grid">${[['Date',dateFmt(t.date)],['Market',t.market],['Setup',t.setup],['Entry',t.entry],['Stop loss',t.stop],['Take profit',t.target],['Risk : Reward',t.rr],['Outcome',t.result],['Net P&L',money(t.pnl)]].map(([a,b])=>`<div><small>${a}</small><b>${escapeHtml(b??'—')}</b></div>`).join('')}</div><p style="white-space:pre-wrap;color:#aebbd0">${escapeHtml(t.notes||'No notes added.')}</p><div class="preview-grid">${(t.images||[]).map((src,i)=>`<div class="preview-item"><img src="${src}" onclick="viewImage('${t.id}',${i})"></div>`).join('')}</div><div style="text-align:right;margin-top:18px"><button class="btn" onclick="closeModal()">Close</button> <button class="btn primary" onclick="closeModal();openTrade('${t.id}')">Edit trade</button></div></div></div>`}
+function renderAnalyticsBase(){let s=stats(),by={},setups={};trades.forEach(t=>{let k=t.market||'Other';by[k]=(by[k]||0)+1;let z=t.setup||'Unspecified';setups[z]=(setups[z]||0)+1});let wins=trades.filter(t=>t.result==='Win'),loss=trades.filter(t=>t.result==='Loss'),avgWin=wins.length?wins.reduce((a,t)=>a+Number(t.pnl||0),0)/wins.length:0,avgLoss=loss.length?loss.reduce((a,t)=>a+Number(t.pnl||0),0)/loss.length:0;$('main').innerHTML=`<div class="page-head"><div><div class="eyebrow">QUANTITATIVE PERFORMANCE / STATISTICAL REVIEW</div><h1>Performance Analytics</h1><p>Evaluate the quality and consistency of your trading decisions.</p></div></div><div class="grid stats"><div class="stat"><div class="label">EXPECTANCY</div><div class="value">${money(trades.length?s.net/trades.length:0)}</div><div class="sub">Average P&L per trade</div></div><div class="stat"><div class="label">AVERAGE WIN</div><div class="value positive">${money(avgWin)}</div></div><div class="stat"><div class="label">AVERAGE LOSS</div><div class="value negative">${money(avgLoss)}</div></div><div class="stat"><div class="label">TOTAL TRADES</div><div class="value">${trades.length}</div></div></div><div class="grid two-col"><div class="card"><h3>Market Distribution</h3>${Object.keys(by).length?Object.entries(by).map(([k,v])=>`<div class="list-item"><span>${escapeHtml(k)}</span><b>${v} trades</b></div>`).join(''):'<div class="empty">No data yet.</div>'}</div><div class="card"><h3>Outcome Distribution</h3><div class="list-item"><span>Wins</span><b class="positive">${s.wins}</b></div><div class="list-item"><span>Losses</span><b class="negative">${s.losses}</b></div><div class="list-item"><span>Breakeven</span><b>${trades.filter(t=>t.result==='Breakeven').length}</b></div><div class="list-item"><span>Win rate</span><b>${s.wr.toFixed(2)}%</b></div><div class="list-item"><span>Profit factor</span><b>${s.pf===Infinity?'∞':s.pf.toFixed(2)}</b></div></div></div><div class="card" style="margin-top:16px"><h3>Strategy Performance</h3>${Object.keys(setups).length?Object.entries(setups).map(([k,v])=>`<div class="list-item"><span>${escapeHtml(k)}</span><b>${v} trades</b></div>`).join(''):'<div class="empty">No strategy data yet.</div>'}</div><p class="footer-note">Analytics are calculated from your recorded journal. Past performance does not guarantee future results.</p>`}
+
+function renderBackup(){$('main').innerHTML=`<div class="page-head"><div><div class="eyebrow">Data governance</div><h1>Data & backup</h1><p>Export this account's records or restore a backup for the active account.</p></div></div><div class="grid two-col"><div class="card"><h3>Export records</h3><p class="muted">Download all journal records, including entry screenshot data, as a JSON backup.</p><button class="btn primary" onclick="exportJSON()">↓ Export full JSON backup</button><p style="margin-top:20px" class="muted">CSV export contains trade fields for spreadsheet analysis. Images are excluded from CSV.</p><button class="btn" onclick="exportCSV()">↓ Export CSV</button></div><div class="card"><h3>Restore backup</h3><p class="muted">Import a Nazarith JSON backup. This replaces only the active trading account journal.</p><label class="btn" for="importFile">↑ Choose JSON file</label><input id="importFile" type="file" accept="application/json" hidden onchange="importJSON(this.files[0])"><p class="footer-note">Keep a copy of your backup in a secure location. Imported data is validated before saving.</p></div></div><div class="card" style="margin-top:16px"><h3>Storage & privacy</h3><p class="muted">This standalone edition stores data in this browser's local storage. Clearing browser data may erase your journal. Use JSON backups regularly. For production, connect Supabase Auth and Storage with row-level security.</p></div>`}function download(name,content,type){let a=document.createElement('a'),url=URL.createObjectURL(new Blob([content],{type}));a.href=url;a.download=name;a.click();URL.revokeObjectURL(url)}function exportJSON(){download('nazarith-backup-'+new Date().toISOString().slice(0,10)+'.json',JSON.stringify({app:'NAZARITH CAPITAL',version:1,exportedAt:new Date().toISOString(),trades},null,2),'application/json');toast('JSON backup exported.')}function exportCSV(){let cols=['date','market','symbol','direction','entry','stop','target','rr','setup','result','pnl','risk','notes'];let q=v=>'"'+String(v??'').replace(/"/g,'""')+'"';let csv=[cols.join(','),...trades.map(t=>cols.map(c=>q(t[c])).join(','))].join('\n');download('nazarith-trades.csv','\ufeff'+csv,'text/csv;charset=utf-8');toast('CSV exported.')}function importJSON(file){if(!file)return;let r=new FileReader();r.onload=()=>{try{let data=JSON.parse(r.result);if(!Array.isArray(data.trades)||!data.trades.every(t=>t.id&&t.symbol&&Array.isArray(t.images||[])))throw Error();if(!confirm('Replace your current journal with '+data.trades.length+' imported trades?'))return;trades=data.trades;saveTrades();toast('Backup restored.');renderBackup()}catch(e){toast('Invalid Nazarith backup file.')}};r.readAsText(file)}
+function renderSettings(){let a=activeAccount();$('main').innerHTML=`<div class="page-head"><div><div class="eyebrow">Workspace preferences</div><h1>Settings</h1><p>Manage your workspace and independent prop firm accounts.</p></div><button class="btn primary" onclick="openAccountManager()">＋ MANAGE ACCOUNTS</button></div><div class="card"><h3>User profile</h3><div class="detail-grid"><div><small>NAME</small><b>${escapeHtml(users[current].name)}</b></div><div><small>EMAIL</small><b>${escapeHtml(current)}</b></div></div></div><div class="card" style="margin-top:16px"><h3>Active trading account</h3><div class="detail-grid"><div><small>ACCOUNT</small><b>${escapeHtml(a.name)}</b></div><div><small>PROP FIRM</small><b>${escapeHtml(a.firm||'—')}</b></div><div><small>TYPE</small><b>${escapeHtml(a.type||'—')}</b></div><div><small>STARTING CAPITAL</small><b>${money(a.capital)}</b></div><div><small>JOURNAL RECORDS</small><b>${trades.length}</b></div></div><p class="muted" style="margin-top:14px">Every account has separate trades, chart screenshots, equity curve, analytics, strategy notes, research notes and watchlist.</p><button class="btn" onclick="editAccount('${escapeHtml(a.id)}')">EDIT ACTIVE ACCOUNT</button></div><div class="card" style="margin-top:16px"><h3>Session</h3><p class="muted">Sign out of this browser session. Your accounts remain stored locally on this device.</p><button class="btn danger" onclick="logout()">Sign out</button></div><div class="card" style="margin-top:16px"><h3>About this edition</h3><p class="muted">NAZARITH CAPITAL · Trading Intelligence Platform v2.0<br>Discipline. Conviction. Continuity.</p><p class="footer-note">This standalone edition stores data locally in this browser. Export backups regularly and avoid reusing real passwords.</p></div>`}
+
+function extraData(){let u=activeAccount()||{};return{strategies:u.strategies||[],notes:u.notes||[],watch:u.watch||[],capital:Number(u.capital)||10000}}
+function saveExtra(key,val){activeAccount()[key]=val;saveUsers()}
+function renderStrategy(){let x=extraData();$('main').innerHTML=`<div class="page-head"><div><div class="eyebrow">RESEARCH / STRATEGY DOCUMENTATION</div><h1>Strategy Lab</h1><p>Build, document and evaluate your trading methodologies.</p></div><button class="btn primary" onclick="addStrategy()">＋ NEW STRATEGY</button></div><div class="card"><h3>Strategy Library</h3>${x.strategies.map((v,i)=>`<div class="list-item"><div><b>${escapeHtml(v.name)}</b><p class="muted">${escapeHtml(v.description||'')}</p></div><button class="btn danger small" onclick="removeExtra('strategies',${i})">DELETE</button></div>`).join('')||'<div class="empty">No strategies documented.</div>'}</div><div class="note">Suggested framework: HTF bias → liquidity identification → BOS / CHOCH → fresh order block → entry confirmation → predefined invalidation → liquidity target. Validate every strategy with backtest data.</div>`}
+function addStrategy(){let name=prompt('Strategy name:');if(!name)return;let description=prompt('Describe rules and conditions:')||'';let x=extraData();x.strategies.push({name,description});saveExtra('strategies',x.strategies);renderStrategy()}
+function renderResearch(){let x=extraData();$('main').innerHTML=`<div class="page-head"><div><div class="eyebrow">KNOWLEDGE MANAGEMENT / INVESTMENT THESIS</div><h1>Research Vault</h1><p>A central repository for hypotheses, observations and research notes.</p></div><button class="btn primary" onclick="addResearch()">＋ NEW NOTE</button></div><div class="card"><h3>Research Notes</h3>${x.notes.map((n,i)=>`<div class="list-item"><div><b>${escapeHtml(n.title)}</b><small class="muted" style="display:block">${escapeHtml(n.date)}</small><p class="muted">${escapeHtml(n.body)}</p></div><button class="btn danger small" onclick="removeExtra('notes',${i})">DELETE</button></div>`).join('')||'<div class="empty">No research notes.</div>'}</div>`}
+function addResearch(){let title=prompt('Research title:');if(!title)return;let body=prompt('Research content:')||'';let x=extraData();x.notes.unshift({title,body,date:new Date().toISOString().slice(0,10)});saveExtra('notes',x.notes);renderResearch()}
+function renderWatchlist(){let x=extraData();$('main').innerHTML=`<div class="page-head"><div><div class="eyebrow">MARKET OBSERVATION / ASSET MONITORING</div><h1>Market Watchlist</h1><p>Track instruments and document your directional bias. Prices are manually entered, not a live market feed.</p></div><button class="btn primary" onclick="addWatch()">＋ ADD ASSET</button></div><div class="card"><div class="table-wrap"><table><thead><tr><th>ASSET</th><th>TIMEFRAME</th><th>BIAS</th><th>KEY LEVEL / OBSERVATION</th><th>ACTION</th></tr></thead><tbody>${x.watch.map((w,i)=>`<tr><td><b>${escapeHtml(w.asset)}</b></td><td>${escapeHtml(w.tf)}</td><td>${escapeHtml(w.bias)}</td><td>${escapeHtml(w.note)}</td><td><button class="btn danger small" onclick="removeExtra('watch',${i})">DELETE</button></td></tr>`).join('')||'<tr><td colspan="5" class="empty">No assets tracked.</td></tr>'}</tbody></table></div></div>`}
+function addWatch(){let asset=prompt('Asset symbol:');if(!asset)return;let tf=prompt('Timeframe:','H1 / M15')||'';let bias=prompt('Directional bias:','Neutral')||'Neutral';let note=prompt('Key level or observation:')||'';let x=extraData();x.watch.push({asset:asset.toUpperCase(),tf,bias,note});saveExtra('watch',x.watch);renderWatchlist()}
+function removeExtra(key,i){if(!confirm('Delete this record?'))return;let x=extraData();x[key].splice(i,1);saveExtra(key,x[key]);({strategies:renderStrategy,notes:renderResearch,watch:renderWatchlist}[key]||renderDashboard)()}
+function renderRisk(){$('main').innerHTML=`<div class="page-head"><div><div class="eyebrow">CAPITAL PRESERVATION / EXPOSURE CONTROL</div><h1>Risk Management</h1><p>Calculate position sizing before entering a trade. Results are estimates, not broker execution values.</p></div></div><div class="grid two-col"><div class="card"><h3>Position Size Calculator</h3><div class="form-grid"><div class="field"><label>ACCOUNT EQUITY ($)</label><input id="rEquity" type="number" value="${extraData().capital}"></div><div class="field"><label>RISK (%)</label><input id="rPercent" type="number" value="0.5" step="0.1"></div><div class="field"><label>ENTRY PRICE</label><input id="rEntry" type="number" value="4000" step="any"></div><div class="field"><label>STOP LOSS PRICE</label><input id="rStop" type="number" value="3990" step="any"></div><div class="field"><label>VALUE PER PRICE UNIT PER LOT ($)</label><input id="rValue" type="number" value="100" step="any"></div><div class="field"><label>TARGET PRICE</label><input id="rTarget" type="number" value="4030" step="any"></div></div><button class="btn primary" style="margin-top:16px" onclick="calculateRisk()">CALCULATE POSITION</button></div><div class="card"><h3>Calculation Results</h3><div class="detail-grid"><div><small>CAPITAL AT RISK</small><b id="riskCash">—</b></div><div><small>ESTIMATED LOT</small><b id="lotSize">—</b></div><div><small>RISK / REWARD</small><b id="riskReward">—</b></div><div><small>TARGET PROFIT</small><b id="targetCash">—</b></div></div><p class="note" id="riskWarning">Adjust contract specifications to match your broker's instrument.</p></div></div><div class="card" style="margin-top:16px"><h3>Risk Policy</h3><div class="list-item"><span>Suggested risk per trade</span><b>0.25% – 0.50%</b></div><div class="list-item"><span>Daily loss limit (example)</span><b>2.00%</b></div><div class="list-item"><span>Maximum exposure</span><b>Set before execution</b></div><div class="list-item"><span>News policy</span><b>Avoid high-impact releases</b></div></div>`}
+function calculateRisk(){let val=id=>Number($(id)?.value)||0,eq=val('rEquity'),pct=val('rPercent'),entry=val('rEntry'),stop=val('rStop'),target=val('rTarget'),unit=val('rValue'),dist=Math.abs(entry-stop),td=Math.abs(target-entry),risk=eq*pct/100,ok=eq>0&&pct>0&&dist>0&&unit>0&&td>0;$('riskCash').textContent=money(risk);$('lotSize').textContent=ok?(risk/(dist*unit)).toFixed(4):'—';$('riskReward').textContent=ok?(td/dist).toFixed(2)+'R':'—';$('targetCash').textContent=ok?money(risk*td/dist):'—';$('riskWarning').textContent=ok?'Estimated lot size. Confirm contract size, tick value and broker specifications before execution.':'Enter valid positive values and ensure entry, stop and target are different.'}
+
+if(current&&!users[current]){current='';storage.remove(STORE+'_session')}syncView();
+
+
+// Lightweight scroll reveal: observe only the public landing page once.
+(function initNazarithMotion(){
+  const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const elements = document.querySelectorAll('#discover .landing-section, #discover .landing-card, #discover .landing-product, #discover .founder-profile');
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    elements.forEach(el => el.classList.add('is-visible'));
+    return;
+  }
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        obs.unobserve(entry.target);
+      }
+    });
+  }, {threshold: 0.08, rootMargin: '0px 0px -24px 0px'});
+  elements.forEach(el => {
+    el.setAttribute('data-reveal', '');
+    observer.observe(el);
+  });
+})();
+
+</script>
+<style>
+/* Nazarith Capital 2.0 — modular intelligence layer */
+.nc2-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
+.nc2-kpi{background:#0c141e;border:1px solid #2a3949;padding:15px;min-width:0}
+.nc2-kpi small{display:block;color:#8294a8;font-size:9px;letter-spacing:1.3px}
+.nc2-kpi strong{display:block;font-size:21px;font-weight:400;margin-top:9px}
+.nc2-kpi em{display:block;color:#8294a8;font-style:normal;font-size:10px;margin-top:5px}
+.nc2-row{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.nc2-row:last-child{border:0}
+.nc2-meter{height:7px;background:#1a2938;overflow:hidden;margin-top:8px}
+.nc2-meter span{height:100%;display:block;background:#8eacc9}
+.nc2-calendar{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px}
+.nc2-day{min-height:70px;padding:7px;background:#0c141e;border:1px solid #243344;min-width:0}
+.nc2-day small{color:#8495a9;font-size:9px}
+.nc2-day b{display:block;font-size:11px;margin-top:7px;overflow:hidden;text-overflow:ellipsis}
+.nc2-day.profit{border-color:#28684f;background:#10251f}.nc2-day.lossday{border-color:#713b43;background:#26171c}
+.nc2-day.muted-day{opacity:.35}
+.nc2-form{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.nc2-form label{display:grid;gap:6px;color:#9eafc3;font-size:10px;letter-spacing:.5px}
+.nc2-form input,.nc2-form select,.nc2-form textarea{width:100%;background:#0a111a;border:1px solid #35475c;color:#e6edf5;padding:10px;border-radius:2px}
+.nc2-form textarea{min-height:90px;grid-column:1/-1}
+.nc2-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.nc2-tag{display:inline-block;border:1px solid #34475b;padding:4px 7px;font-size:9px;color:#a9bfd4;margin:2px}
+.nc2-muted{color:#8294a8;font-size:11px;line-height:1.7}
+.nc2-chart{height:180px;display:flex;align-items:end;gap:5px;padding:12px 2px 0;border-bottom:1px solid var(--line)}
+.nc2-chart i{flex:1;min-width:3px;background:#6e9fc8;display:block;opacity:.8}
+@media(max-width:900px){.nc2-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.nc2-form{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.nc2-grid{grid-template-columns:1fr 1fr;gap:8px}.nc2-kpi{padding:11px}.nc2-kpi strong{font-size:17px}.nc2-calendar{gap:3px}.nc2-day{min-height:58px;padding:4px}.nc2-day b{font-size:9px}.nc2-form{grid-template-columns:1fr}.nc2-form textarea{grid-column:auto}}
+
+/* ===== V3.0 / SMC execution lab ===== */
+.smc-checks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.smc-check{display:flex;align-items:center;gap:10px;padding:12px;border:1px solid var(--line);background:#0b121b;border-radius:3px;color:#c9d5e2;font-size:12px}
+.smc-check input{accent-color:#b9d0e5;width:16px;height:16px}
+.smc-score{font-size:42px;font-weight:600;letter-spacing:-2px}
+.smc-bar{height:7px;background:#202d3b;margin-top:10px;overflow:hidden}
+.smc-bar span{display:block;height:100%;background:#9dbbd8;transition:width .25s ease}
+.smc-history{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}
+@media(max-width:600px){.smc-checks{grid-template-columns:1fr}.smc-score{font-size:34px}}
+</style>
+<script>
+/* ===== NAZARITH CAPITAL 2.0 / local-first expansion =====
+   All new modules use the existing per-account data model.
+   This edition remains browser-local; cloud sync requires a configured backend.
+*/
+const nc2OriginalAnalytics = renderAnalyticsBase;
+function nc2Account(){const a=activeAccount();if(!a.events)a.events=[];if(!a.dailyReviews)a.dailyReviews={};if(!a.riskPolicy)a.riskPolicy={dailyLimit:2,maxRisk:1,weeklyLimit:5};return a}
+function nc2Closed(){return trades.filter(t=>t.result==='Win'||t.result==='Loss'||t.result==='Breakeven')}
+function nc2DateKey(d){return new Date(d+'T12:00:00').toISOString().slice(0,10)}
+function nc2Signed(n){return (Number(n)||0)>=0?'positive':'negative'}
+function nc2Esc(v){return escapeHtml(v==null?'':String(v))}
+function nc2PageHead(kicker,title,desc,action=''){return `<div class="page-head"><div><div class="eyebrow">${kicker}</div><h1>${title}</h1><p>${desc}</p></div>${action}</div>`}
+function nc2Metric(label,value,sub=''){return `<div class="nc2-kpi"><small>${label}</small><strong>${value}</strong><em>${sub}</em></div>`}
+function nc2PnlByDate(){const m={};trades.forEach(t=>{if(!t.date)return;const k=t.date;m[k]=(m[k]||0)+(Number(t.pnl)||0)});return m}
+function nc2Drawdown(){let cap=Number(activeAccount().capital)||10000,eq=cap,peak=cap,max=0;[...trades].sort((a,b)=>(a.date||'').localeCompare(b.date||'')).forEach(t=>{eq+=Number(t.pnl)||0;peak=Math.max(peak,eq);if(peak>0)max=Math.max(max,(peak-eq)/peak*100)});return max}
+function nc2Expectancy(){const c=nc2Closed();return c.length?c.reduce((s,t)=>s+(Number(t.pnl)||0),0)/c.length:0}
+function nc2RValues(){return trades.map(t=>Number(String(t.rr||'').replace(/[^\d.-]/g,''))).filter(n=>Number.isFinite(n)&&n>0)}
+function nc2MonthName(d){return d.toLocaleDateString('en-US',{month:'long',year:'numeric'})}
+function renderCalendar(){
+ const now=new Date(),year=now.getFullYear(),month=now.getMonth(),first=new Date(year,month,1),start=(first.getDay()+6)%7,days=new Date(year,month+1,0).getDate(),map=nc2PnlByDate(),labels=['MON','TUE','WED','THU','FRI','SAT','SUN'];
+ let cells=Array(start).fill('<div class="nc2-day muted-day"></div>');
+ for(let day=1;day<=days;day++){let key=`${year}-${String(month+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`,v=map[key],cls=v>0?'profit':v<0?'lossday':'';cells.push(`<div class="nc2-day ${cls}"><small>${day}</small><b class="${v==null?'':nc2Signed(v)}">${v==null?'—':money(v)}</b></div>`)}
+ while(cells.length%7)cells.push('<div class="nc2-day muted-day"></div>');
+ const monthTrades=trades.filter(t=>t.date&&t.date.startsWith(`${year}-${String(month+1).padStart(2,'0')}`)),pnl=monthTrades.reduce((s,t)=>s+(Number(t.pnl)||0),0),wins=monthTrades.filter(t=>t.result==='Win').length,closed=monthTrades.filter(t=>['Win','Loss'].includes(t.result)).length;
+ $('main').innerHTML=nc2PageHead('EXECUTION HISTORY / DAILY REVIEW','Trading Calendar','Review daily trading activity, realized P&L, and consistency.')+
+ `<div class="grid stats">${nc2Metric('MONTHLY NET P&L',money(pnl),`${monthTrades.length} recorded trades`)}${nc2Metric('ACTIVE DAYS',new Set(monthTrades.map(t=>t.date)).size,'Days with at least one trade')}${nc2Metric('MONTHLY WIN RATE',`${closed?(wins/closed*100).toFixed(1):'0.0'}%`,`${wins} wins / ${closed} closed`)}${nc2Metric('TRADING DAYS',monthTrades.length?new Set(monthTrades.map(t=>t.date)).size:0,'Unique trading dates')}</div>
+ <div class="card"><div class="page-head" style="padding:0 0 14px;margin:0 0 15px"><div><h3>${nc2MonthName(now)}</h3><p>Green = positive day · Red = negative day</p></div></div><div class="nc2-calendar">${labels.map(x=>`<div style="text-align:center;color:#8294a8;font-size:9px;padding:5px">${x}</div>`).join('')}${cells.join('')}</div></div>
+ <div class="card" style="margin-top:15px"><h3>Daily transaction summary</h3>${monthTrades.length?Object.entries(monthTrades.reduce((m,t)=>{m[t.date]=m[t.date]||{pnl:0,count:0};m[t.date].pnl+=Number(t.pnl)||0;m[t.date].count++;return m},{})).sort((a,b)=>b[0].localeCompare(a[0])).map(([d,x])=>`<div class="nc2-row"><span>${dateFmt(d)} · ${x.count} trades</span><b class="${nc2Signed(x.pnl)}">${money(x.pnl)}</b></div>`).join(''):'<div class="empty">No trades recorded this month.</div>'}</div>`;
+}
+function renderPsychology(){
+ const rows=[...trades].sort((a,b)=>(b.date||'').localeCompare(a.date||'')),emotion={};rows.forEach(t=>{let k=t.emotion||'Not recorded';emotion[k]=(emotion[k]||0)+1});
+ const bad=rows.filter(t=>['FOMO','Revenge trading','Overconfident','Fearful','Fatigued'].includes(t.emotion)).length;
+ const good=rows.filter(t=>t.execution==='Excellent'||t.execution==='Good').length;
+ const reviews=nc2Account().dailyReviews||{};
+ $('main').innerHTML=nc2PageHead('BEHAVIOURAL FINANCE / EXECUTION DISCIPLINE','Psychology Tracker','Identify emotional patterns and execution habits behind your results.')+
+ `<div class="grid stats">${nc2Metric('TRADES REVIEWED',rows.length,'Based on journal metadata')}${nc2Metric('HIGH-RISK EMOTIONS',bad,rows.length?`${(bad/rows.length*100).toFixed(1)}% of recorded trades`:'No data yet')}${nc2Metric('GOOD EXECUTION',good,rows.length?`${(good/rows.length*100).toFixed(1)}% of recorded trades`:'No data yet')}${nc2Metric('REVIEW ENTRIES',Object.keys(reviews).length,'Saved daily reflections')}</div>
+ <div class="grid two-col"><div class="card"><h3>Emotional state distribution</h3>${Object.entries(emotion).length?Object.entries(emotion).sort((a,b)=>b[1]-a[1]).map(([k,v])=>`<div class="nc2-row"><span>${nc2Esc(k)}</span><b>${v} <span class="muted">(${(v/rows.length*100).toFixed(1)}%)</span></b></div>`).join(''):'<div class="empty">Record emotional state when saving a trade.</div>'}</div>
+ <div class="card"><h3>Execution quality</h3>${['Excellent','Good','Average','Poor'].map(k=>{let n=rows.filter(t=>t.execution===k).length;return `<div style="margin:14px 0"><div class="nc2-row"><span>${k}</span><b>${n}</b></div><div class="nc2-meter"><span style="width:${rows.length?n/rows.length*100:0}%"></span></div></div>`}).join('')}</div></div>
+ <div class="card" style="margin-top:15px"><h3>Daily reflection</h3><p class="nc2-muted">Write a short review of your discipline, emotional state, and one improvement for the next session.</p><div class="nc2-form"><label>REVIEW DATE<input id="ncReviewDate" type="date" value="${new Date().toISOString().slice(0,10)}"></label><label>DISCIPLINE SCORE (1–10)<input id="ncReviewScore" type="number" min="1" max="10" value="7"></label><label>SESSION QUALITY<select id="ncReviewQuality"><option>Focused</option><option>Mixed</option><option>Undisciplined</option></select></label><label style="grid-column:1/-1">REFLECTION<textarea id="ncReviewBody" placeholder="What went well? What rule did you break? What will you improve?"></textarea></label></div><div class="nc2-actions"><button class="btn primary" onclick="saveDailyReview()">SAVE REFLECTION</button></div></div>
+ <div class="card" style="margin-top:15px"><h3>Previous reflections</h3>${Object.entries(reviews).sort((a,b)=>b[0].localeCompare(a[0])).map(([d,r])=>`<div class="nc2-row"><div><b>${dateFmt(d)}</b><div class="nc2-muted">${nc2Esc(r.quality)} · Score ${r.score}/10 · ${nc2Esc(r.body)}</div></div><button class="btn small danger" onclick="deleteDailyReview('${d}')">DELETE</button></div>`).join('')||'<div class="empty">No reflections saved.</div>'}</div>`;
+}
+function saveDailyReview(){let d=$('ncReviewDate').value,score=Math.max(1,Math.min(10,Number($('ncReviewScore').value)||1)),body=$('ncReviewBody').value.trim();if(!d||!body){toast('Choose a date and write a reflection.');return}nc2Account().dailyReviews[d]={score,quality:$('ncReviewQuality').value,body,updatedAt:new Date().toISOString()};saveUsers();toast('Daily reflection saved.');renderPsychology()}
+function deleteDailyReview(d){if(!confirm('Delete this reflection?'))return;delete nc2Account().dailyReviews[d];saveUsers();renderPsychology()}
+function renderCapital(){
+ const u=users[current],accounts=u.accounts||[],total=accounts.reduce((s,a)=>s+(Number(a.capital)||0),0),pnl=accounts.reduce((s,a)=>s+(a.trades||[]).reduce((v,t)=>v+(Number(t.pnl)||0),0),0);
+ $('main').innerHTML=nc2PageHead('PORTFOLIO OVERSIGHT / ACCOUNT CONSOLIDATION','Capital Allocation','Compare your separate trading accounts without mixing their journals.')+
+ `<div class="grid stats">${nc2Metric('TOTAL STARTING CAPITAL',money(total),`${accounts.length} accounts`)}${nc2Metric('AGGREGATE REALIZED P&L',money(pnl),'Sum across stored accounts')}${nc2Metric('PORTFOLIO EQUITY',money(total+pnl),'Starting capital + recorded P&L')}${nc2Metric('ACTIVE ACCOUNT',nc2Esc(activeAccount().name),'Selected workspace')}</div>
+ <div class="card"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap"><h3>Account allocation</h3><button class="btn primary" onclick="openAccountManager()">＋ MANAGE ACCOUNTS</button></div>
+ ${accounts.map(a=>{let p=(a.trades||[]).reduce((s,t)=>s+(Number(t.pnl)||0),0),cap=Number(a.capital)||0;return `<div class="nc2-row"><div style="min-width:0"><b>${nc2Esc(a.name)}</b><div class="nc2-muted">${nc2Esc(a.firm||'Independent')} · ${nc2Esc(a.type||'Account')} · ${(a.trades||[]).length} trades</div></div><div style="text-align:right"><b>${money(cap+p)}</b><div class="${nc2Signed(p)}" style="font-size:10px">${money(p)} P&L</div></div></div>`}).join('')}
+ <p class="footer-note">Portfolio totals are calculated from account records stored in this browser. This is not a broker-connected balance feed.</p></div>
+ <div class="card" style="margin-top:15px"><h3>Capital concentration</h3>${accounts.map(a=>{let cap=Number(a.capital)||0;return `<div style="margin:12px 0"><div class="nc2-row"><span>${nc2Esc(a.name)}</span><b>${total?(cap/total*100).toFixed(1):'0.0'}%</b></div><div class="nc2-meter"><span style="width:${total?cap/total*100:0}%"></span></div></div>`}).join('')}</div>`;
+}
+function renderReports(){
+ const s=stats(),wins=trades.filter(t=>t.result==='Win'),loss=trades.filter(t=>t.result==='Loss'),grossW=wins.reduce((a,t)=>a+(Number(t.pnl)||0),0),grossL=Math.abs(loss.reduce((a,t)=>a+(Number(t.pnl)||0),0)),avgW=wins.length?grossW/wins.length:0,avgL=loss.length?grossL/loss.length:0,expect=nc2Expectancy(),r=nc2RValues(),avgR=r.length?r.reduce((a,b)=>a+b,0)/r.length:0;
+ const setups={};trades.forEach(t=>{let k=t.setup||'Unspecified';(setups[k]??=[]).push(t)});
+ $('main').innerHTML=nc2PageHead('QUANTITATIVE REVIEW / PERIODIC REPORTING','Performance Reports','A consolidated statistical review of the active account.', '<button class="btn primary" onclick="window.print()">PRINT REPORT</button>')+
+ `<div class="grid stats">${nc2Metric('WIN RATE',s.wr.toFixed(2)+'%',`${s.wins} wins / ${s.closed.length} closed`)}${nc2Metric('PROFIT FACTOR',s.pf===Infinity?'∞':s.pf.toFixed(2),'Gross profit / gross loss')}${nc2Metric('EXPECTANCY',money(expect),'Average P&L per closed trade')}${nc2Metric('MAX DRAWDOWN',nc2Drawdown().toFixed(2)+'%','Peak-to-trough from recorded trades')}</div>
+ <div class="grid two-col"><div class="card"><h3>Reward and risk profile</h3><div class="nc2-row"><span>Gross profit</span><b class="positive">${money(grossW)}</b></div><div class="nc2-row"><span>Gross loss</span><b class="negative">${money(-grossL)}</b></div><div class="nc2-row"><span>Average winning trade</span><b>${money(avgW)}</b></div><div class="nc2-row"><span>Average losing trade</span><b>${money(-avgL)}</b></div><div class="nc2-row"><span>Average recorded R:R</span><b>${avgR?avgR.toFixed(2)+'R':'—'}</b></div><div class="nc2-row"><span>Total net P&L</span><b class="${nc2Signed(s.net)}">${money(s.net)}</b></div></div>
+ <div class="card"><h3>Setup effectiveness</h3>${Object.entries(setups).map(([k,arr])=>{let c=arr.filter(t=>['Win','Loss'].includes(t.result)),w=c.filter(t=>t.result==='Win').length,p=arr.reduce((v,t)=>v+(Number(t.pnl)||0),0);return `<div class="nc2-row"><div><b>${nc2Esc(k)}</b><div class="nc2-muted">${arr.length} trades · ${c.length?(w/c.length*100).toFixed(1):'0.0'}% win rate</div></div><b class="${nc2Signed(p)}">${money(p)}</b></div>`}).join('')||'<div class="empty">No setup data.</div>'}</div></div>
+ <div class="card" style="margin-top:15px"><h3>Methodology & interpretation</h3><p class="nc2-muted">Win rate uses only closed Win/Loss outcomes; breakeven and open trades are excluded. Profit factor is gross positive P&L divided by absolute gross negative P&L. Expectancy is average P&L per closed trade. Maximum drawdown is calculated from starting capital and the chronological sequence of recorded trade P&L. These statistics depend on accurate journal inputs and are not a forecast.</p></div>`;
+}
+function renderEvents(){
+ let a=nc2Account(),ev=a.events||[];
+ $('main').innerHTML=nc2PageHead('MACRO RESEARCH / MANUAL EVENT REGISTER','Event Planner','Keep a personal schedule of economic releases and market events. Events are entered manually; this page is not a live economic calendar.', '<button class="btn primary" onclick="addMarketEvent()">＋ ADD EVENT</button>')+
+ `<div class="note">Before high-impact events, document your exposure, invalidation level, and whether your plan allows new positions. Confirm release times with an official calendar.</div>
+ <div class="card" style="margin-top:15px"><h3>Upcoming and saved events</h3>${ev.slice().sort((a,b)=>(a.date||'').localeCompare(b.date||'')).map((e,i)=>`<div class="nc2-row"><div><b>${nc2Esc(e.title)}</b><div class="nc2-muted">${dateFmt(e.date)} · ${nc2Esc(e.time||'Time not set')} · ${nc2Esc(e.currency||'Global')} · ${nc2Esc(e.impact||'Unspecified impact')}</div><div class="nc2-muted">${nc2Esc(e.note||'')}</div></div><button class="btn small danger" onclick="removeMarketEvent(${i})">DELETE</button></div>`).join('')||'<div class="empty">No events saved. Add NFP, CPI, FOMC, central-bank decisions, or other events you follow.</div>'}</div>`;
+}
+function addMarketEvent(){let title=prompt('Event name (e.g. US CPI):');if(!title)return;let date=prompt('Date (YYYY-MM-DD):',new Date().toISOString().slice(0,10));if(!date||!/^\d{4}-\d{2}-\d{2}$/.test(date)){toast('Use date format YYYY-MM-DD.');return}let time=prompt('Local event time (optional, e.g. 20:30):',''),currency=prompt('Currency / region:','USD')||'Global',impact=prompt('Impact (High / Medium / Low):','High')||'Unspecified',note=prompt('Preparation note (optional):','')||'';nc2Account().events.push({title,date,time,currency,impact,note});saveUsers();renderEvents();toast('Event added.')}
+function removeMarketEvent(i){if(!confirm('Delete this event?'))return;nc2Account().events.splice(i,1);saveUsers();renderEvents()}
+function renderAnalytics(){
+ nc2OriginalAnalytics();
+ const s=stats(),c=nc2Closed(),wins=c.filter(t=>t.result==='Win').length,losses=c.filter(t=>t.result==='Loss').length,avgR=nc2RValues(),sessions={};
+ trades.forEach(t=>{let k=t.session||'Not recorded';(sessions[k]??=[]).push(t)});
+ const extra=`<div class="card" style="margin-top:15px"><h3>Performance Intelligence</h3><div class="nc2-grid">${nc2Metric('MAX DRAWDOWN',nc2Drawdown().toFixed(2)+'%','Chronological peak-to-trough')}${nc2Metric('CLOSED TRADES',c.length,'Win, loss and breakeven')}${nc2Metric('BREAKEVEN',trades.filter(t=>t.result==='Breakeven').length,'Excluded from win-rate denominator')}</div><div class="nc2-row"><span>Average recorded R:R</span><b>${avgR.length?(avgR.reduce((a,b)=>a+b,0)/avgR.length).toFixed(2)+'R':'—'}</b></div><div class="nc2-row"><span>Win / loss ratio</span><b>${losses?(wins/losses).toFixed(2):wins?'∞':'—'}</b></div><div class="nc2-row"><span>Expectancy per closed trade</span><b class="${nc2Signed(nc2Expectancy())}">${money(nc2Expectancy())}</b></div></div>
+ <div class="card" style="margin-top:15px"><h3>Session analysis</h3>${Object.entries(sessions).map(([k,a])=>{let closed=a.filter(t=>['Win','Loss'].includes(t.result)),w=closed.filter(t=>t.result==='Win').length,p=a.reduce((n,t)=>n+(Number(t.pnl)||0),0);return `<div class="nc2-row"><div><b>${nc2Esc(k)}</b><div class="nc2-muted">${a.length} trades · ${closed.length?(w/closed.length*100).toFixed(1):'0.0'}% win rate</div></div><b class="${nc2Signed(p)}">${money(p)}</b></div>`}).join('')}</div>
+ <div class="nc2-actions"><button class="btn" onclick="navigate('reports')">OPEN FULL PERFORMANCE REPORT ↗</button><button class="btn" onclick="navigate('psychology')">REVIEW TRADING PSYCHOLOGY ↗</button></div>`;
+ $('main').insertAdjacentHTML('beforeend',extra);
+}
+function navigate(page){
+ document.querySelectorAll('.nav').forEach(n=>n.classList.toggle('active',n.dataset.page===page));
+ const routes={dashboard:renderDashboard,journal:renderJournal,analytics:renderAnalytics,backup:renderBackup,settings:renderSettings,strategy:renderStrategy,research:renderResearch,watchlist:renderWatchlist,risk:renderRisk,calendar:renderCalendar,psychology:renderPsychology,capital:renderCapital,reports:renderReports,events:renderEvents};
+ (routes[page]||renderDashboard)();
+}
+</script>
+
+<script>
+/* ===== NAZARITH CAPITAL 3.0 / SMC Setup Lab =====
+   Local-first feature. Scores are a discipline aid, not a signal or guarantee.
+*/
+function nc3Store(){const a=activeAccount();if(!Array.isArray(a.smcSetups))a.smcSetups=[];return a.smcSetups}
+const nc3Factors=[
+ ['bias','Clear higher-timeframe bias',15],
+ ['liquidity','Liquidity sweep / raid identified',15],
+ ['structure','MSS / CHOCH confirmation',15],
+ ['displacement','Strong displacement candle',10],
+ ['imbalance','FVG / imbalance present',10],
+ ['orderblock','Valid order block / POI',10],
+ ['location','Premium / discount location aligned',10],
+ ['session','Session timing supports the setup',5],
+ ['news','No conflicting high-impact event nearby',5],
+];
+function renderSMCLab(){
+ const hist=nc3Store().slice().reverse();
+ $('main').innerHTML=nc2PageHead('SMART MONEY CONCEPT / EXECUTION FILTER','SMC Setup Lab','Score a potential setup before execution. Use the checklist to reduce impulsive entries; it does not predict market direction.')+
+ `<div class="grid two-col"><div class="card"><h3>Confluence checklist</h3><p class="nc2-muted">Select only conditions that are visibly confirmed on your chart. Do not tick a factor just because you expect it to happen.</p><div class="smc-checks">${nc3Factors.map(([id,label,weight])=>`<label class="smc-check"><input type="checkbox" id="nc3_${id}" onchange="nc3UpdateScore()"><span>${label}<small style="display:block;color:#8294a8">${weight} points</small></span></label>`).join('')}</div><div class="nc2-form" style="margin-top:16px"><label>INSTRUMENT<input id="nc3_symbol" placeholder="e.g. XAUUSD"></label><label>BIAS<select id="nc3_bias"><option>Buy</option><option>Sell</option><option>Neutral</option></select></label><label>PLANNED R:R<input id="nc3_rr" type="number" min="0" step="0.1" value="2" oninput="nc3UpdateScore()"></label><label>ENTRY TIMEFRAME<input id="nc3_tf" placeholder="e.g. M5 / M15"></label><label>SETUP TYPE<select id="nc3_type"><option>Liquidity Sweep + MSS</option><option>Order Block</option><option>FVG Retracement</option><option>Breaker Block</option><option>Other</option></select></label><label>TRADE NOTE<input id="nc3_note" placeholder="Reason / invalidation"></label></div><div class="nc3-actions nc2-actions"><button class="btn primary" onclick="nc3SaveSetup()">SAVE SETUP REVIEW</button><button class="btn" onclick="nc3Reset()">RESET CHECKLIST</button></div></div>
+ <div class="card"><h3>Setup quality assessment</h3><div class="smc-score" id="nc3_score">0<span style="font-size:16px;color:#8294a8"> / 100</span></div><div class="smc-bar"><span id="nc3_bar" style="width:0%"></span></div><h3 id="nc3_grade" style="margin-top:22px">Not assessed</h3><p class="nc2-muted" id="nc3_advice">Complete the checklist to see the confluence score.</p><div class="nc2-row"><span>Confluence points</span><b id="nc3_points">0 / 100</b></div><div class="nc2-row"><span>Planned reward-to-risk</span><b id="nc3_rrout">2.00R</b></div><div class="nc2-row"><span>Risk discipline suggestion</span><b id="nc3_risk">Not assessed</b></div><p class="note" style="margin-top:15px">A high score is not a trade signal. Confirm liquidity, structure, execution price, stop placement, spread, and broker contract specifications independently.</p></div></div>
+ <div class="card" style="margin-top:16px"><div style="display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap"><h3>Saved setup reviews</h3><span class="nc2-muted">${hist.length} reviews in this account</span></div>${hist.map(x=>`<div class="smc-history"><div><b>${nc2Esc(x.symbol||'Unspecified')} · ${nc2Esc(x.bias)}</b><div class="nc2-muted">${nc2Esc(x.date)} · ${nc2Esc(x.type)} · ${nc2Esc(x.timeframe||'—')} · ${x.rr}R</div><div class="nc2-muted">${nc2Esc(x.note||'')}</div></div><div style="text-align:right"><b>${x.score}/100</b><div class="nc2-muted">${nc2Esc(x.grade)}</div><button class="btn small danger" onclick="nc3DeleteSetup('${x.id}')">DELETE</button></div></div>`).join('')||'<div class="empty">No setup reviews saved yet.</div>'}</div>`;
+ nc3UpdateScore();
+}
+function nc3UpdateScore(){let score=0;nc3Factors.forEach(([id,,weight])=>{const el=$('nc3_'+id);if(el&&el.checked)score+=weight});const rr=Number($('nc3_rr')?.value)||0;if(rr>=2)score+=5;
+ const pct=Math.min(100,score),grade=pct>=85?'A · High confluence':pct>=70?'B · Selective':pct>=50?'C · Weak / incomplete':'D · Insufficient';
+ const advice=pct>=85?'Setup checklist is strong. Still verify execution conditions and keep risk within your written plan.':pct>=70?'Several conditions align, but review missing confirmations before considering execution.':pct>=50?'Confluence is incomplete. Waiting for confirmation may be preferable to forcing an entry.':'Too many conditions are missing. Avoid treating this as a confirmed setup.';
+ if($('nc3_score')){$('nc3_score').innerHTML=pct+'<span style="font-size:16px;color:#8294a8"> / 100</span>';$('nc3_bar').style.width=pct+'%';$('nc3_grade').textContent=grade;$('nc3_advice').textContent=advice;$('nc3_points').textContent=pct+' / 100';$('nc3_rrout').textContent=(rr||0).toFixed(2)+'R';$('nc3_risk').textContent=pct>=85?'Normal plan risk only':pct>=70?'Consider reduced risk':'No trade / wait';}
+ return {score:pct,grade};}
+function nc3SaveSetup(){const result=nc3UpdateScore(),symbol=$('nc3_symbol').value.trim().toUpperCase();if(!symbol){toast('Enter the instrument first.');return}const rr=Number($('nc3_rr').value)||0;if(rr<=0){toast('Enter a valid planned R:R.');return}const selected=nc3Factors.filter(([id])=>$( 'nc3_'+id)?.checked).map(x=>x[0]);const setups=nc3Store();setups.push({id:'smc-'+Date.now(),date:new Date().toISOString().slice(0,10),symbol,bias:$('nc3_bias').value,rr,type:$('nc3_type').value,timeframe:$('nc3_tf').value.trim(),note:$('nc3_note').value.trim(),score:result.score,grade:result.grade,factors:selected});saveUsers();toast('SMC setup review saved to this account.');renderSMCLab()}
+function nc3DeleteSetup(id){if(!confirm('Delete this setup review?'))return;const a=activeAccount();a.smcSetups=(a.smcSetups||[]).filter(x=>x.id!==id);saveUsers();renderSMCLab()}
+function nc3Reset(){nc3Factors.forEach(([id])=>{const el=$('nc3_'+id);if(el)el.checked=false});['nc3_symbol','nc3_tf','nc3_note'].forEach(id=>{if($(id))$(id).value=''});if($('nc3_rr'))$('nc3_rr').value='2';if($('nc3_bias'))$('nc3_bias').value='Buy';if($('nc3_type'))$('nc3_type').selectedIndex=0;nc3UpdateScore()}
+const nc3NavigateBase=navigate;
+navigate=function(page){if(page==='smclab'){document.querySelectorAll('.nav').forEach(n=>n.classList.toggle('active',n.dataset.page===page));renderSMCLab();return}nc3NavigateBase(page)};
+</script>
+</body></html>
