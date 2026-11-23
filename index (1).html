@@ -875,27 +875,51 @@ function nazChartControls(){return `<div class="v8-actions" style="margin:8px 0 
 function nazSetChartMode(mode){nazChartMode=mode;const active=document.querySelector('.nav.active')?.dataset.page;if(active==="academy")renderAcademy();else if(active==="entrylibrary")renderEntryLibrary();}
 function nazChart(type){
  if(nazChartMode==="schematic")return nazSchematicChart(type);
- const sets={
-  sweep:[102,99,104,101,98,95,97,92,89,93,88,84,87,82,79,83,76,72,78,69,65,71,62,58,64,55,51,57],
-  fvg:[76,79,74,82,78,85,81,89,86,94,90,98,92,84,88,79,73,80,70,65,72,61,57,63,55,60,52,56],
-  ob:[92,88,95,90,84,87,80,76,82,78,72,75,68,71,64,59,66,61,55,62,51,47,54,49,43,50,39,45]
+ // Deterministic synthetic OHLC: each lesson has a distinct market structure.
+ // Educational illustration only; it is not a live or historical price feed.
+ const profiles={
+  structure:[0,2,1,4,3,6,5,8,7,10,8,12,11,14,13,16,15,18,16,20,19,22,21,24,23,26,24,28,27,30,29,32],
+  liquidity:[0,1,2,1,0,2,1,0,-1,-2,-1,-3,-2,-4,-3,-5,-4,-7,-9,-6,-2,2,5,4,7,9,8,11,10,13,12,15],
+  sweep:[0,1,2,1,0,2,1,0,-1,-2,-1,-3,-2,-4,-3,-5,-4,-7,-10,-6,-1,4,8,7,11,13,12,15,14,17,18,20],
+  fvg:[0,1,0,2,1,0,2,1,0,2,1,0,2,3,5,9,15,21,26,29,27,24,22,20,18,19,17,16,18,17,19,18],
+  ob:[0,-2,-4,-3,-6,-8,-7,-10,-12,-11,-14,-16,-15,-18,-16,-12,-5,3,11,17,20,18,15,12,10,8,9,11,10,13,15,17],
+  premium:[0,2,4,2,-1,-3,-1,3,5,2,-2,-4,-2,2,4,1,-3,-5,-2,2,5,3,-1,-4,-2,2,4,1,-2,-3,0,2],
+  mtf:[0,2,3,5,4,7,8,10,9,12,13,15,14,17,18,20,19,22,23,25,24,27,28,30,29,32,33,35,34,37,38,40]
  };
- const closes=sets[type]||sets.sweep;let prev=closes[0]+3;const candles=closes.map((c,i)=>{const o=prev;const hi=Math.max(o,c)+[3,5,2,4,3,6][i%6];const lo=Math.min(o,c)-[2,3,4,2,5][i%5];prev=c;return{o,c,h:hi,l:lo}});
- const min=Math.min(...candles.map(x=>x.l))-3,max=Math.max(...candles.map(x=>x.h))+3,py=v=>190-(v-min)/(max-min)*150;
- const bars=candles.map((d,i)=>{const x=38+i*19.4,y=Math.min(py(d.o),py(d.c)),h=Math.max(2,Math.abs(py(d.o)-py(d.c))),up=d.c>=d.o;return `<line x1="${x+5}" y1="${py(d.h)}" x2="${x+5}" y2="${py(d.l)}" stroke="${up?'#35b58a':'#d66b70'}" stroke-width="1.3"/><rect x="${x}" y="${y}" width="10" height="${h}" fill="${up?'#35b58a':'#d66b70'}" stroke="${up?'#35b58a':'#d66b70'}"/>`}).join('');
+ const key=profiles[type]?type:(type==='fvg'?'fvg':type==='ob'?'ob':'sweep');
+ const profile=profiles[key],raw=[],seed=(key.split('').reduce((a,c)=>a+c.charCodeAt(0),0)+71);
+ let prev=100;
+ for(let i=0;i<profile.length;i++){
+  const rand=(n)=>{let x=Math.sin((seed+i*17+n*31)*12.9898)*43758.5453;return (x-Math.floor(x))-.5};
+  const target=100+profile[i]*0.62;
+  const o=prev+rand(1)*1.5;
+  const c=target+rand(2)*1.1;
+  const body=Math.abs(c-o),wickUp=0.8+Math.abs(rand(3))*2.8+(i%7===0?1.2:0),wickDn=0.8+Math.abs(rand(4))*2.8+(i%6===0?1.1:0);
+  raw.push({o,c,h:Math.max(o,c)+wickUp,l:Math.min(o,c)-wickDn});prev=c;
+ }
+ const min=Math.min(...raw.map(d=>d.l))-2,max=Math.max(...raw.map(d=>d.h))+2;
+ const top=28,bottom=178,py=v=>bottom-(v-min)/(max-min)*(bottom-top);
+ const left=38,step=16.15,cw=8.2;
+ const grid=[0,1,2,3,4].map(i=>{const y=top+i*(bottom-top)/4;return `<line x1="28" y1="${y}" x2="590" y2="${y}" stroke="#263647" stroke-width=".8"/><text x="594" y="${y+3}" text-anchor="start" font-size="8">${(max-(max-min)*i/4).toFixed(1)}</text>`}).join('');
+ const bars=raw.map((d,i)=>{const x=left+i*step,up=d.c>=d.o,colour=up?'#20b987':'#e05f68',yo=py(d.o),yc=py(d.c),bodyY=Math.min(yo,yc),bodyH=Math.max(2.4,Math.abs(yc-yo));return `<line x1="${x+cw/2}" y1="${py(d.h)}" x2="${x+cw/2}" y2="${py(d.l)}" stroke="${colour}" stroke-width="1.35"/><rect x="${x}" y="${bodyY}" width="${cw}" height="${bodyH}" rx=".55" fill="${colour}" stroke="${colour}" stroke-width=".6"/>`}).join('');
  let overlay='';
- if(type==='sweep')overlay=`<path d="M24 115H600" stroke="#e8b65c" stroke-dasharray="5 4"/><text x="28" y="107">SSL · PRIOR LOWS</text><path d="M220 165L220 205" stroke="#e8b65c" stroke-width="1.5"/><text x="228" y="211">Liquidity sweep</text><path d="M390 35V190" stroke="#53c99a" stroke-dasharray="4 4"/><text x="397" y="31">MSS</text>`;
- if(type==='fvg')overlay=`<rect x="300" y="76" width="175" height="34" fill="#53c99a" fill-opacity=".12" stroke="#53c99a" stroke-dasharray="4 3"/><text x="307" y="69">FVG · imbalance</text>`;
- if(type==='ob')overlay=`<rect x="250" y="124" width="130" height="30" fill="#9dbbd8" fill-opacity=".12" stroke="#9dbbd8" stroke-dasharray="4 3"/><text x="256" y="118">Order block</text>`;
- return `<svg class="v8-chart" viewBox="0 0 620 240" role="img" aria-label="Candlestick OHLC educational chart"><rect width="620" height="240" fill="#0a111a"/>${[45,90,135,180].map(y=>`<path d="M24 ${y}H600" stroke="#263647" stroke-width=".7"/>`).join('')}<path d="M24 15V190H600" stroke="#405164" stroke-width="1" fill="none"/>${bars}${overlay}<text x="26" y="18">PRICE</text><text x="26" y="225">09:00</text><text x="205" y="225">10:00</text><text x="385" y="225">11:00</text><text x="550" y="225">12:00</text><text x="470" y="18">SIMULATED OHLC</text></svg>`;
+ if(type==='sweep'||type==='liquidity'){
+  const y=py(100-5*0.62);overlay=`<line x1="28" y1="${y}" x2="590" y2="${y}" stroke="#e8b65c" stroke-dasharray="5 4"/><text x="33" y="${y-5}" fill="#e8b65c">SSL · PRIOR LOWS</text><line x1="28" y1="${py(100-10*.62)}" x2="${left+19*step}" y2="${py(100-10*.62)}" stroke="#e8b65c" stroke-width="1"/><line x1="${left+19*step}" y1="${top}" x2="${left+19*step}" y2="${bottom}" stroke="#20b987" stroke-dasharray="4 4"/><text x="${left+19*step+5}" y="${top+8}" fill="#20b987">MSS</text>`;
+ }
+ if(type==='fvg')overlay=`<rect x="${left+19*step}" y="${py(117)}" width="${step*6}" height="${Math.max(12,py(113)-py(117))}" fill="#20b987" fill-opacity=".12" stroke="#20b987" stroke-dasharray="4 3"/><text x="${left+19*step+4}" y="${py(117)-5}" fill="#20b987">FVG · IMBALANCE</text>`;
+ if(type==='ob')overlay=`<rect x="${left+18*step}" y="${py(111)}" width="${step*7}" height="${Math.max(13,py(106)-py(111))}" fill="#9dbbd8" fill-opacity=".13" stroke="#9dbbd8" stroke-dasharray="4 3"/><text x="${left+18*step+4}" y="${py(111)-5}">ORDER BLOCK</text>`;
+ if(type==='premium') {const eq=(min+max)/2;overlay=`<line x1="28" y1="${py(eq)}" x2="590" y2="${py(eq)}" stroke="#e8b65c" stroke-dasharray="5 4"/><text x="34" y="${py(eq)-5}" fill="#e8b65c">EQUILIBRIUM</text>`;}
+ if(type==='mtf')overlay=`<line x1="28" y1="${py(100+22*.62)}" x2="590" y2="${py(100+22*.62)}" stroke="#20b987" stroke-dasharray="5 4"/><text x="34" y="${py(100+22*.62)-5}" fill="#20b987">HTF STRUCTURE</text>`;
+ const times=['09:00','09:30','10:00','10:30','11:00','11:30','12:00'];
+ return `<svg class="v8-chart" viewBox="0 0 620 220" role="img" aria-label="Synthetic OHLC candlestick chart showing ${key} price action"><rect width="620" height="220" fill="#0a111a"/>${grid}<path d="M28 ${top}V${bottom}H590" stroke="#405164" stroke-width="1" fill="none"/>${bars}${overlay}<text x="29" y="14">PRICE</text><text x="478" y="14">SIMULATED OHLC</text>${times.map((t,i)=>`<text x="${left+i*step*5.2}" y="202">${t}</text>`).join('')}</svg>`;
 }
 const nazLessons=[
-["Market Structure","BOS, CHOCH, MSS, swing highs/lows and protected swings.","sweep","Define meaningful swing points first. A break is useful only when the reference swing and confirmation criteria are objective."],
-["Liquidity","BSL, SSL, EQH, EQL, inducement and liquidity raids.","sweep","A wick through a level alone does not prove reversal. Record the liquidity pool, response and invalidation."],
+["Market Structure","BOS, CHOCH, MSS, swing highs/lows and protected swings.","structure","Define meaningful swing points first. A break is useful only when the reference swing and confirmation criteria are objective."],
+["Liquidity","BSL, SSL, EQH, EQL, inducement and liquidity raids.","liquidity","A wick through a level alone does not prove reversal. Record the liquidity pool, response and invalidation."],
 ["Fair Value Gap","Three-candle imbalance, displacement and retracement.","fvg","An FVG is an area of interest, not an automatic entry. Specify edge, midpoint or full-fill rules."],
 ["Order Blocks & Breakers","Order block, mitigation block and breaker concepts.","ob","Define candle-selection rules and link the zone to a structural event to keep analysis repeatable."],
-["Premium & Discount","Dealing range, equilibrium and PD Arrays.","ob","Choose range anchors before judging premium or discount; do not move them after seeing the outcome."],
-["Multi-Timeframe Analysis","HTF bias, POI and LTF execution trigger.","fvg","Use a consistent timeframe hierarchy and record the HTF invalidation before looking for LTF entries."]
+["Premium & Discount","Dealing range, equilibrium and PD Arrays.","premium","Choose range anchors before judging premium or discount; do not move them after seeing the outcome."],
+["Multi-Timeframe Analysis","HTF bias, POI and LTF execution trigger.","mtf","Use a consistent timeframe hierarchy and record the HTF invalidation before looking for LTF entries."]
 ];
 function renderAcademy(){
  $("main").innerHTML=nazHead("EDUCATION / VISUAL KNOWLEDGE","SMC Academy","Visual study library with schematic chart illustrations.")+
