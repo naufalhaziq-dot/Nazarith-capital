@@ -1,25 +1,27 @@
-# Nazarith Capital V8.0
+# Nazarith Capital V8.0 — Standalone Edition
 
 ## Included
-- Original Nazarith Capital V3.0 interface and existing modules retained.
-- Added SMC Academy with visual schematic lessons.
-- Added Entry Model Library: Liquidity Sweep + MSS, FVG Retracement, Order Block Retest, OTE / Premium-Discount, Turtle Soup and Unicorn / Breaker + FVG.
-- Added Advanced Rule Builder (hard and weighted soft rules).
-- Added guided Entry Simulator (schematic training scenario).
-- Added Supabase email/password authentication and cloud workspace snapshot sync.
-- Added SQL table and Row Level Security policies.
+- Existing Nazarith Capital V8.0 interface and local-first modules.
+- SMC Academy with visual lessons and educational candlestick charts.
+- Entry Model Library, Advanced Rule Builder, and Entry Simulator.
+- Local email/password registration and login.
+- Multi-account trading workspaces isolated by account.
+- Trade journal, analytics, uploads, and JSON/CSV backup tools.
 
-## Supabase setup
-1. Create a Supabase project.
-2. Run `supabase-schema.sql` in Supabase SQL Editor.
-3. In `index.html`, replace `https://YOUR-PROJECT.supabase.co` and `YOUR_SUPABASE_ANON_KEY` inside `NAZARITH_SUPABASE_CONFIG`.
-4. Use only the Supabase anon/public key in browser code. NEVER expose the service_role key.
-5. Configure Supabase Authentication URL Configuration with your Netlify site URL and allowed redirect URLs.
-6. Deploy `index.html` to Netlify. Keep the SQL file as your setup reference.
+## Architecture
+- Static frontend: HTML, CSS, and JavaScript.
+- Authentication and data storage: browser Local Storage.
+- Hosting: Netlify or any static hosting provider.
+- No Supabase project, SDK, URL, anon key, SQL schema, or cloud connection is required.
+
+## Deploy to Netlify
+1. Upload this project folder to a GitHub repository, or drag the project folder into Netlify Drop.
+2. For Git-based deployment, set the publish directory to the repository root and leave the build command empty.
+3. Netlify serves `index.html` automatically.
 
 ## Important limitations
-- The current cloud layer stores each user's workspace in one JSONB row. RLS scopes that row to `auth.uid()`. This preserves the V3 data model and account separation but is a migration-friendly snapshot design, not a normalized analytics schema.
-- Existing V3 localStorage data is not automatically merged into a new cloud account. Export/backup legacy data before migrating it.
-- SMC charts are schematic educational diagrams, not live or historical OHLC.
-- A verified historical-data Backtest Lab, broker integration, live market feed, automated trade execution and AI analyst are not claimed as implemented.
-- Metrics remain journal-derived and depend on accurate trade entries.
+- Accounts and trading data are stored only in the current browser profile on the current device. The same email on another device does not synchronize data.
+- Clearing browser data, using private browsing, or changing browser profiles may make local data unavailable. Export JSON backups regularly from **Data & Backup**.
+- Local-only authentication is not equivalent to server-side authentication. Do not use it to protect highly sensitive information.
+- SMC Academy charts are educational OHLC illustrations, not live market data.
+- Journal metrics depend on the accuracy and completeness of manually entered trades.

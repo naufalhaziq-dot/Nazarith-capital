@@ -1,7 +1,7 @@
 /**
  * NAZARITH CAPITAL V8.0 — DATA & BACKUP CENTER
  * Export/Import CSV & JSON, pre-import validation, duplicate detection,
- * error reporting, and cloud backup snapshots.
+ * error reporting, and local backup exports.
  */
 
 window.NZ_Backup = (function () {
@@ -74,19 +74,6 @@ window.NZ_Backup = (function () {
               <input id="importCsvInput" type="file" accept=".csv,text/csv" hidden onchange="NZ_Backup.handleCsvImport(this.files[0])">
             </div>
           </div>
-        </div>
-      </div>
-
-      <!-- Cloud Backup & Migration Section -->
-      <div class="card" style="margin-top:16px">
-        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
-          <div>
-            <h3>Cloud Backup & Supabase Synchronization</h3>
-            <p class="muted" style="font-size:11px;margin:4px 0 0">
-              Synchronize your active browser journal with your personal Supabase PostgreSQL cloud database.
-            </p>
-          </div>
-          <button class="btn gold small" onclick="NZ_Backup.triggerCloudSync()">☁ Sync to Supabase Cloud</button>
         </div>
       </div>
 
@@ -337,15 +324,7 @@ window.NZ_Backup = (function () {
     $('importCsvInput').value = '';
   }
 
-  async function triggerCloudSync() {
-    toast('Initiating Supabase cloud synchronization...');
-    const res = await window.NZ_Migration.syncLocalToSupabase();
-    if (res.success) {
-      toast(`Cloud sync completed! Uploaded ${res.uploadedTrades || 0} trades to Supabase.`);
-    } else {
-      toast(`Cloud sync notice: ${res.reason || res.error || 'Configure Supabase credentials in Settings.'}`, 'error');
-    }
-  }
+
 
   return {
     render,
@@ -353,6 +332,5 @@ window.NZ_Backup = (function () {
     exportCSV,
     handleJsonImport,
     handleCsvImport,
-    triggerCloudSync,
   };
 })();

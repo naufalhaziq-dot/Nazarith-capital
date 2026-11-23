@@ -1,6 +1,6 @@
 /**
  * NAZARITH CAPITAL V8.0 — MAIN ROUTER & SYSTEM ORCHESTRATOR
- * Coordinates global state, 14 institutional modules, Auth, and Cloud Sync.
+ * Coordinates global state, 14 institutional modules, local authentication and browser storage.
  */
 
 window.NZ_App = (function () {
@@ -139,39 +139,8 @@ window.NZ_App = (function () {
       return;
     }
 
-    const sb = window.NZ_Supabase.getClient();
-    const isSbOnline = window.NZ_Supabase.isAvailable();
-
-    // 1. If Supabase is connected, authenticate via Supabase Cloud
-    if (isSbOnline) {
-      try {
-        if (authMode === 'register') {
-          await window.NZ_Supabase.signUp(email, pass, name);
-          toast('Supabase account registered! Verifying session...');
-        } else {
-          await window.NZ_Supabase.signIn(email, pass);
-          toast('Welcome back to Nazarith Capital Cloud.');
-        }
-
-        // Establish local mirror session
-        const rawUsers = window.NZ_Storage.rawUsers();
-        if (!rawUsers[email]) {
-          rawUsers[email] = { name: name || 'Trader', password: pass, accounts: [] };
-        }
-        window.NZ_Storage.setCurrentSession(email);
-
-        // Auto-migrate local data to Supabase
-        window.NZ_Migration.syncLocalToSupabase();
-
-        $('auth')?.classList.remove('visible');
-        syncView();
-        return;
-      } catch (sbErr) {
-        toast(`Supabase Cloud Auth: ${sbErr.message}. Falling back to local offline mode.`, 'error');
-      }
-    }
-
-    // 2. Local-first fallback auth
+    // Standalone edition: local browser authentication only.
+    // Local-only authentication
     const rawUsers = window.NZ_Storage.rawUsers();
 
     if (authMode === 'register') {
@@ -207,7 +176,6 @@ window.NZ_App = (function () {
 
   function logout() {
     window.NZ_Storage.setCurrentSession('');
-    window.NZ_Supabase.signOut();
     syncView();
     toast('Signed out of workspace.');
   }

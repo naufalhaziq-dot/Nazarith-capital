@@ -1,6 +1,6 @@
 /**
- * NAZARITH CAPITAL V8.0 — SETTINGS & CLOUD CONFIGURATION
- * User profiles, Supabase Cloud configuration, external API keys,
+ * NAZARITH CAPITAL V8.0 — SETTINGS — STANDALONE
+ * User profiles, local storage information, optional external API preferences,
  * active account parameters, and session management.
  */
 
@@ -14,14 +14,12 @@ window.NZ_Settings = (function () {
     const email = window.NZ_Storage.getSessionEmail() || 'offline@nazarith.local';
     const acc = window.NZ_Storage.getActiveAccount();
     const trades = window.NZ_Storage.getTrades();
-    const sbConfig = window.NZ_Supabase.getSavedConfig();
-    const isSbAvailable = window.NZ_Supabase.isAvailable();
 
     const content = `
       ${renderPageHead(
-        'WORKSPACE PREFERENCES / CLOUD INFRASTRUCTURE',
+        'WORKSPACE PREFERENCES / LOCAL STORAGE',
         'Settings & System Architecture',
-        'Configure Supabase Cloud connection, external market data providers, and account parameters.'
+        'Manage your local workspace, optional external market data providers, and account parameters.'
       )}
 
       <!-- User Profile Card -->
@@ -50,35 +48,13 @@ window.NZ_Settings = (function () {
         </div>
       </div>
 
-      <!-- Cloud Infrastructure — Supabase Configuration (Master Prompt Rule I) -->
       <div class="card" style="margin-top:16px">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-          <h3>Cloud Infrastructure — Supabase Backend</h3>
-          <span class="pill ${isSbAvailable ? 'win' : 'neutral'}">
-            ${isSbAvailable ? '● Connected to Supabase Cloud' : '○ Local-First Offline Mode'}
-          </span>
-        </div>
-        <p class="muted" style="font-size:11.5px;line-height:1.7;margin-bottom:16px">
-          Connect your personal Supabase project to enable multi-device synchronization, PostgreSQL cloud backups, 
-          and cloud storage for chart attachments with strict Row-Level Security (RLS).
+        <h3>Standalone Storage</h3>
+        <span class="pill neutral">LOCAL BROWSER STORAGE</span>
+        <p class="muted" style="font-size:11.5px;line-height:1.7">
+          This edition stores account and trading data in this browser only. It does not connect to Supabase
+          and does not synchronize data between devices. Export a backup regularly from Data & Backup.
         </p>
-
-        <form id="supabaseConfigForm" class="form-grid">
-          <div class="field" style="grid-column:1/-1">
-            <label>SUPABASE PROJECT URL</label>
-            <input id="sbUrl" placeholder="https://your-project-id.supabase.co" value="${escapeHtml(sbConfig.url || '')}">
-          </div>
-          <div class="field" style="grid-column:1/-1">
-            <label>SUPABASE ANON / PUBLISHABLE KEY</label>
-            <input id="sbKey" type="password" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..." value="${escapeHtml(sbConfig.key || '')}">
-            <small style="color:var(--muted);font-size:10px;display:block;margin-top:4px">
-              Security notice: Always use your <b>anon public key</b> here. NEVER enter your secret <code>service_role</code> key in the frontend.
-            </small>
-          </div>
-          <div style="grid-column:1/-1;display:flex;justify-content:flex-end;gap:10px;margin-top:10px">
-            <button type="submit" class="btn primary">Save & Connect Supabase</button>
-          </div>
-        </form>
       </div>
 
       <!-- External API Integrations (Master Prompt Rule 7) -->
@@ -96,8 +72,8 @@ window.NZ_Settings = (function () {
           <div class="field">
             <label>AI ANALYST PROVIDER PREFERENCE</label>
             <select id="aiProviderSelect">
-              <option value="groq" ${window.NZ_CONFIG?.AI_PROVIDER === 'groq' ? 'selected' : ''}>Groq (LLaMA-3.3 70B via Supabase Edge)</option>
-              <option value="openai" ${window.NZ_CONFIG?.AI_PROVIDER === 'openai' ? 'selected' : ''}>OpenAI (GPT-4o Mini via Supabase Edge)</option>
+              <option value="groq" ${window.NZ_CONFIG?.AI_PROVIDER === 'groq' ? 'selected' : ''}>Groq (external API; not connected by default)</option>
+              <option value="openai" ${window.NZ_CONFIG?.AI_PROVIDER === 'openai' ? 'selected' : ''}>OpenAI (external API; not connected by default)</option>
               <option value="local" ${window.NZ_CONFIG?.AI_PROVIDER === 'local' ? 'selected' : ''}>Local Mathematical Engine Only</option>
             </select>
           </div>
@@ -128,16 +104,6 @@ window.NZ_Settings = (function () {
     `;
 
     $('main').innerHTML = content;
-
-    // Handle Supabase Config Submit
-    $('supabaseConfigForm').onsubmit = (e) => {
-      e.preventDefault();
-      const url = $('sbUrl').value.trim();
-      const key = $('sbKey').value.trim();
-      window.NZ_Supabase.setSavedConfig(url, key);
-      toast('Supabase cloud configuration updated.');
-      render();
-    };
 
     // Handle External API Form Submit
     $('externalApiForm').onsubmit = (e) => {

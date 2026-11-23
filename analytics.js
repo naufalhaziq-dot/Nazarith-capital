@@ -27,7 +27,7 @@ window.NZ_Analytics = (function () {
     // Grouping breakdowns
     const byPair = {};
     const bySession = {};
-    const byDay = { Mon: [], Tue: [], Wed: Thu: [], Fri: [] };
+    const byDay = { Mon: [], Tue: [], Wed: [], Thu: [], Fri: [], Sat: [], Sun: [] };
     const byStrategy = {};
 
     const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];

@@ -462,7 +462,7 @@ html{scroll-behavior:smooth;scroll-padding-top:28px}
     </section>
   </main>
 </section>
-<section id="auth" class="auth-wrap hidden"><div class="auth-card"><div class="eyebrow">NAZARITH CAPITAL / ACCESS</div><h2 id="authTitle">Welcome back.</h2><p class="muted" id="authSub">Sign in to your private workspace.</p><form id="authForm"><div class="field" id="nameField"><label>FULL NAME</label><input id="authName" autocomplete="name" placeholder="Your name"></div><div class="field"><label>EMAIL ADDRESS</label><input id="authEmail" type="email" required autocomplete="email" placeholder="name@example.com"></div><div class="field"><label>PASSWORD</label><input id="authPassword" type="password" required minlength="6" autocomplete="current-password" placeholder="Minimum 6 characters"></div><button class="btn primary" style="width:100%;margin-top:8px" id="authSubmit">Sign in</button></form><p class="muted" style="text-align:center;margin:20px 0 0;font-size:12px"><span id="authSwitchText">New to Nazarith?</span> <a href="#" id="authSwitch" style="color:#80b1ff" onclick="toggleAuthMode(event)">Create account</a></p><p class="muted" style="font-size:10px;margin-top:20px">Demo/local mode: account data is stored in this browser. Connect Supabase before using this for real multi-device or production authentication.</p><button class="btn ghost small" style="width:100%;margin-top:8px" onclick="backDiscover()">← Back to Discover</button></div></section>
+<section id="auth" class="auth-wrap hidden"><div class="auth-card"><div class="eyebrow">NAZARITH CAPITAL / ACCESS</div><h2 id="authTitle">Welcome back.</h2><p class="muted" id="authSub">Sign in to your private workspace.</p><form id="authForm"><div class="field" id="nameField"><label>FULL NAME</label><input id="authName" autocomplete="name" placeholder="Your name"></div><div class="field"><label>EMAIL ADDRESS</label><input id="authEmail" type="email" required autocomplete="email" placeholder="name@example.com"></div><div class="field"><label>PASSWORD</label><input id="authPassword" type="password" required minlength="6" autocomplete="current-password" placeholder="Minimum 6 characters"></div><button class="btn primary" style="width:100%;margin-top:8px" id="authSubmit">Sign in</button></form><p class="muted" style="text-align:center;margin:20px 0 0;font-size:12px"><span id="authSwitchText">New to Nazarith?</span> <a href="#" id="authSwitch" style="color:#80b1ff" onclick="toggleAuthMode(event)">Create account</a></p><p class="muted" style="font-size:10px;margin-top:20px">Standalone local mode: akun dan data trading tersimpan di browser/perangkat ini saja. Tidak ada koneksi Supabase atau sinkronisasi antarperangkat. Gunakan Data & Backup untuk membuat cadangan secara berkala.</p><button class="btn ghost small" style="width:100%;margin-top:8px" onclick="backDiscover()">← Back to Discover</button></div></section>
 <section id="workspace" class="app hidden"><aside class="sidebar"><div class="brand" style="padding:0 10px 12px"><div class="brand-mark">N</div><span>NAZARITH</span></div><div id="accountSwitcher" class="account-switcher"></div><div class="side-label">WORKSPACE</div><button class="nav active" data-page="dashboard" onclick="navigate('dashboard')">▦ <span>Overview</span></button><button class="nav" data-page="journal" onclick="navigate('journal')">▤ <span>Trade Journal</span></button><button class="nav" data-page="analytics" onclick="navigate('analytics')">◫ <span>Analytics</span></button><div class="side-label">RESEARCH & STRATEGY</div><button class="nav" data-page="strategy" onclick="navigate('strategy')">◎ <span>Strategy Lab</span></button><button class="nav" data-page="research" onclick="navigate('research')">▧ <span>Research Vault</span></button><button class="nav" data-page="watchlist" onclick="navigate('watchlist')">◉ <span>Market Watchlist</span></button><div class="side-label">RISK & ADMINISTRATION</div><button class="nav" data-page="risk" onclick="navigate('risk')">⌖ <span>Risk Management</span></button><button class="nav" data-page="calendar" onclick="navigate('calendar')">▦ <span>Trading Calendar</span></button><button class="nav" data-page="psychology" onclick="navigate('psychology')">◉ <span>Psychology Tracker</span></button><button class="nav" data-page="capital" onclick="navigate('capital')">◇ <span>Capital Allocation</span></button><button class="nav" data-page="reports" onclick="navigate('reports')">▤ <span>Performance Reports</span></button><button class="nav" data-page="events" onclick="navigate('events')">◷ <span>Event Planner</span></button><div class="side-label">EXECUTION INTELLIGENCE</div><button class="nav" data-page="smclab" onclick="navigate('smclab')">⌘ <span>SMC Setup Lab</span></button>
 <button class="nav" data-page="academy" onclick="navigate('academy')">◇ <span>SMC Academy</span></button>
 <button class="nav" data-page="entrylibrary" onclick="navigate('entrylibrary')">▧ <span>Entry Model Library</span></button>
@@ -856,75 +856,11 @@ navigate=function(page){if(page==='smclab'){document.querySelectorAll('.nav').fo
 </style>
 
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script id="naz-v8-runtime">
-/* V8.0: V3.0 modules retained; configure Supabase before production use. */
-const NAZARITH_SUPABASE_CONFIG={
-  url:"https://YOUR-PROJECT.supabase.co",
-  anonKey:"YOUR_SUPABASE_ANON_KEY"
-};
-let nazSupabase=null,nazCloudReady=false,nazCloudUserId=null,nazSaveTimer=null;
-const nazConfigured=()=>NAZARITH_SUPABASE_CONFIG.url.startsWith("https://")&&!NAZARITH_SUPABASE_CONFIG.url.includes("YOUR-PROJECT")&&NAZARITH_SUPABASE_CONFIG.anonKey&&!NAZARITH_SUPABASE_CONFIG.anonKey.includes("YOUR_");
-if(nazConfigured()&&window.supabase?.createClient){
-  nazSupabase=window.supabase.createClient(NAZARITH_SUPABASE_CONFIG.url,NAZARITH_SUPABASE_CONFIG.anonKey,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
-  nazCloudReady=true;
-}
-async function nazSaveCloud(){
-  if(!nazCloudReady||!nazCloudUserId||!current||!users[current])return;
-  const payload={user_id:nazCloudUserId,data:JSON.parse(JSON.stringify(users[current])),updated_at:new Date().toISOString()};
-  const {error}=await nazSupabase.from("user_workspaces").upsert(payload,{onConflict:"user_id"});
-  if(error)console.error("Nazarith cloud sync:",error);
-}
-const nazSaveUsersV3=saveUsers;
-saveUsers=function(){nazSaveUsersV3();clearTimeout(nazSaveTimer);nazSaveTimer=setTimeout(nazSaveCloud,700)};
-async function nazLoadCloud(userId){
-  const {data,error}=await nazSupabase.from("user_workspaces").select("data").eq("user_id",userId).maybeSingle();
-  if(error)throw error;
-  const {data:authData}=await nazSupabase.auth.getUser();
-  const email=authData.user?.email?.toLowerCase();
-  if(!email)throw new Error("Email akun Supabase tidak ditemukan.");
-  if(data?.data)users[email]=data.data;
-  else{
-    users[email]={name:authData.user.user_metadata?.full_name||email.split("@")[0],accounts:[]};
-    current=email;ensureAccounts();await nazSaveCloud();
-  }
-  current=email;nazCloudUserId=userId;storage.set(STORE+"_session",current);
-  ensureAccounts();trades=activeAccount().trades||[];nazSaveUsersV3();syncView();
-  await nazSaveCloud();
-}
-async function nazAuth(mode){
-  if(!nazCloudReady){toast("Supabase belum dikonfigurasi. Isi URL dan anon key pada NAZARITH_SUPABASE_CONFIG.");return}
-  const email=$("authEmail").value.trim().toLowerCase(),password=$("authPassword").value;
-  if(!email||!password){toast("Masukkan email dan password.");return}
-  try{
-    $("authSubmit").disabled=true;let result;
-    if(mode==="register"){
-      result=await nazSupabase.auth.signUp({email,password,options:{data:{full_name:$("authName").value.trim()||"Trader"}}});
-      if(result.error)throw result.error;
-      if(!result.data.session){toast("Pendaftaran berhasil. Verifikasi email sebelum login.");return}
-    }else{
-      result=await nazSupabase.auth.signInWithPassword({email,password});
-      if(result.error)throw result.error;
-    }
-    await nazLoadCloud(result.data.user.id);$("auth").classList.remove("visible");toast("Workspace tersinkron ke cloud.");
-  }catch(e){toast(e.message||"Autentikasi gagal.");}
-  finally{$("authSubmit").disabled=false}
-}
-$("authForm").addEventListener("submit",e=>{e.preventDefault();e.stopImmediatePropagation();nazAuth(authMode)},true);
-async function nazRestoreSession(){
-  if(!nazCloudReady)return;
-  try{
-    const {data,error}=await nazSupabase.auth.getSession();if(error)throw error;
-    if(data.session) await nazLoadCloud(data.session.user.id);
-    else { current=""; storage.remove(STORE+"_session"); $("workspace").classList.add("hidden"); $("discover").classList.remove("hidden"); }
-  }catch(e){console.warn("Supabase session restore:",e.message)}
-}
-logout=async function(){
-  try{if(nazCloudReady)await nazSupabase.auth.signOut()}catch(e){console.warn(e)}
-  nazCloudUserId=null;current="";storage.remove(STORE+"_session");
-  $("workspace").classList.add("hidden");$("discover").classList.remove("hidden");
-  $("topLogin").classList.remove("hidden");$("topStart").classList.remove("hidden");$("topUser").textContent="";
-};
+/* NAZARITH CAPITAL V8.0 STANDALONE
+   Local authentication and per-account data persistence only.
+   No Supabase SDK, API calls, cloud sync, or external database.
+*/
 function nazHead(k,t,d){return `<div class="page-head"><div><div class="eyebrow">${k}</div><h1>${t}</h1><p>${d}</p></div></div>`}
 function nazSchematicChart(type){
  const shapes={

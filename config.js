@@ -1,6 +1,6 @@
 /**
  * NAZARITH CAPITAL V8.0 — CONFIGURATION & CONSTANTS
- * Secure defaults, feature flags, and Supabase cloud settings.
+ * Secure defaults, feature flags, and standalone local settings.
  */
 
 window.NZ_CONFIG = {
@@ -11,11 +11,6 @@ window.NZ_CONFIG = {
   // Local-First Storage Keys (Retaining backward-compatibility with V3.0)
   STORAGE_PREFIX: 'nazarith_v8',
   LEGACY_STORE_KEYS: ['nazareth_capital_v1', 'nazarith_capital_v1', 'NAZARITH_CAPITAL'],
-
-  // Default Supabase Configuration (Overridable via Settings UI or Environment)
-  SUPABASE_URL: '', // User can input in Settings or inject via Netlify build env
-  SUPABASE_ANON_KEY: '', // User can input in Settings
-  SUPABASE_BUCKET: 'trade-attachments',
 
   // External API Connectors (Status: Optional / Plug-in)
   FINNHUB_KEY: '', // Optional for live market quotes or economic calendar
@@ -37,6 +32,6 @@ window.NZ_CONFIG = {
     RESEARCH_VAULT: true,
     WATCHLIST: true,
     MACRO_PLANNER: true,
-    CLOUD_SYNC: true,
+    CLOUD_SYNC: false,
   },
 };

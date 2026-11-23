@@ -1,7 +1,7 @@
 /**
  * NAZARITH CAPITAL V8.0 — AUTOMATED TRADING ANALYST
  * Algorithmic edge detection, psychological mistake cost auditing, overtrading diagnostics,
- * and secure Supabase Edge Function integration for AI-powered institutional reviews.
+ * and local algorithmic diagnostics for institutional trading reviews.
  */
 
 window.NZ_Analyst = (function () {
@@ -195,13 +195,11 @@ window.NZ_Analyst = (function () {
       `
       }
 
-      <!-- AI Edge Function Architecture Information -->
+      <!-- Local Algorithmic Analysis Information -->
       <div class="card" style="margin-top:16px">
-        <h3>Institutional AI Analyst Architecture</h3>
+        <h3>Local Quantitative Analyst</h3>
         <p class="muted" style="font-size:11px;line-height:1.8">
-          The Nazarith AI Analyst uses a secure backend proxy pattern via Supabase Edge Functions. 
-          Your trade dataset summary is audited mathematically on your device, and only anonymized metrics are transmitted to the server. 
-          API Keys (Groq LLaMA-3.3, OpenAI GPT-4o, or Gemini) remain permanently protected in Supabase environment secrets and are never exposed to browser client code.
+          This module runs a quantitative diagnostic locally in your browser. No trade data or API keys are sent to a cloud service.
         </p>
       </div>
     `;
@@ -225,7 +223,7 @@ window.NZ_Analyst = (function () {
         <div class="card" style="margin-bottom:16px;border-color:var(--gold)">
           <div style="display:flex;align-items:center;gap:10px">
             <div style="width:14px;height:14px;border:2px solid var(--gold);border-top-color:transparent;border-radius:50%;animation:nzOrbit 1s linear infinite"></div>
-            <b class="gold-text">Executing Institutional AI Analysis via Supabase Edge Function...</b>
+            <b class="gold-text">Running local quantitative analysis...</b>
           </div>
         </div>
       `;
@@ -250,24 +248,9 @@ window.NZ_Analyst = (function () {
       })),
     };
 
-    // Attempt Supabase Edge Function call
-    const sb = window.NZ_Supabase.getClient();
     let analysisMarkdown = '';
 
-    if (sb && window.NZ_Supabase.isAvailable()) {
-      try {
-        const { data, error } = await sb.functions.invoke('ai-analyst', {
-          body: { tradesSummary: summary, provider: window.NZ_CONFIG?.AI_PROVIDER || 'groq' },
-        });
-        if (!error && data?.analysis) {
-          analysisMarkdown = data.analysis;
-        }
-      } catch (err) {
-        console.warn('Edge function invoke failed, using built-in algorithmic fallback:', err);
-      }
-    }
-
-    // Fallback algorithmic diagnostic if Edge function not deployed yet
+    // Local algorithmic diagnostic
     if (!analysisMarkdown) {
       const audit = runAlgorithmicAudit(trades);
       analysisMarkdown = `
