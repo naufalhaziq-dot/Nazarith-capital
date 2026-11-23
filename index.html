@@ -926,13 +926,32 @@ logout=async function(){
   $("topLogin").classList.remove("hidden");$("topStart").classList.remove("hidden");$("topUser").textContent="";
 };
 function nazHead(k,t,d){return `<div class="page-head"><div><div class="eyebrow">${k}</div><h1>${t}</h1><p>${d}</p></div></div>`}
-function nazChart(type){
+function nazSchematicChart(type){
  const shapes={
  sweep:`<svg class="v8-chart" viewBox="0 0 620 240" role="img" aria-label="Schematic liquidity sweep"><path d="M20 75H600" stroke="#e8b65c" stroke-dasharray="5 5"/><text x="25" y="63">BSL / prior highs</text><path d="M40 170L80 145L120 120L160 95L200 130L240 165L280 190L320 155L360 120L400 95L440 65L480 85L520 115L560 90" fill="none" stroke="#9dbbd8" stroke-width="3"/><path d="M280 190L300 210" stroke="#ee7777" stroke-width="3"/><path d="M320 155L360 120L400 95" stroke="#53c99a" stroke-width="4" fill="none"/><text x="320" y="225">Sweep → MSS / displacement</text><text x="400" y="25">Illustrative only · not live data</text></svg>`,
  fvg:`<svg class="v8-chart" viewBox="0 0 620 240" role="img" aria-label="Schematic fair value gap"><path d="M40 190L90 155L140 110L190 55L240 125L290 180L340 145L390 90L440 45L490 95L540 130" fill="none" stroke="#9dbbd8" stroke-width="3"/><rect x="345" y="88" width="185" height="48" fill="#53c99a" fill-opacity=".14" stroke="#53c99a" stroke-dasharray="5 4"/><text x="355" y="78">FVG / imbalance</text><text x="355" y="155">Potential retracement zone</text><text x="25" y="225">Schematic only · validate on actual chart</text></svg>`,
  ob:`<svg class="v8-chart" viewBox="0 0 620 240" role="img" aria-label="Schematic order block"><path d="M35 185L85 160L135 120L185 150L235 180L285 125L335 75L385 105L435 145L485 100L535 55" fill="none" stroke="#9dbbd8" stroke-width="3"/><rect x="160" y="132" width="145" height="38" fill="#9dbbd8" fill-opacity=".14" stroke="#9dbbd8"/><text x="168" y="124">Order block zone</text><text x="345" y="215">Retest → confirmation</text></svg>`
  };
  return shapes[type]||shapes.sweep;
+}
+let nazChartMode="candles";
+function nazChartControls(){return `<div class="v8-actions" style="margin:8px 0 12px"><button class="btn small ${nazChartMode==="candles"?"primary":""}" onclick="nazSetChartMode('candles')">CANDLESTICK</button><button class="btn small ${nazChartMode==="schematic"?"primary":""}" onclick="nazSetChartMode('schematic')">SCHEMATIC</button><span class="v8-muted" style="font-size:10px;align-self:center">Educational OHLC simulation · not live market data</span></div>`}
+function nazSetChartMode(mode){nazChartMode=mode;const active=document.querySelector('.nav.active')?.dataset.page;if(active==="academy")renderAcademy();else if(active==="entrylibrary")renderEntryLibrary();}
+function nazChart(type){
+ if(nazChartMode==="schematic")return nazSchematicChart(type);
+ const sets={
+  sweep:[102,99,104,101,98,95,97,92,89,93,88,84,87,82,79,83,76,72,78,69,65,71,62,58,64,55,51,57],
+  fvg:[76,79,74,82,78,85,81,89,86,94,90,98,92,84,88,79,73,80,70,65,72,61,57,63,55,60,52,56],
+  ob:[92,88,95,90,84,87,80,76,82,78,72,75,68,71,64,59,66,61,55,62,51,47,54,49,43,50,39,45]
+ };
+ const closes=sets[type]||sets.sweep;let prev=closes[0]+3;const candles=closes.map((c,i)=>{const o=prev;const hi=Math.max(o,c)+[3,5,2,4,3,6][i%6];const lo=Math.min(o,c)-[2,3,4,2,5][i%5];prev=c;return{o,c,h:hi,l:lo}});
+ const min=Math.min(...candles.map(x=>x.l))-3,max=Math.max(...candles.map(x=>x.h))+3,py=v=>190-(v-min)/(max-min)*150;
+ const bars=candles.map((d,i)=>{const x=38+i*19.4,y=Math.min(py(d.o),py(d.c)),h=Math.max(2,Math.abs(py(d.o)-py(d.c))),up=d.c>=d.o;return `<line x1="${x+5}" y1="${py(d.h)}" x2="${x+5}" y2="${py(d.l)}" stroke="${up?'#35b58a':'#d66b70'}" stroke-width="1.3"/><rect x="${x}" y="${y}" width="10" height="${h}" fill="${up?'#35b58a':'#d66b70'}" stroke="${up?'#35b58a':'#d66b70'}"/>`}).join('');
+ let overlay='';
+ if(type==='sweep')overlay=`<path d="M24 115H600" stroke="#e8b65c" stroke-dasharray="5 4"/><text x="28" y="107">SSL · PRIOR LOWS</text><path d="M220 165L220 205" stroke="#e8b65c" stroke-width="1.5"/><text x="228" y="211">Liquidity sweep</text><path d="M390 35V190" stroke="#53c99a" stroke-dasharray="4 4"/><text x="397" y="31">MSS</text>`;
+ if(type==='fvg')overlay=`<rect x="300" y="76" width="175" height="34" fill="#53c99a" fill-opacity=".12" stroke="#53c99a" stroke-dasharray="4 3"/><text x="307" y="69">FVG · imbalance</text>`;
+ if(type==='ob')overlay=`<rect x="250" y="124" width="130" height="30" fill="#9dbbd8" fill-opacity=".12" stroke="#9dbbd8" stroke-dasharray="4 3"/><text x="256" y="118">Order block</text>`;
+ return `<svg class="v8-chart" viewBox="0 0 620 240" role="img" aria-label="Candlestick OHLC educational chart"><rect width="620" height="240" fill="#0a111a"/>${[45,90,135,180].map(y=>`<path d="M24 ${y}H600" stroke="#263647" stroke-width=".7"/>`).join('')}<path d="M24 15V190H600" stroke="#405164" stroke-width="1" fill="none"/>${bars}${overlay}<text x="26" y="18">PRICE</text><text x="26" y="225">09:00</text><text x="205" y="225">10:00</text><text x="385" y="225">11:00</text><text x="550" y="225">12:00</text><text x="470" y="18">SIMULATED OHLC</text></svg>`;
 }
 const nazLessons=[
 ["Market Structure","BOS, CHOCH, MSS, swing highs/lows and protected swings.","sweep","Define meaningful swing points first. A break is useful only when the reference swing and confirmation criteria are objective."],
@@ -944,7 +963,7 @@ const nazLessons=[
 ];
 function renderAcademy(){
  $("main").innerHTML=nazHead("EDUCATION / VISUAL KNOWLEDGE","SMC Academy","Visual study library with schematic chart illustrations.")+
- `<div class="v8-callout">SMC terminology differs between educators. Treat each definition as a study convention and document the exact version used in your own rules.</div><div class="v8-grid">${nazLessons.map((x,i)=>`<div class="v8-card"><span class="v8-tag">LESSON ${String(i+1).padStart(2,"0")}</span><h3>${x[0]}</h3><p class="v8-muted">${x[1]}</p>${nazChart(x[2])}<button class="btn small" style="margin-top:12px" onclick="nazLesson(${i})">STUDY LESSON</button></div>`).join("")}</div><div id="nazLessonDetail"></div>`;
+ `<div class="v8-callout">SMC terminology differs between educators. Treat each definition as a study convention and document the exact version used in your own rules.</div>${nazChartControls()}<div class="v8-grid">${nazLessons.map((x,i)=>`<div class="v8-card"><span class="v8-tag">LESSON ${String(i+1).padStart(2,"0")}</span><h3>${x[0]}</h3><p class="v8-muted">${x[1]}</p>${nazChart(x[2])}<button class="btn small" style="margin-top:12px" onclick="nazLesson(${i})">STUDY LESSON</button></div>`).join("")}</div><div id="nazLessonDetail"></div>`;
 }
 function nazLesson(i){const x=nazLessons[i];$("nazLessonDetail").innerHTML=`<div class="v8-card" style="margin-top:15px"><h3>${x[0]}</h3>${nazChart(x[2])}<p class="v8-muted">${x[3]}</p><h3>Review checklist</h3>${["Mark the relevant structure / zone","Wait for the stated confirmation","Define invalidation before entry","Capture screenshot and journal the result"].map(s=>`<div class="v8-rule">${s}<span class="v8-tag">CHECK</span></div>`).join("")}</div>`}
 const nazModels=[
@@ -957,7 +976,7 @@ const nazModels=[
 ];
 function renderEntryLibrary(){
  $("main").innerHTML=nazHead("EXECUTION PLAYBOOK / SETUP CATALOG","Entry Model Library","Step-by-step models to study and validate, not guaranteed signals.")+
- `<div class="v8-grid">${nazModels.map((m,i)=>`<div class="v8-card"><span class="v8-tag">MODEL ${i+1}</span><h3>${m[0]}</h3>${nazChart(m[1])}<button class="btn small" style="margin-top:12px" onclick="nazModel(${i})">OPEN PLAYBOOK</button></div>`).join("")}</div><div id="nazModelDetail"></div>`;
+ `${nazChartControls()}<div class="v8-grid">${nazModels.map((m,i)=>`<div class="v8-card"><span class="v8-tag">MODEL ${i+1}</span><h3>${m[0]}</h3>${nazChart(m[1])}<button class="btn small" style="margin-top:12px" onclick="nazModel(${i})">OPEN PLAYBOOK</button></div>`).join("")}</div><div id="nazModelDetail"></div>`;
 }
 function nazModel(i){const m=nazModels[i];$("nazModelDetail").innerHTML=`<div class="v8-card" style="margin-top:15px"><h3>${m[0]}</h3>${nazChart(m[1])}${m[2].map((s,n)=>`<div class="v8-step"><b>STEP ${n+1}</b><div class="v8-muted">${s}</div></div>`).join("")}<div class="v8-callout">Define entry trigger, stop placement, target logic, fees, session and news constraints before testing.</div></div>`}
 function renderRuleBuilder(){
